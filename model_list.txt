@@ -1,0 +1,582 @@
+Model: account.account, Name: Account
+Model: account.analytic.account, Name: Analytic Account
+Model: res.partner.bank, Name: Bank Accounts
+Model: stock.picking.batch, Name: Batch Transfer
+Model: mrp.bom, Name: Bill of Material
+Model: calendar.event, Name: Calendar Event
+Model: res.company, Name: Companies
+Model: res.partner, Name: Contact
+Model: discuss.channel, Name: Discussion Channel
+Model: mail.thread.cc, Name: Email CC management
+Model: mail.thread, Name: Email Thread
+Model: iap.account, Name: IAP Account
+Model: account.journal, Name: Journal
+Model: account.move, Name: Journal Entry
+Model: crm.lead, Name: Lead/Opportunity
+Model: stock.lot, Name: Lot/Serial
+Model: loyalty.card, Name: Loyalty Coupon
+Model: mail.blacklist, Name: Mail Blacklist
+Model: mail.thread.blacklist, Name: Mail Blacklist mixin
+Model: mailing.contact, Name: Mailing Contact
+Model: mail.thread.main.attachment, Name: Mail Main Attachment management
+Model: mrp.production, Name: Manufacturing Order
+Model: mailing.mailing, Name: Mass Mailing
+Model: fleet.vehicle.model, Name: Model of a vehicle
+Model: account.payment, Name: Payments
+Model: phone.blacklist, Name: Phone Blacklist
+Model: mail.thread.phone, Name: Phone Blacklist Mixin
+Model: account.reconcile.model, Name: Preset to create journal entries during a invoices and payments matching
+Model: product.pricelist, Name: Pricelist
+Model: product.template, Name: Product
+Model: product.category, Name: Product Category
+Model: product.product, Name: Product Variant
+Model: purchase.order, Name: Purchase Order
+Model: purchase.requisition, Name: Purchase Requisition
+Model: rating.mixin, Name: Rating Mixin
+Model: sale.order, Name: Sales Order
+Model: crm.team, Name: Sales Team
+Model: crm.team.member, Name: Sales Team Member
+Model: stock.scrap, Name: Scrap
+Model: fleet.vehicle.log.services, Name: Services for vehicles
+Model: stock.landed.cost, Name: Stock Landed Cost
+Model: account.tax, Name: Tax
+Model: stock.picking, Name: Transfer
+Model: mrp.unbuild, Name: Unbuild Order
+Model: fleet.vehicle, Name: Vehicle
+Model: fleet.vehicle.log.contract, Name: Vehicle Contract
+Model: mrp.workcenter, Name: Work Center
+Model: mrp.routing.workcenter, Name: Work Center Usage
+Model: auth_totp.wizard, Name: 2-Factor Setup Wizard
+Model: res.groups, Name: Access Groups
+Model: account.cash.rounding, Name: Account Cash Rounding
+Model: account.chart.template, Name: Account Chart Template
+Model: account.root, Name: Account codes first 2 digits
+Model: account.group, Name: Account Group
+Model: account.report, Name: Accounting Report
+Model: account.report.column, Name: Accounting Report Column
+Model: account.report.expression, Name: Accounting Report Expression
+Model: account.report.external.value, Name: Accounting Report External Value
+Model: account.report.line, Name: Accounting Report Line
+Model: account.journal.group, Name: Account Journal Group
+Model: account.lock_exception, Name: Account Lock Exception
+Model: account.merge.wizard, Name: Account merge wizard
+Model: account.merge.wizard.line, Name: Account merge wizard line
+Model: mrp.account.wip.accounting.line, Name: Account move line to be created when posting WIP account move
+Model: account.move.reversal, Name: Account Move Reversal
+Model: account.move.send, Name: Account Move Send
+Model: account.move.send.batch.wizard, Name: Account Move Send Batch Wizard
+Model: account.move.send.wizard, Name: Account Move Send Wizard
+Model: report.account.report_invoice, Name: Account report without payment lines
+Model: report.account.report_invoice_with_payments, Name: Account report with payment lines
+Model: account.fiscal.position.account, Name: Accounts Mapping of Fiscal Position
+Model: account.account.tag, Name: Account Tag
+Model: account.accrued.orders.wizard, Name: Accrued Orders Wizard
+Model: ir.actions.actions, Name: Actions
+Model: ir.actions.act_url, Name: Action URL
+Model: ir.actions.act_window, Name: Action Window
+Model: ir.actions.act_window_close, Name: Action Window Close
+Model: ir.actions.act_window.view, Name: Action Window View
+Model: mail.activity, Name: Activity
+Model: mail.activity.mixin, Name: Activity Mixin
+Model: mail.activity.plan, Name: Activity Plan
+Model: mail.activity.plan.template, Name: Activity plan template
+Model: mail.activity.schedule, Name: Activity schedule plan Wizard
+Model: mail.activity.type, Name: Activity Type
+Model: mailing.contact.to.list, Name: Add Contacts to Mailing List
+Model: format.address.mixin, Name: Address Format
+Model: mrp.workcenter.tag, Name: Add tag for the workcenter
+Model: website.route, Name: All Website Route
+Model: account.analytic.distribution.model, Name: Analytic Distribution Model
+Model: account.analytic.line, Name: Analytic Line
+Model: analytic.mixin, Name: Analytic Mixin
+Model: analytic.plan.fields.mixin, Name: Analytic Plan Fields
+Model: account.analytic.plan, Name: Analytic Plans
+Model: account.analytic.applicability, Name: Analytic Plan's Applicabilities
+Model: account.edi.xml.ubl_a_nz, Name: A-NZ BIS Billing 3.0
+Model: res.users.apikeys.description, Name: API Key Description
+Model: ir.module.category, Name: Application
+Model: ir.asset, Name: Asset
+Model: web_editor.assets, Name: Assets Utils
+Model: ir.attachment, Name: Attachment
+Model: product.attribute.value, Name: Attribute Value
+Model: auth_totp.device, Name: Authentication Device
+Model: sequence.mixin, Name: Automatic sequence
+Model: ir.autovacuum, Name: Automatic Vacuum
+Model: account.autopost.bills.wizard, Name: Autopost Bills Wizard
+Model: avatar.mixin, Name: Avatar Mixin
+Model: stock.backorder.confirmation, Name: Backorder Confirmation
+Model: mrp.production.backorder.line, Name: Backorder Confirmation Line
+Model: stock.backorder.confirmation.line, Name: Backorder Confirmation Line
+Model: res.bank, Name: Bank
+Model: account.setup.bank.manual.config, Name: Bank setup manual config
+Model: account.bank.statement, Name: Bank Statement
+Model: account.bank.statement.line, Name: Bank Statement Line
+Model: barcodes.barcode_events_mixin, Name: Barcode Event Mixin
+Model: barcode.nomenclature, Name: Barcode Nomenclature
+Model: barcode.rule, Name: Barcode Rule
+Model: base, Name: Base
+Model: base_import.import, Name: Base Import
+Model: base_import.mapping, Name: Base Import Mapping
+Model: stock.picking.to.batch, Name: Batch Transfer Lines
+Model: mrp.bom.line, Name: Bill of Material Line
+Model: bill.to.po.wizard, Name: Bill to Purchase Order
+Model: account.edi.xml.ubl_de, Name: BIS3 DE (XRechnung)
+Model: report.mrp.report_bom_structure, Name: BOM Overview Report
+Model: fleet.vehicle.model.brand, Name: Brand of the vehicle
+Model: mrp.bom.byproduct, Name: Byproduct
+Model: calendar.attendee, Name: Calendar Attendee Information
+Model: calendar.filters, Name: Calendar Filters
+Model: calendar.popover.delete.wizard, Name: Calendar Popover Delete Wizard
+Model: calendar.provider.config, Name: Calendar Provider Configuration Wizard
+Model: utm.stage, Name: Campaign Stage
+Model: sale.mass.cancel.orders, Name: Cancel multiple quotations
+Model: mail.canned.response, Name: Canned Response
+Model: bus.listener.mixin, Name: Can send messages via bus.bus
+Model: fleet.vehicle.model.category, Name: Category of the model
+Model: change.password.wizard, Name: Change Password Wizard
+Model: change.production.qty, Name: Change Production Qty
+Model: stock.change.product.qty, Name: Change Product Quantity
+Model: discuss.channel.member, Name: Channel Member
+Model: lot.label.layout, Name: Choose the sheet layout to print lot labels
+Model: product.label.layout, Name: Choose the sheet layout to print the labels
+Model: picking.label.type, Name: Choose whether to print product or lot/sn labels
+Model: ir.actions.client, Name: Client Action
+Model: account.edi.common, Name: Common functions for EDI documents: generate the data, the constraints, etc
+Model: sale.edi.common, Name: Common functions for EDI orders
+Model: bus.bus, Name: Communication Bus
+Model: base.document.layout, Name: Company Document Layout
+Model: res.company.ldap, Name: Company LDAP configuration
+Model: res.config, Name: Config
+Model: res.config.settings, Name: Config Settings
+Model: ir.actions.todo, Name: Configuration Wizards
+Model: stock.inventory.conflict, Name: Conflict in Inventory
+Model: crm.lead2opportunity.partner.mass, Name: Convert Lead to Opportunity (in mass)
+Model: crm.lead2opportunity.partner, Name: Convert Lead to Opportunity (not in mass)
+Model: spreadsheet.dashboard.share, Name: Copy of a shared dashboard
+Model: res.country, Name: Country
+Model: res.country.group, Name: Country Group
+Model: format.vat.label.mixin, Name: Country Specific VAT Label
+Model: res.country.state, Name: Country state
+Model: website.cover_properties.mixin, Name: Cover Properties Website Mixin
+Model: account.automatic.entry.wizard, Name: Create Automatic Entries
+Model: coupon.share, Name: Create links that apply a coupon and redirect to a specific page
+Model: wizard.ir.model.menu.create, Name: Create Menu Wizard
+Model: crm.quotation.partner, Name: Create new or use existing Customer on new Quotation
+Model: crm.activity.report, Name: CRM Activity Analysis
+Model: crm.iap.lead.industry, Name: CRM IAP Lead Industry
+Model: crm.iap.lead.mining.request, Name: CRM Lead Mining Request
+Model: crm.recurring.plan, Name: CRM Recurring revenue plans
+Model: crm.stage, Name: CRM Stages
+Model: crm.tag, Name: CRM Tag
+Model: res.currency, Name: Currency
+Model: res.currency.rate, Name: Currency Rate
+Model: stock.lot.report, Name: Customer Lot Report
+Model: ir.ui.view.custom, Name: Custom View
+Model: decimal.precision, Name: Decimal Precision
+Model: ir.default, Name: Default Values
+Model: choose.delivery.carrier, Name: Delivery Carrier Selection Wizard
+Model: choose.delivery.package, Name: Delivery Package Selection Wizard
+Model: delivery.price.rule, Name: Delivery Price Rules
+Model: delivery.zip.prefix, Name: Delivery Zip Prefix
+Model: ir.demo, Name: Demo
+Model: ir.demo_failure, Name: Demo failure
+Model: ir.demo_failure.wizard, Name: Demo Failure wizard
+Model: res.device.log, Name: Device Log
+Model: res.device, Name: Devices
+Model: digest.digest, Name: Digest
+Model: digest.tip, Name: Digest Tips
+Model: sale.order.discount, Name: Discount Wizard
+Model: mail.followers, Name: Document Followers
+Model: fleet.vehicle.assignation.log, Name: Drivers history on a vehicle
+Model: website.sale.extra.field, Name: E-Commerce Extra Info Shown on product page
+Model: account.edi.xml.ubl_efff, Name: E-FFF (BE)
+Model: mail.alias, Name: Email Aliases
+Model: mail.alias.mixin, Name: Email Aliases Mixin
+Model: mail.alias.mixin.optional, Name: Email Aliases Mixin (light)
+Model: mail.compose.message, Name: Email composition wizard
+Model: mail.alias.domain, Name: Email Domain
+Model: mail.resend.message, Name: Email resend wizard
+Model: mail.template.preview, Name: Email Template Preview
+Model: mail.template, Name: Email Templates
+Model: ir.embedded.actions, Name: Embedded Actions
+Model: base.enable.profiling.wizard, Name: Enable profiling for some time
+Model: calendar.alarm, Name: Event Alarm
+Model: calendar.alarm_manager, Name: Event Alarm Manager
+Model: calendar.event.type, Name: Event Meeting Type
+Model: calendar.recurrence, Name: Event Recurrence Rule
+Model: ir.exports, Name: Exports
+Model: ir.exports.line, Name: Exports Line
+Model: account.edi.xml.cii, Name: Factur-x/XRechnung CII 2.2.0
+Model: product.fetch.image.wizard, Name: Fetch product images from Google Images based on the product's barcode number.
+Model: html.field.history.mixin, Name: Field html History
+Model: ir.model.fields, Name: Fields
+Model: ir.fields.converter, Name: Fields Converter
+Model: ir.model.fields.selection, Name: Fields Selection
+Model: crm.lead.scoring.frequency.field, Name: Fields that can be used for predictive lead scoring computation
+Model: ir.binary, Name: File streaming helper model for controllers
+Model: ir.filters, Name: Filters
+Model: account.fiscal.position, Name: Fiscal Position
+Model: fleet.vehicle.cost.report, Name: Fleet Analysis Report
+Model: fleet.service.type, Name: Fleet Service Type
+Model: snailmail.letter.format.error, Name: Format Error Sending a Snailmail Letter
+Model: sale.pdf.form.field, Name: Form fields of inside quotation documents.
+Model: account.full.reconcile, Name: Full Reconcile
+Model: loyalty.generate.wizard, Name: Generate Coupons
+Model: payment.link.wizard, Name: Generate Sales Payment Link
+Model: base.geocoder, Name: Geo Coder
+Model: base.geo_provider, Name: Geo Provider
+Model: report.account.report_hash_integrity, Name: Get hash integrity result as PDF.
+Model: crm.lead.lost, Name: Get Lost Reason
+Model: google.calendar.account.reset, Name: Google Calendar Account Reset
+Model: google.gmail.mixin, Name: Google Gmail Mixin
+Model: google.service, Name: Google Service
+Model: portal.wizard, Name: Grant Portal Access
+Model: spreadsheet.dashboard.group, Name: Group of dashboards
+Model: mail.guest, Name: Guest
+Model: crm.iap.lead.helpers, Name: Helper methods for crm_iap_mine modules
+Model: loyalty.history, Name: History for Loyalty cards and Ewallets
+Model: ir.http, Name: HTTP Routing
+Model: iap.enrich.api, Name: IAP Lead Enrichment API
+Model: iap.service, Name: IAP Service
+Model: mail.ice.server, Name: ICE server
+Model: image.mixin, Name: Image Mixin
+Model: base.import.module, Name: Import Module
+Model: fetchmail.server, Name: Incoming Mail Server
+Model: account.incoterms, Name: Incoterms
+Model: res.partner.industry, Name: Industry
+Model: base.language.install, Name: Install Language
+Model: stock.inventory.adjustment.name, Name: Inventory Adjustment Reference / Reason
+Model: stock.inventory.warning, Name: Inventory Adjustment Warning
+Model: stock.location, Name: Inventory Locations
+Model: stock.route, Name: Inventory Routes
+Model: mail.wizard.invite, Name: Invite wizard
+Model: account.invoice.report, Name: Invoices Statistics
+Model: account.move.line, Name: Journal Item
+Model: base.language.export, Name: Language Export
+Model: base.language.import, Name: Language Import
+Model: res.lang, Name: Languages
+Model: crm.lead.scoring.frequency, Name: Lead Scoring Frequency
+Model: mrp.consumption.warning.line, Name: Line of issue consumption
+Model: link.tracker, Name: Link Tracker
+Model: link.tracker.click, Name: Link Tracker Click
+Model: link.tracker.code, Name: Link Tracker Code
+Model: ir.logging, Name: Logging
+Model: report.stock.label_lot_template_view, Name: Lot Label Report
+Model: loyalty.mail, Name: Loyalty Communication
+Model: loyalty.program, Name: Loyalty Program
+Model: loyalty.reward, Name: Loyalty Reward
+Model: loyalty.rule, Name: Loyalty Rule
+Model: mail.bot, Name: Mail Bot
+Model: mail.composer.mixin, Name: Mail Composer Mixin
+Model: mail.gateway.allowed, Name: Mail Gateway Allowed
+Model: mailing.contact.import, Name: Mailing Contact Import
+Model: mailing.filter, Name: Mailing Favorite Filters
+Model: mailing.list, Name: Mailing List
+Model: mailing.subscription, Name: Mailing List Subscription
+Model: mailing.trace, Name: Mailing Statistics
+Model: mailing.subscription.optout, Name: Mailing Subscription Reason
+Model: mail.render.mixin, Name: Mail Render Mixin
+Model: discuss.channel.rtc.session, Name: Mail RTC session
+Model: ir.mail_server, Name: Mail Server
+Model: mail.template.reset, Name: Mail Template Reset
+Model: mail.tracking.value, Name: Mail Tracking Value
+Model: account.code.mapping, Name: Mapping of account codes per company
+Model: mailing.trace.report, Name: Mass Mailing Statistics
+Model: ir.ui.menu, Name: Menu
+Model: mailing.list.merge, Name: Merge Mass Mailing List
+Model: crm.merge.opportunity, Name: Merge Opportunities
+Model: base.partner.merge.line, Name: Merge Partner Line
+Model: base.partner.merge.automatic.wizard, Name: Merge Partner Wizard
+Model: mail.message, Name: Message
+Model: mail.notification, Name: Message Notifications
+Model: mail.message.reaction, Name: Message Reaction
+Model: mail.message.subtype, Name: Message subtypes
+Model: mail.message.translation, Name: Message Translation
+Model: discuss.voice.metadata, Name: Metadata for voice attachments
+Model: microsoft.calendar.account.reset, Name: Microsoft Calendar Account Reset
+Model: microsoft.outlook.mixin, Name: Microsoft Outlook Mixin
+Model: microsoft.service, Name: Microsoft Service
+Model: stock.warehouse.orderpoint, Name: Minimum Inventory Rule
+Model: mail.tracking.duration.mixin, Name: Mixin to compute the time a record has spent in each value a many2one field can take
+Model: ir.model.access, Name: Model Access
+Model: ir.model.constraint, Name: Model Constraint
+Model: ir.model.data, Name: Model Data
+Model: ir.model.inherit, Name: Model Inheritance Tree
+Model: website.controller.page, Name: Model Page
+Model: ir.model, Name: Models
+Model: ir.module.module, Name: Module
+Model: base.module.install.request, Name: Module Activation Request
+Model: base.module.install.review, Name: Module Activation Review
+Model: ir.module.module.dependency, Name: Module dependency
+Model: ir.module.module.exclusion, Name: Module exclusion
+Model: report.base.report_irmodulereference, Name: Module Reference Report (base)
+Model: base.module.uninstall, Name: Module Uninstall
+Model: report.mrp.report_mo_overview, Name: MO Overview Report
+Model: mrp.workcenter.productivity.loss.type, Name: MRP Workorder productivity losses
+Model: website.multi.mixin, Name: Multi Website Mixin
+Model: website.published.multi.mixin, Name: Multi Website Published Mixin
+Model: auth.oauth.provider, Name: OAuth2 provider
+Model: fleet.vehicle.odometer, Name: Odometer log for a vehicle
+Model: onboarding.onboarding, Name: Onboarding
+Model: onboarding.progress.step, Name: Onboarding Progress Step Tracker
+Model: onboarding.progress, Name: Onboarding Progress Tracker
+Model: onboarding.onboarding.step, Name: Onboarding Step
+Model: account.financial.year.op, Name: Opening Balance of Financial Year
+Model: crm.lost.reason, Name: Opp. Lost Reason
+Model: mail.mail, Name: Outgoing Mails
+Model: stock.quant.package, Name: Packages
+Model: website.page, Name: Page
+Model: website.page.properties, Name: Page Properties
+Model: website.page.properties.base, Name: Page Properties Base
+Model: report.paperformat, Name: Paper Format Config
+Model: account.partial.reconcile, Name: Partial Reconcile
+Model: res.partner.iap, Name: Partner IAP
+Model: account.reconcile.model.partner.mapping, Name: Partner mapping for reconciliation models
+Model: res.partner.category, Name: Partner Tags
+Model: res.partner.title, Name: Partner Title
+Model: mail.resend.partner, Name: Partner with additional information for mail resend
+Model: res.users.identitycheck, Name: Password Check Wizard
+Model: account.payment.register, Name: Pay
+Model: payment.capture.wizard, Name: Payment Capture Wizard
+Model: payment.method, Name: Payment Method
+Model: account.payment.method, Name: Payment Methods
+Model: account.payment.method.line, Name: Payment Methods
+Model: payment.provider, Name: Payment Provider
+Model: payment.provider.onboarding.wizard, Name: Payment provider onboarding wizard
+Model: payment.refund.wizard, Name: Payment Refund Wizard
+Model: account.payment.term, Name: Payment Terms
+Model: account.payment.term.line, Name: Payment Terms Line
+Model: payment.token, Name: Payment Token
+Model: payment.transaction, Name: Payment Transaction
+Model: crm.iap.lead.role, Name: People Role
+Model: crm.iap.lead.seniority, Name: People Seniority
+Model: stock.picking.type, Name: Picking Type
+Model: portal.mixin, Name: Portal Mixin
+Model: portal.share, Name: Portal Sharing
+Model: portal.wizard.user, Name: Portal User Config
+Model: report.product.report_pricelist, Name: Pricelist Report
+Model: product.pricelist.item, Name: Pricelist Rule
+Model: privacy.log, Name: Privacy Log
+Model: privacy.lookup.wizard, Name: Privacy Lookup Wizard
+Model: privacy.lookup.wizard.line, Name: Privacy Lookup Wizard Line
+Model: procurement.group, Name: Procurement Group
+Model: mrp.batch.produce, Name: Produce a batch of production order
+Model: product.attribute, Name: Product Attribute
+Model: product.attribute.custom.value, Name: Product Attribute Custom Value
+Model: product.catalog.mixin, Name: Product Catalog Mixin
+Model: product.combo, Name: Product Combo
+Model: product.combo.item, Name: Product Combo Item
+Model: product.document, Name: Product Document
+Model: product.image, Name: Product Image
+Model: report.product.report_producttemplatelabel_dymo, Name: Product Label Report
+Model: report.stock.label_product_product_view, Name: Product Label Report
+Model: report.product.report_producttemplatelabel2x7, Name: Product Label Report 2x7
+Model: report.product.report_producttemplatelabel4x12, Name: Product Label Report 4x12
+Model: report.product.report_producttemplatelabel4x12noprice, Name: Product Label Report 4x12 No Price
+Model: report.product.report_producttemplatelabel4x7, Name: Product Label Report 4x7
+Model: stock.move.line, Name: Product Moves (Stock Move Line)
+Model: product.packaging, Name: Product Packaging
+Model: product.replenish, Name: Product Replenish
+Model: stock.replenish.mixin, Name: Product Replenish Mixin
+Model: product.ribbon, Name: Product ribbon
+Model: product.tag, Name: Product Tag
+Model: product.template.attribute.exclusion, Name: Product Template Attribute Exclusion
+Model: product.template.attribute.line, Name: Product Template Attribute Line
+Model: product.template.attribute.value, Name: Product Template Attribute Value
+Model: uom.uom, Name: Product Unit of Measure
+Model: uom.category, Name: Product UoM Categories
+Model: ir.profile, Name: Profiling results
+Model: ir.cron.progress, Name: Progress of Scheduled Actions
+Model: publisher_warranty.contract, Name: Publisher Warranty Contract
+Model: purchase.bill.line.match, Name: Purchase Line and Vendor Bill line matching view
+Model: purchase.order.line, Name: Purchase Order Line
+Model: purchase.report, Name: Purchase Report
+Model: purchase.requisition.line, Name: Purchase Requisition Line
+Model: purchase.bill.union, Name: Purchases & Bills Union
+Model: mail.push.device, Name: Push Notification Device
+Model: mail.push, Name: Push Notifications
+Model: stock.putaway.rule, Name: Putaway Rule
+Model: stock.quant, Name: Quants
+Model: quotation.document, Name: Quotation's Headers & Footers
+Model: sale.order.template, Name: Quotation Template
+Model: sale.order.template.line, Name: Quotation Template Line
+Model: sale.order.template.option, Name: Quotation Template Option
+Model: ir.qweb, Name: Qweb
+Model: ir.qweb.field, Name: Qweb Field
+Model: ir.qweb.field.barcode, Name: Qweb Field Barcode
+Model: ir.qweb.field.contact, Name: Qweb Field Contact
+Model: ir.qweb.field.date, Name: Qweb Field Date
+Model: ir.qweb.field.datetime, Name: Qweb Field Datetime
+Model: ir.qweb.field.duration, Name: Qweb Field Duration
+Model: ir.qweb.field.float, Name: Qweb Field Float
+Model: ir.qweb.field.float_time, Name: Qweb Field Float Time
+Model: ir.qweb.field.html, Name: Qweb Field HTML
+Model: ir.qweb.field.image, Name: Qweb Field Image
+Model: ir.qweb.field.image_url, Name: Qweb Field Image
+Model: ir.qweb.field.integer, Name: Qweb Field Integer
+Model: ir.qweb.field.many2many, Name: Qweb field many2many
+Model: ir.qweb.field.many2one, Name: Qweb Field Many to One
+Model: ir.qweb.field.monetary, Name: Qweb Field Monetary
+Model: ir.qweb.field.qweb, Name: Qweb Field qweb
+Model: ir.qweb.field.relative, Name: Qweb Field Relative
+Model: ir.qweb.field.selection, Name: Qweb Field Selection
+Model: ir.qweb.field.text, Name: Qweb Field Text
+Model: ir.qweb.field.time, Name: QWeb Field Time
+Model: rating.rating, Name: Rating
+Model: rating.parent.mixin, Name: Rating Parent Mixin
+Model: ir.rule, Name: Record Rule
+Model: ir.model.relation, Name: Relation Model
+Model: account.resequence.wizard, Name: Remake the sequence of Journal Entries.
+Model: product.removal, Name: Removal Strategy
+Model: mail.blacklist.remove, Name: Remove email from blacklist wizard
+Model: phone.blacklist.remove, Name: Remove phone from blacklist
+Model: ir.actions.report, Name: Report Action
+Model: report.layout, Name: Report Layout
+Model: reset.view.arch.wizard, Name: Reset View Architecture Wizard
+Model: resource.mixin, Name: Resource Mixin
+Model: resource.resource, Name: Resources
+Model: resource.calendar.leaves, Name: Resource Time Off Detail
+Model: resource.calendar, Name: Resource Working Time
+Model: stock.return.picking, Name: Return Picking
+Model: stock.return.picking.line, Name: Return Picking Line
+Model: website.robots, Name: Robots.txt Editor
+Model: account.reconcile.model.line, Name: Rules for the reconciliation model
+Model: sale.loyalty.coupon.wizard, Name: Sale Loyalty - Apply Coupon Wizard
+Model: sale.loyalty.reward.wizard, Name: Sale Loyalty - Reward Selection Wizard
+Model: sale.order.option, Name: Sale Options
+Model: sale.order.coupon.points, Name: Sale Order Coupon Points - Keeps track of how a sale order impacts a coupon
+Model: sale.payment.provider.onboarding.wizard, Name: Sale Payment provider onboarding wizard
+Model: sale.advance.payment.inv, Name: Sales Advance Payment Invoice
+Model: sale.report, Name: Sales Analysis Report
+Model: sale.order.cancel, Name: Sales Order Cancel
+Model: sale.order.line, Name: Sales Order Line
+Model: mailing.mailing.test, Name: Sample Mail Wizard
+Model: discuss.gif.favorite, Name: Save favorite GIF from Tenor API
+Model: mailing.mailing.schedule.date, Name: schedule a mailing
+Model: ir.cron, Name: Scheduled Actions
+Model: mail.scheduled.message, Name: Scheduled Message
+Model: mail.message.schedule, Name: Scheduled Messages
+Model: stock.scrap.reason.tag, Name: Scrap Reason Tag
+Model: account.secure.entries.wizard, Name: Secure Journal Entries
+Model: fleet.vehicle.send.mail, Name: Send mails to Drivers
+Model: website.seo.metadata, Name: SEO metadata
+Model: ir.sequence, Name: Sequence
+Model: ir.sequence.date_range, Name: Sequence Date Range
+Model: ir.actions.server, Name: Server Action
+Model: account.edi.xml.ubl_sg, Name: SG BIS Billing 3.0
+Model: delivery.carrier, Name: Shipping Methods
+Model: res.users.apikeys.show, Name: Show API Key
+Model: account.edi.xml.ubl_nl, Name: SI-UBL 2.0 (NLCIUS)
+Model: snailmail.letter, Name: Snailmail Letter
+Model: stock.orderpoint.snooze, Name: Snooze Orderpoint
+Model: mrp.production.split.line, Name: Split Production Detail
+Model: spreadsheet.dashboard, Name: Spreadsheet Dashboard
+Model: spreadsheet.mixin, Name: Spreadsheet mixin
+Model: stock.landed.cost.lines, Name: Stock Landed Cost Line
+Model: stock.move, Name: Stock Move
+Model: stock.package.destination, Name: Stock Package Destination
+Model: stock.package_level, Name: Stock Package Level
+Model: stock.package.type, Name: Stock package type
+Model: stock.quantity.history, Name: Stock Quantity History
+Model: stock.quant.relocate, Name: Stock Quantity Relocation
+Model: report.stock.quantity, Name: Stock Quantity Report
+Model: report.stock.report_reception, Name: Stock Reception Report
+Model: stock.forecasted_product_template, Name: Stock Replenishment Report
+Model: stock.forecasted_product_product, Name: Stock Replenishment Report
+Model: stock.request.count, Name: Stock Request an Inventory Count
+Model: stock.rule, Name: Stock Rule
+Model: report.stock.report_stock_rule, Name: Stock rule report
+Model: stock.rules.report, Name: Stock Rules report
+Model: stock.replenishment.info, Name: Stock supplier replenishment information
+Model: stock.track.confirmation, Name: Stock Track Confirmation
+Model: stock.track.line, Name: Stock Track Line
+Model: stock.valuation.layer, Name: Stock Valuation Layer
+Model: stock.replenishment.option, Name: Stock warehouse replenishment option
+Model: stock.storage.category, Name: Storage Category
+Model: stock.storage.category.capacity, Name: Storage Category Capacity
+Model: mail.link.preview, Name: Store link preview data
+Model: product.supplierinfo, Name: Supplier Pricelist
+Model: google.calendar.sync, Name: Synchronize a record with Google Calendar
+Model: microsoft.calendar.sync, Name: Synchronize a record with Microsoft Calendar
+Model: ir.config_parameter, Name: System Parameter
+Model: account.tax.group, Name: Tax Group
+Model: account.fiscal.position.tax, Name: Tax Mapping of Fiscal Position
+Model: account.tax.repartition.line, Name: Tax Repartition Line
+Model: purchase.order.group, Name: Technical model to group PO for call to tenders
+Model: template.reset.mixin, Name: Template Reset Mixin
+Model: theme.ir.asset, Name: Theme Asset
+Model: theme.ir.attachment, Name: Theme Attachments
+Model: theme.ir.ui.view, Name: Theme UI View
+Model: theme.utils, Name: Theme Utils
+Model: web_tour.tour, Name: Tours
+Model: web_tour.tour.step, Name: Tour's step
+Model: stock.traceability.report, Name: Traceability Report
+Model: ir.cron.trigger, Name: Triggered actions
+Model: account.edi.xml.ubl_20, Name: UBL 2.0
+Model: account.edi.xml.ubl_21, Name: UBL 2.1
+Model: purchase.edi.xml.ubl_bis3, Name: UBL BIS 3 Peppol Order transaction 3.4
+Model: account.edi.xml.ubl_bis3, Name: UBL BIS Billing 3.0.12
+Model: sale.edi.xml.ubl_bis3, Name: UBL BIS Ordering 3.0
+Model: website.base.unit, Name: Unit of Measure for price per unit on eCommerce products.
+Model: _unknown, Name: Unknown
+Model: snailmail.letter.missing.required.fields, Name: Update address of partner
+Model: loyalty.card.update.balance, Name: Update Loyalty Card Points
+Model: base.module.update, Name: Update Module
+Model: update.product.attribute.value, Name: Update product attribute value
+Model: crm.lead.pls.update, Name: Update the probabilities
+Model: base.module.upgrade, Name: Upgrade Module
+Model: res.users, Name: User
+Model: change.password.own, Name: User, change own password wizard
+Model: change.password.user, Name: User, Change Password Wizard
+Model: website.custom_blocked_third_party_domains, Name: User list of blocked 3rd-party domains
+Model: bus.presence, Name: User Presence
+Model: res.users.apikeys, Name: Users API Keys
+Model: res.users.deletion, Name: Users Deletion Request
+Model: res.users.settings, Name: User Settings
+Model: res.users.settings.volumes, Name: User Settings Volumes
+Model: res.users.log, Name: Users Log
+Model: utm.campaign, Name: UTM Campaign
+Model: utm.medium, Name: UTM Medium
+Model: utm.mixin, Name: UTM Mixin
+Model: utm.source, Name: UTM Source
+Model: utm.source.mixin, Name: UTM Source Mixin
+Model: utm.tag, Name: UTM Tag
+Model: validate.account.move, Name: Validate Account Move
+Model: stock.valuation.adjustment.lines, Name: Valuation Adjustment Lines
+Model: fleet.vehicle.state, Name: Vehicle Status
+Model: fleet.vehicle.tag, Name: Vehicle Tag
+Model: vendor.delay.report, Name: Vendor Delay Report
+Model: ir.ui.view, Name: View
+Model: website.track, Name: Visited Pages
+Model: stock.warehouse, Name: Warehouse
+Model: stock.warn.insufficient.qty, Name: Warn Insufficient Quantity
+Model: stock.warn.insufficient.qty.scrap, Name: Warn Insufficient Scrap Quantity
+Model: stock.warn.insufficient.qty.unbuild, Name: Warn Insufficient Unbuild Quantity
+Model: stock.add.to.wave, Name: Wave Transfer Lines
+Model: web_editor.converter.test.sub, Name: Web Editor Converter Subtest
+Model: web_editor.converter.test, Name: Web Editor Converter Test
+Model: website, Name: Website
+Model: website.configurator.feature, Name: Website Configurator Feature
+Model: website.menu, Name: Website Menu
+Model: product.public.category, Name: Website Product Category
+Model: website.published.mixin, Name: Website Published Mixin
+Model: website.rewrite, Name: Website rewrite
+Model: website.searchable.mixin, Name: Website Searchable Mixin
+Model: website.snippet.filter, Name: Website Snippet Filter
+Model: theme.website.menu, Name: Website Theme Menu
+Model: theme.website.page, Name: Website Theme Page
+Model: website.visitor, Name: Website Visitor
+Model: ir.websocket, Name: websocket message handling
+Model: mrp.consumption.warning, Name: Wizard in case of consumption in warning/strict and more component has been used for a MO (related to the bom)
+Model: purchase.requisition.alternative.warning, Name: Wizard in case PO still has open alternative requests for quotation
+Model: stock.valuation.layer.revaluation, Name: Wizard model to reavaluate a stock inventory for a product
+Model: mrp.production.backorder, Name: Wizard to mark as done or create back order
+Model: mrp.account.wip.accounting, Name: Wizard to post Manufacturing WIP account move
+Model: purchase.requisition.create.alternative, Name: Wizard to preset values for alternative PO
+Model: mrp.production.split, Name: Wizard to Split a Production
+Model: mrp.production.split.multi, Name: Wizard to Split Multiple Productions
+Model: mrp.workcenter.capacity, Name: Work Center Capacity
+Model: mrp.workcenter.productivity, Name: Workcenter Productivity Log
+Model: mrp.workcenter.productivity.loss, Name: Workcenter Productivity Losses
+Model: resource.calendar.attendance, Name: Work Detail
+Model: mrp.workorder, Name: Work Order
