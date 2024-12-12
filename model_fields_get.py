@@ -25,6 +25,7 @@ else:
 
     # Specify the model you want to inspect
     model_name = 'res.partner'  # Replace with your model name
+    model_name = 'product.product'  # Replace with your model name
 
     print(f"Fields of model: {model_name}")
 
@@ -33,9 +34,11 @@ else:
         db, uid, api_key,
         model_name, 'fields_get',
         [],
-        {'attributes': ['string', 'type']}
+        {}
     )
 
     # Print the fields
     for field_name, field_info in fields.items():
-        print(f"Field: {field_name}, Type: {field_info['type']}, Label: {field_info['string']}")
+        print(f"Field: {field_name}")
+        for attr, value in field_info.items():
+            print(f"  {attr}: {value}")
