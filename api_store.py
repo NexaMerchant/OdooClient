@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 import requests
 import json
 import xmlrpc.client
+import time
+from math import ceil
 
 # Load environment variables from .env file
 load_dotenv()
@@ -47,7 +49,7 @@ def get_token():
         token = login()
         return token
     
-def get_orders(token):
+def get_orders(token, page=1, limit=10):
     # Odoo server details
     url = os.getenv('USA_STORE_URL')
     # Authenticate use http post
@@ -57,9 +59,11 @@ def get_orders(token):
         'Content-Type': 'application/json'
     }
     data = {
-        "page": 1,
-        "limit": 1,
-        "status": "processing",
+        "page": page,
+        "limit": limit,
+        #"status": "processing",
+        "sort": "created_at",
+        "order": "desc"
     }
     response = requests.get(orders_url, json=data, headers=headers)
     if response.status_code != 200:
@@ -68,8 +72,8 @@ def get_orders(token):
     else:
         print("Get orders successfully.")
         response_data = response.json()
-        print(json.dumps(response_data, indent=4))
-        #print(response_data)
+        # print(json.dumps(response_data, indent=4))
+        # print(response_data)
         return response_data
     
 def create_odoo_order(order, token):
@@ -135,11 +139,15 @@ def create_odoo_order(order, token):
                 'email': order['customer_email'],
                 'phone': order['shipping_address']['phone'],
                 'street': order['shipping_address']['address1'][0],
+                #'street2': order['shipping_address']['address2'][0],
                 'city': order['shipping_address']['city'],
                 'zip': order['shipping_address']['postcode'],
+                'country_code': order['shipping_address']['country'],
                 'state_id': state_id[0],
                 'country_id': country_id[0],
                 'website_id': website_id,
+                'lang': 'en_US',
+               # 'category_id': 8,
             }
 
             customer_id = models.execute_kw(
@@ -163,9 +171,18 @@ def create_odoo_order(order, token):
 if __name__ == '__main__':
     token = get_token()
     print(token)
-    orders = get_orders(token)
-    # create a new order to the odoo store
-    for order in orders['data']:
-        create_odoo_order(order, token)
+
+    max = 80000
+    page = ceil(max / 20)
+    
+    for i in range(1, page):
+        orders = get_orders(token, i, 20)
+        # create a new order to the odoo store
+        for order in orders['data']:
+            create_odoo_order(order, token)
+            # wait for 1 second
+            time.sleep(1)
+
+    
     
 

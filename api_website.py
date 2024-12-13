@@ -51,6 +51,26 @@ def get_websites():
 
         print(companies)
 
+        # get partner list
+        partners = models.execute_kw(
+            db, uid, api_key,
+            'res.partner', 'search_read',
+            [[]],
+            {}
+        )
+
+        # print(partners)
+
+        # get partner 标签 list
+        partner_tags = models.execute_kw(
+            db, uid, api_key,
+            'res.partner.category', 'search_read',
+            [[]],
+            {'fields': ['name']}
+        )
+
+        print(partner_tags)
+
         # # update the websites company_id
         # for website in websites:
         #     print(website['id'])
