@@ -1,0 +1,3330 @@
+Authenticated successfully. UID: 2
+Fields of model: res.partner
+Field: website_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  help: Restrict to a specific website.
+  manual: False
+  name: website_id
+  readonly: False
+  relation: website
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Website
+  type: many2one
+Field: website_published
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['is_published', 'website_id']
+  exportable: True
+  groupable: False
+  manual: False
+  name: website_published
+  readonly: False
+  related: False
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Visible on current website
+  type: boolean
+Field: is_published
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: is_published
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Is Published
+  type: boolean
+Field: can_publish
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: can_publish
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Can Publish
+  type: boolean
+Field: website_url
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  help: The full URL to access the document through the website.
+  manual: False
+  name: website_url
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Website URL
+  translate: False
+  trim: True
+  type: char
+Field: message_is_follower
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['message_follower_ids']
+  exportable: True
+  groupable: False
+  manual: False
+  name: message_is_follower
+  readonly: True
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Is Follower
+  type: boolean
+Field: message_follower_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  groups: base.group_user
+  manual: False
+  name: message_follower_ids
+  readonly: False
+  relation: mail.followers
+  relation_field: res_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Followers
+  type: one2many
+Field: message_partner_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['message_follower_ids']
+  domain: []
+  exportable: True
+  groupable: False
+  groups: base.group_user
+  manual: False
+  name: message_partner_ids
+  readonly: False
+  relation: res.partner
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Followers (Partners)
+  type: many2many
+Field: message_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [['message_type', '!=', 'user_notification']]
+  exportable: True
+  groupable: False
+  manual: False
+  name: message_ids
+  readonly: False
+  relation: mail.message
+  relation_field: res_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Messages
+  type: one2many
+Field: has_message
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: has_message
+  readonly: True
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Has Message
+  type: boolean
+Field: message_needaction
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  help: If checked, new messages require your attention.
+  manual: False
+  name: message_needaction
+  readonly: True
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Action Needed
+  type: boolean
+Field: message_needaction_counter
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  help: Number of messages requiring action
+  manual: False
+  name: message_needaction_counter
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Number of Actions
+  type: integer
+Field: message_has_error
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  help: If checked, some messages have a delivery error.
+  manual: False
+  name: message_has_error
+  readonly: True
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Message Delivery error
+  type: boolean
+Field: message_has_error_counter
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  help: Number of messages with delivery error
+  manual: False
+  name: message_has_error_counter
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Number of errors
+  type: integer
+Field: message_attachment_count
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  groups: base.group_user
+  manual: False
+  name: message_attachment_count
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Attachment Count
+  type: integer
+Field: rating_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [['res_model', '=', 'res.partner']]
+  exportable: True
+  groupable: False
+  groups: base.group_user
+  manual: False
+  name: rating_ids
+  readonly: False
+  relation: rating.rating
+  relation_field: res_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Ratings
+  type: one2many
+Field: website_message_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [['model', '=', 'res.partner'], ['message_type', 'in', ['comment', 'email', 'email_outgoing']]]
+  exportable: True
+  groupable: False
+  help: Website communication history
+  manual: False
+  name: website_message_ids
+  readonly: False
+  relation: mail.message
+  relation_field: res_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Website Messages
+  type: one2many
+Field: email_normalized
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['email']
+  exportable: True
+  groupable: True
+  help: This field is used to search on email address as the primary email field can contain more than strictly an email address.
+  manual: False
+  name: email_normalized
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Normalized Email
+  translate: False
+  trim: True
+  type: char
+Field: is_blacklisted
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['email_normalized']
+  exportable: True
+  groupable: False
+  groups: base.group_user
+  help: If the email address is on the blacklist, the contact won't receive mass mailing anymore, from any list
+  manual: False
+  name: is_blacklisted
+  readonly: True
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Blacklist
+  type: boolean
+Field: message_bounce
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Counter of the number of bounced emails for this contact
+  manual: False
+  name: message_bounce
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Bounce
+  type: integer
+Field: activity_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  groups: base.group_user
+  manual: False
+  name: activity_ids
+  readonly: False
+  relation: mail.activity
+  relation_field: res_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Activities
+  type: one2many
+Field: activity_state
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['activity_ids.state']
+  exportable: True
+  groupable: True
+  groups: base.group_user
+  help: Status based on activities
+Overdue: Due date is already passed
+Today: Activity date is today
+Planned: Future activities.
+  manual: False
+  name: activity_state
+  readonly: True
+  required: False
+  searchable: True
+  selection: [['overdue', 'Overdue'], ['today', 'Today'], ['planned', 'Planned']]
+  sortable: False
+  store: False
+  string: Activity State
+  type: selection
+Field: activity_user_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['activity_ids.user_id']
+  domain: []
+  exportable: True
+  groupable: False
+  groups: base.group_user
+  manual: False
+  name: activity_user_id
+  readonly: True
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Responsible User
+  type: many2one
+Field: activity_type_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['activity_ids.activity_type_id']
+  exportable: True
+  groupable: False
+  groups: base.group_user
+  manual: False
+  name: activity_type_id
+  readonly: False
+  related: activity_ids.activity_type_id
+  relation: mail.activity.type
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Next Activity Type
+  type: many2one
+Field: activity_type_icon
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['activity_ids.icon']
+  exportable: True
+  groupable: False
+  help: Font awesome icon e.g. fa-tasks
+  manual: False
+  name: activity_type_icon
+  readonly: True
+  related: activity_ids.icon
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Activity Type Icon
+  translate: False
+  trim: True
+  type: char
+Field: activity_date_deadline
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['activity_ids.date_deadline']
+  exportable: True
+  groupable: False
+  groups: base.group_user
+  manual: False
+  name: activity_date_deadline
+  readonly: True
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Next Activity Deadline
+  type: date
+Field: my_activity_date_deadline
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['activity_ids.date_deadline', 'activity_ids.user_id']
+  exportable: True
+  groupable: False
+  groups: base.group_user
+  manual: False
+  name: my_activity_date_deadline
+  readonly: True
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: My Activity Deadline
+  type: date
+Field: activity_summary
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['activity_ids.summary']
+  exportable: True
+  groupable: False
+  groups: base.group_user
+  manual: False
+  name: activity_summary
+  readonly: False
+  related: activity_ids.summary
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Next Activity Summary
+  translate: False
+  trim: True
+  type: char
+Field: activity_exception_decoration
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['activity_ids.activity_type_id.decoration_type', 'activity_ids.activity_type_id.icon']
+  exportable: True
+  groupable: False
+  help: Type of the exception activity on record.
+  manual: False
+  name: activity_exception_decoration
+  readonly: True
+  required: False
+  searchable: True
+  selection: [['warning', 'Alert'], ['danger', 'Error']]
+  sortable: False
+  store: False
+  string: Activity Exception Decoration
+  type: selection
+Field: activity_exception_icon
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['activity_ids.activity_type_id.decoration_type', 'activity_ids.activity_type_id.icon']
+  exportable: True
+  groupable: False
+  help: Icon to indicate an exception activity.
+  manual: False
+  name: activity_exception_icon
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Icon
+  translate: False
+  trim: True
+  type: char
+Field: activity_calendar_event_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['activity_ids.calendar_event_id']
+  domain: []
+  exportable: True
+  groupable: False
+  groups: base.group_user
+  manual: False
+  name: activity_calendar_event_id
+  readonly: True
+  relation: calendar.event
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Next Activity Calendar Event
+  type: many2one
+Field: image_1920
+  attachment: True
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: image_1920
+  readonly: False
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Image
+  type: binary
+Field: image_1024
+  attachment: True
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['image_1920']
+  exportable: True
+  groupable: False
+  manual: False
+  name: image_1024
+  readonly: True
+  related: image_1920
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Image 1024
+  type: binary
+Field: image_512
+  attachment: True
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['image_1920']
+  exportable: True
+  groupable: False
+  manual: False
+  name: image_512
+  readonly: True
+  related: image_1920
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Image 512
+  type: binary
+Field: image_256
+  attachment: True
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['image_1920']
+  exportable: True
+  groupable: False
+  manual: False
+  name: image_256
+  readonly: True
+  related: image_1920
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Image 256
+  type: binary
+Field: image_128
+  attachment: True
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['image_1920']
+  exportable: True
+  groupable: False
+  manual: False
+  name: image_128
+  readonly: True
+  related: image_1920
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Image 128
+  type: binary
+Field: avatar_1920
+  attachment: False
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['name', 'user_ids.share', 'image_1920', 'is_company', 'type', 'name', 'image_1920']
+  exportable: True
+  groupable: False
+  manual: False
+  name: avatar_1920
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Avatar
+  type: binary
+Field: avatar_1024
+  attachment: False
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['name', 'user_ids.share', 'image_1024', 'is_company', 'type', 'name', 'image_1024']
+  exportable: True
+  groupable: False
+  manual: False
+  name: avatar_1024
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Avatar 1024
+  type: binary
+Field: avatar_512
+  attachment: False
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['name', 'user_ids.share', 'image_512', 'is_company', 'type', 'name', 'image_512']
+  exportable: True
+  groupable: False
+  manual: False
+  name: avatar_512
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Avatar 512
+  type: binary
+Field: avatar_256
+  attachment: False
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['name', 'user_ids.share', 'image_256', 'is_company', 'type', 'name', 'image_256']
+  exportable: True
+  groupable: False
+  manual: False
+  name: avatar_256
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Avatar 256
+  type: binary
+Field: avatar_128
+  attachment: False
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['name', 'user_ids.share', 'image_128', 'is_company', 'type', 'name', 'image_128']
+  exportable: True
+  groupable: False
+  manual: False
+  name: avatar_128
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Avatar 128
+  type: binary
+Field: name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: True
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: name
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Name
+  translate: False
+  trim: True
+  type: char
+Field: complete_name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['is_company', 'name', 'parent_id.name', 'type', 'company_name', 'commercial_company_name']
+  exportable: True
+  groupable: True
+  manual: False
+  name: complete_name
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Complete Name
+  translate: False
+  trim: True
+  type: char
+Field: title
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: title
+  readonly: False
+  relation: res.partner.title
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Title
+  type: many2one
+Field: parent_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: parent_id
+  readonly: False
+  relation: res.partner
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Related Company
+  type: many2one
+Field: parent_name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['parent_id.name']
+  exportable: True
+  groupable: True
+  manual: False
+  name: parent_name
+  readonly: True
+  related: parent_id.name
+  required: False
+  searchable: True
+  sortable: True
+  store: False
+  string: Parent name
+  translate: False
+  trim: True
+  type: char
+Field: child_ids
+  change_default: False
+  company_dependent: False
+  context: {'active_test': False}
+  default_export_compatible: False
+  depends: ['child_ids.active']
+  domain: [['active', '=', True]]
+  exportable: True
+  groupable: False
+  manual: False
+  name: child_ids
+  readonly: False
+  relation: res.partner
+  relation_field: parent_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Contact
+  type: one2many
+Field: ref
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: ref
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Reference
+  translate: False
+  trim: True
+  type: char
+Field: lang
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: All the emails and documents sent to this contact will be translated in this language.
+  manual: False
+  name: lang
+  readonly: False
+  required: False
+  searchable: True
+  selection: [['zh_CN', 'Chinese (Simplified) / 简体中文'], ['en_US', 'English (US)']]
+  sortable: True
+  store: True
+  string: Language
+  type: selection
+Field: active_lang_count
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['lang']
+  exportable: True
+  groupable: False
+  manual: False
+  name: active_lang_count
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Active Lang Count
+  type: integer
+Field: tz
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: When printing documents and exporting/importing data, time values are computed according to this timezone.
+If the timezone is not set, UTC (Coordinated Universal Time) is used.
+Anywhere else, time values are computed according to the time offset of your web client.
+  manual: False
+  name: tz
+  readonly: False
+  required: False
+  searchable: True
+  selection: [['Africa/Abidjan', 'Africa/Abidjan'], ['Africa/Accra', 'Africa/Accra'], ['Africa/Addis_Ababa', 'Africa/Addis_Ababa'], ['Africa/Algiers', 'Africa/Algiers'], ['Africa/Asmara', 'Africa/Asmara'], ['Africa/Asmera', 'Africa/Asmera'], ['Africa/Bamako', 'Africa/Bamako'], ['Africa/Bangui', 'Africa/Bangui'], ['Africa/Banjul', 'Africa/Banjul'], ['Africa/Bissau', 'Africa/Bissau'], ['Africa/Blantyre', 'Africa/Blantyre'], ['Africa/Brazzaville', 'Africa/Brazzaville'], ['Africa/Bujumbura', 'Africa/Bujumbura'], ['Africa/Cairo', 'Africa/Cairo'], ['Africa/Casablanca', 'Africa/Casablanca'], ['Africa/Ceuta', 'Africa/Ceuta'], ['Africa/Conakry', 'Africa/Conakry'], ['Africa/Dakar', 'Africa/Dakar'], ['Africa/Dar_es_Salaam', 'Africa/Dar_es_Salaam'], ['Africa/Djibouti', 'Africa/Djibouti'], ['Africa/Douala', 'Africa/Douala'], ['Africa/El_Aaiun', 'Africa/El_Aaiun'], ['Africa/Freetown', 'Africa/Freetown'], ['Africa/Gaborone', 'Africa/Gaborone'], ['Africa/Harare', 'Africa/Harare'], ['Africa/Johannesburg', 'Africa/Johannesburg'], ['Africa/Juba', 'Africa/Juba'], ['Africa/Kampala', 'Africa/Kampala'], ['Africa/Khartoum', 'Africa/Khartoum'], ['Africa/Kigali', 'Africa/Kigali'], ['Africa/Kinshasa', 'Africa/Kinshasa'], ['Africa/Lagos', 'Africa/Lagos'], ['Africa/Libreville', 'Africa/Libreville'], ['Africa/Lome', 'Africa/Lome'], ['Africa/Luanda', 'Africa/Luanda'], ['Africa/Lubumbashi', 'Africa/Lubumbashi'], ['Africa/Lusaka', 'Africa/Lusaka'], ['Africa/Malabo', 'Africa/Malabo'], ['Africa/Maputo', 'Africa/Maputo'], ['Africa/Maseru', 'Africa/Maseru'], ['Africa/Mbabane', 'Africa/Mbabane'], ['Africa/Mogadishu', 'Africa/Mogadishu'], ['Africa/Monrovia', 'Africa/Monrovia'], ['Africa/Nairobi', 'Africa/Nairobi'], ['Africa/Ndjamena', 'Africa/Ndjamena'], ['Africa/Niamey', 'Africa/Niamey'], ['Africa/Nouakchott', 'Africa/Nouakchott'], ['Africa/Ouagadougou', 'Africa/Ouagadougou'], ['Africa/Porto-Novo', 'Africa/Porto-Novo'], ['Africa/Sao_Tome', 'Africa/Sao_Tome'], ['Africa/Timbuktu', 'Africa/Timbuktu'], ['Africa/Tripoli', 'Africa/Tripoli'], ['Africa/Tunis', 'Africa/Tunis'], ['Africa/Windhoek', 'Africa/Windhoek'], ['America/Adak', 'America/Adak'], ['America/Anchorage', 'America/Anchorage'], ['America/Anguilla', 'America/Anguilla'], ['America/Antigua', 'America/Antigua'], ['America/Araguaina', 'America/Araguaina'], ['America/Argentina/Buenos_Aires', 'America/Argentina/Buenos_Aires'], ['America/Argentina/Catamarca', 'America/Argentina/Catamarca'], ['America/Argentina/ComodRivadavia', 'America/Argentina/ComodRivadavia'], ['America/Argentina/Cordoba', 'America/Argentina/Cordoba'], ['America/Argentina/Jujuy', 'America/Argentina/Jujuy'], ['America/Argentina/La_Rioja', 'America/Argentina/La_Rioja'], ['America/Argentina/Mendoza', 'America/Argentina/Mendoza'], ['America/Argentina/Rio_Gallegos', 'America/Argentina/Rio_Gallegos'], ['America/Argentina/Salta', 'America/Argentina/Salta'], ['America/Argentina/San_Juan', 'America/Argentina/San_Juan'], ['America/Argentina/San_Luis', 'America/Argentina/San_Luis'], ['America/Argentina/Tucuman', 'America/Argentina/Tucuman'], ['America/Argentina/Ushuaia', 'America/Argentina/Ushuaia'], ['America/Aruba', 'America/Aruba'], ['America/Asuncion', 'America/Asuncion'], ['America/Atikokan', 'America/Atikokan'], ['America/Atka', 'America/Atka'], ['America/Bahia', 'America/Bahia'], ['America/Bahia_Banderas', 'America/Bahia_Banderas'], ['America/Barbados', 'America/Barbados'], ['America/Belem', 'America/Belem'], ['America/Belize', 'America/Belize'], ['America/Blanc-Sablon', 'America/Blanc-Sablon'], ['America/Boa_Vista', 'America/Boa_Vista'], ['America/Bogota', 'America/Bogota'], ['America/Boise', 'America/Boise'], ['America/Buenos_Aires', 'America/Buenos_Aires'], ['America/Cambridge_Bay', 'America/Cambridge_Bay'], ['America/Campo_Grande', 'America/Campo_Grande'], ['America/Cancun', 'America/Cancun'], ['America/Caracas', 'America/Caracas'], ['America/Catamarca', 'America/Catamarca'], ['America/Cayenne', 'America/Cayenne'], ['America/Cayman', 'America/Cayman'], ['America/Chicago', 'America/Chicago'], ['America/Chihuahua', 'America/Chihuahua'], ['America/Ciudad_Juarez', 'America/Ciudad_Juarez'], ['America/Coral_Harbour', 'America/Coral_Harbour'], ['America/Cordoba', 'America/Cordoba'], ['America/Costa_Rica', 'America/Costa_Rica'], ['America/Creston', 'America/Creston'], ['America/Cuiaba', 'America/Cuiaba'], ['America/Curacao', 'America/Curacao'], ['America/Danmarkshavn', 'America/Danmarkshavn'], ['America/Dawson', 'America/Dawson'], ['America/Dawson_Creek', 'America/Dawson_Creek'], ['America/Denver', 'America/Denver'], ['America/Detroit', 'America/Detroit'], ['America/Dominica', 'America/Dominica'], ['America/Edmonton', 'America/Edmonton'], ['America/Eirunepe', 'America/Eirunepe'], ['America/El_Salvador', 'America/El_Salvador'], ['America/Ensenada', 'America/Ensenada'], ['America/Fort_Nelson', 'America/Fort_Nelson'], ['America/Fort_Wayne', 'America/Fort_Wayne'], ['America/Fortaleza', 'America/Fortaleza'], ['America/Glace_Bay', 'America/Glace_Bay'], ['America/Godthab', 'America/Godthab'], ['America/Goose_Bay', 'America/Goose_Bay'], ['America/Grand_Turk', 'America/Grand_Turk'], ['America/Grenada', 'America/Grenada'], ['America/Guadeloupe', 'America/Guadeloupe'], ['America/Guatemala', 'America/Guatemala'], ['America/Guayaquil', 'America/Guayaquil'], ['America/Guyana', 'America/Guyana'], ['America/Halifax', 'America/Halifax'], ['America/Havana', 'America/Havana'], ['America/Hermosillo', 'America/Hermosillo'], ['America/Indiana/Indianapolis', 'America/Indiana/Indianapolis'], ['America/Indiana/Knox', 'America/Indiana/Knox'], ['America/Indiana/Marengo', 'America/Indiana/Marengo'], ['America/Indiana/Petersburg', 'America/Indiana/Petersburg'], ['America/Indiana/Tell_City', 'America/Indiana/Tell_City'], ['America/Indiana/Vevay', 'America/Indiana/Vevay'], ['America/Indiana/Vincennes', 'America/Indiana/Vincennes'], ['America/Indiana/Winamac', 'America/Indiana/Winamac'], ['America/Indianapolis', 'America/Indianapolis'], ['America/Inuvik', 'America/Inuvik'], ['America/Iqaluit', 'America/Iqaluit'], ['America/Jamaica', 'America/Jamaica'], ['America/Jujuy', 'America/Jujuy'], ['America/Juneau', 'America/Juneau'], ['America/Kentucky/Louisville', 'America/Kentucky/Louisville'], ['America/Kentucky/Monticello', 'America/Kentucky/Monticello'], ['America/Knox_IN', 'America/Knox_IN'], ['America/Kralendijk', 'America/Kralendijk'], ['America/La_Paz', 'America/La_Paz'], ['America/Lima', 'America/Lima'], ['America/Los_Angeles', 'America/Los_Angeles'], ['America/Louisville', 'America/Louisville'], ['America/Lower_Princes', 'America/Lower_Princes'], ['America/Maceio', 'America/Maceio'], ['America/Managua', 'America/Managua'], ['America/Manaus', 'America/Manaus'], ['America/Marigot', 'America/Marigot'], ['America/Martinique', 'America/Martinique'], ['America/Matamoros', 'America/Matamoros'], ['America/Mazatlan', 'America/Mazatlan'], ['America/Mendoza', 'America/Mendoza'], ['America/Menominee', 'America/Menominee'], ['America/Merida', 'America/Merida'], ['America/Metlakatla', 'America/Metlakatla'], ['America/Mexico_City', 'America/Mexico_City'], ['America/Miquelon', 'America/Miquelon'], ['America/Moncton', 'America/Moncton'], ['America/Monterrey', 'America/Monterrey'], ['America/Montevideo', 'America/Montevideo'], ['America/Montreal', 'America/Montreal'], ['America/Montserrat', 'America/Montserrat'], ['America/Nassau', 'America/Nassau'], ['America/New_York', 'America/New_York'], ['America/Nipigon', 'America/Nipigon'], ['America/Nome', 'America/Nome'], ['America/Noronha', 'America/Noronha'], ['America/North_Dakota/Beulah', 'America/North_Dakota/Beulah'], ['America/North_Dakota/Center', 'America/North_Dakota/Center'], ['America/North_Dakota/New_Salem', 'America/North_Dakota/New_Salem'], ['America/Nuuk', 'America/Nuuk'], ['America/Ojinaga', 'America/Ojinaga'], ['America/Panama', 'America/Panama'], ['America/Pangnirtung', 'America/Pangnirtung'], ['America/Paramaribo', 'America/Paramaribo'], ['America/Phoenix', 'America/Phoenix'], ['America/Port-au-Prince', 'America/Port-au-Prince'], ['America/Port_of_Spain', 'America/Port_of_Spain'], ['America/Porto_Acre', 'America/Porto_Acre'], ['America/Porto_Velho', 'America/Porto_Velho'], ['America/Puerto_Rico', 'America/Puerto_Rico'], ['America/Punta_Arenas', 'America/Punta_Arenas'], ['America/Rainy_River', 'America/Rainy_River'], ['America/Rankin_Inlet', 'America/Rankin_Inlet'], ['America/Recife', 'America/Recife'], ['America/Regina', 'America/Regina'], ['America/Resolute', 'America/Resolute'], ['America/Rio_Branco', 'America/Rio_Branco'], ['America/Rosario', 'America/Rosario'], ['America/Santa_Isabel', 'America/Santa_Isabel'], ['America/Santarem', 'America/Santarem'], ['America/Santiago', 'America/Santiago'], ['America/Santo_Domingo', 'America/Santo_Domingo'], ['America/Sao_Paulo', 'America/Sao_Paulo'], ['America/Scoresbysund', 'America/Scoresbysund'], ['America/Shiprock', 'America/Shiprock'], ['America/Sitka', 'America/Sitka'], ['America/St_Barthelemy', 'America/St_Barthelemy'], ['America/St_Johns', 'America/St_Johns'], ['America/St_Kitts', 'America/St_Kitts'], ['America/St_Lucia', 'America/St_Lucia'], ['America/St_Thomas', 'America/St_Thomas'], ['America/St_Vincent', 'America/St_Vincent'], ['America/Swift_Current', 'America/Swift_Current'], ['America/Tegucigalpa', 'America/Tegucigalpa'], ['America/Thule', 'America/Thule'], ['America/Thunder_Bay', 'America/Thunder_Bay'], ['America/Tijuana', 'America/Tijuana'], ['America/Toronto', 'America/Toronto'], ['America/Tortola', 'America/Tortola'], ['America/Vancouver', 'America/Vancouver'], ['America/Virgin', 'America/Virgin'], ['America/Whitehorse', 'America/Whitehorse'], ['America/Winnipeg', 'America/Winnipeg'], ['America/Yakutat', 'America/Yakutat'], ['America/Yellowknife', 'America/Yellowknife'], ['Antarctica/Casey', 'Antarctica/Casey'], ['Antarctica/Davis', 'Antarctica/Davis'], ['Antarctica/DumontDUrville', 'Antarctica/DumontDUrville'], ['Antarctica/Macquarie', 'Antarctica/Macquarie'], ['Antarctica/Mawson', 'Antarctica/Mawson'], ['Antarctica/McMurdo', 'Antarctica/McMurdo'], ['Antarctica/Palmer', 'Antarctica/Palmer'], ['Antarctica/Rothera', 'Antarctica/Rothera'], ['Antarctica/South_Pole', 'Antarctica/South_Pole'], ['Antarctica/Syowa', 'Antarctica/Syowa'], ['Antarctica/Troll', 'Antarctica/Troll'], ['Antarctica/Vostok', 'Antarctica/Vostok'], ['Arctic/Longyearbyen', 'Arctic/Longyearbyen'], ['Asia/Aden', 'Asia/Aden'], ['Asia/Almaty', 'Asia/Almaty'], ['Asia/Amman', 'Asia/Amman'], ['Asia/Anadyr', 'Asia/Anadyr'], ['Asia/Aqtau', 'Asia/Aqtau'], ['Asia/Aqtobe', 'Asia/Aqtobe'], ['Asia/Ashgabat', 'Asia/Ashgabat'], ['Asia/Ashkhabad', 'Asia/Ashkhabad'], ['Asia/Atyrau', 'Asia/Atyrau'], ['Asia/Baghdad', 'Asia/Baghdad'], ['Asia/Bahrain', 'Asia/Bahrain'], ['Asia/Baku', 'Asia/Baku'], ['Asia/Bangkok', 'Asia/Bangkok'], ['Asia/Barnaul', 'Asia/Barnaul'], ['Asia/Beirut', 'Asia/Beirut'], ['Asia/Bishkek', 'Asia/Bishkek'], ['Asia/Brunei', 'Asia/Brunei'], ['Asia/Calcutta', 'Asia/Calcutta'], ['Asia/Chita', 'Asia/Chita'], ['Asia/Choibalsan', 'Asia/Choibalsan'], ['Asia/Chongqing', 'Asia/Chongqing'], ['Asia/Chungking', 'Asia/Chungking'], ['Asia/Colombo', 'Asia/Colombo'], ['Asia/Dacca', 'Asia/Dacca'], ['Asia/Damascus', 'Asia/Damascus'], ['Asia/Dhaka', 'Asia/Dhaka'], ['Asia/Dili', 'Asia/Dili'], ['Asia/Dubai', 'Asia/Dubai'], ['Asia/Dushanbe', 'Asia/Dushanbe'], ['Asia/Famagusta', 'Asia/Famagusta'], ['Asia/Gaza', 'Asia/Gaza'], ['Asia/Harbin', 'Asia/Harbin'], ['Asia/Hebron', 'Asia/Hebron'], ['Asia/Ho_Chi_Minh', 'Asia/Ho_Chi_Minh'], ['Asia/Hong_Kong', 'Asia/Hong_Kong'], ['Asia/Hovd', 'Asia/Hovd'], ['Asia/Irkutsk', 'Asia/Irkutsk'], ['Asia/Istanbul', 'Asia/Istanbul'], ['Asia/Jakarta', 'Asia/Jakarta'], ['Asia/Jayapura', 'Asia/Jayapura'], ['Asia/Jerusalem', 'Asia/Jerusalem'], ['Asia/Kabul', 'Asia/Kabul'], ['Asia/Kamchatka', 'Asia/Kamchatka'], ['Asia/Karachi', 'Asia/Karachi'], ['Asia/Kashgar', 'Asia/Kashgar'], ['Asia/Kathmandu', 'Asia/Kathmandu'], ['Asia/Katmandu', 'Asia/Katmandu'], ['Asia/Khandyga', 'Asia/Khandyga'], ['Asia/Kolkata', 'Asia/Kolkata'], ['Asia/Krasnoyarsk', 'Asia/Krasnoyarsk'], ['Asia/Kuala_Lumpur', 'Asia/Kuala_Lumpur'], ['Asia/Kuching', 'Asia/Kuching'], ['Asia/Kuwait', 'Asia/Kuwait'], ['Asia/Macao', 'Asia/Macao'], ['Asia/Macau', 'Asia/Macau'], ['Asia/Magadan', 'Asia/Magadan'], ['Asia/Makassar', 'Asia/Makassar'], ['Asia/Manila', 'Asia/Manila'], ['Asia/Muscat', 'Asia/Muscat'], ['Asia/Nicosia', 'Asia/Nicosia'], ['Asia/Novokuznetsk', 'Asia/Novokuznetsk'], ['Asia/Novosibirsk', 'Asia/Novosibirsk'], ['Asia/Omsk', 'Asia/Omsk'], ['Asia/Oral', 'Asia/Oral'], ['Asia/Phnom_Penh', 'Asia/Phnom_Penh'], ['Asia/Pontianak', 'Asia/Pontianak'], ['Asia/Pyongyang', 'Asia/Pyongyang'], ['Asia/Qatar', 'Asia/Qatar'], ['Asia/Qostanay', 'Asia/Qostanay'], ['Asia/Qyzylorda', 'Asia/Qyzylorda'], ['Asia/Rangoon', 'Asia/Rangoon'], ['Asia/Riyadh', 'Asia/Riyadh'], ['Asia/Saigon', 'Asia/Saigon'], ['Asia/Sakhalin', 'Asia/Sakhalin'], ['Asia/Samarkand', 'Asia/Samarkand'], ['Asia/Seoul', 'Asia/Seoul'], ['Asia/Shanghai', 'Asia/Shanghai'], ['Asia/Singapore', 'Asia/Singapore'], ['Asia/Srednekolymsk', 'Asia/Srednekolymsk'], ['Asia/Taipei', 'Asia/Taipei'], ['Asia/Tashkent', 'Asia/Tashkent'], ['Asia/Tbilisi', 'Asia/Tbilisi'], ['Asia/Tehran', 'Asia/Tehran'], ['Asia/Tel_Aviv', 'Asia/Tel_Aviv'], ['Asia/Thimbu', 'Asia/Thimbu'], ['Asia/Thimphu', 'Asia/Thimphu'], ['Asia/Tokyo', 'Asia/Tokyo'], ['Asia/Tomsk', 'Asia/Tomsk'], ['Asia/Ujung_Pandang', 'Asia/Ujung_Pandang'], ['Asia/Ulaanbaatar', 'Asia/Ulaanbaatar'], ['Asia/Ulan_Bator', 'Asia/Ulan_Bator'], ['Asia/Urumqi', 'Asia/Urumqi'], ['Asia/Ust-Nera', 'Asia/Ust-Nera'], ['Asia/Vientiane', 'Asia/Vientiane'], ['Asia/Vladivostok', 'Asia/Vladivostok'], ['Asia/Yakutsk', 'Asia/Yakutsk'], ['Asia/Yangon', 'Asia/Yangon'], ['Asia/Yekaterinburg', 'Asia/Yekaterinburg'], ['Asia/Yerevan', 'Asia/Yerevan'], ['Atlantic/Azores', 'Atlantic/Azores'], ['Atlantic/Bermuda', 'Atlantic/Bermuda'], ['Atlantic/Canary', 'Atlantic/Canary'], ['Atlantic/Cape_Verde', 'Atlantic/Cape_Verde'], ['Atlantic/Faeroe', 'Atlantic/Faeroe'], ['Atlantic/Faroe', 'Atlantic/Faroe'], ['Atlantic/Jan_Mayen', 'Atlantic/Jan_Mayen'], ['Atlantic/Madeira', 'Atlantic/Madeira'], ['Atlantic/Reykjavik', 'Atlantic/Reykjavik'], ['Atlantic/South_Georgia', 'Atlantic/South_Georgia'], ['Atlantic/St_Helena', 'Atlantic/St_Helena'], ['Atlantic/Stanley', 'Atlantic/Stanley'], ['Australia/ACT', 'Australia/ACT'], ['Australia/Adelaide', 'Australia/Adelaide'], ['Australia/Brisbane', 'Australia/Brisbane'], ['Australia/Broken_Hill', 'Australia/Broken_Hill'], ['Australia/Canberra', 'Australia/Canberra'], ['Australia/Currie', 'Australia/Currie'], ['Australia/Darwin', 'Australia/Darwin'], ['Australia/Eucla', 'Australia/Eucla'], ['Australia/Hobart', 'Australia/Hobart'], ['Australia/LHI', 'Australia/LHI'], ['Australia/Lindeman', 'Australia/Lindeman'], ['Australia/Lord_Howe', 'Australia/Lord_Howe'], ['Australia/Melbourne', 'Australia/Melbourne'], ['Australia/NSW', 'Australia/NSW'], ['Australia/North', 'Australia/North'], ['Australia/Perth', 'Australia/Perth'], ['Australia/Queensland', 'Australia/Queensland'], ['Australia/South', 'Australia/South'], ['Australia/Sydney', 'Australia/Sydney'], ['Australia/Tasmania', 'Australia/Tasmania'], ['Australia/Victoria', 'Australia/Victoria'], ['Australia/West', 'Australia/West'], ['Australia/Yancowinna', 'Australia/Yancowinna'], ['Brazil/Acre', 'Brazil/Acre'], ['Brazil/DeNoronha', 'Brazil/DeNoronha'], ['Brazil/East', 'Brazil/East'], ['Brazil/West', 'Brazil/West'], ['CET', 'CET'], ['CST6CDT', 'CST6CDT'], ['Canada/Atlantic', 'Canada/Atlantic'], ['Canada/Central', 'Canada/Central'], ['Canada/Eastern', 'Canada/Eastern'], ['Canada/Mountain', 'Canada/Mountain'], ['Canada/Newfoundland', 'Canada/Newfoundland'], ['Canada/Pacific', 'Canada/Pacific'], ['Canada/Saskatchewan', 'Canada/Saskatchewan'], ['Canada/Yukon', 'Canada/Yukon'], ['Chile/Continental', 'Chile/Continental'], ['Chile/EasterIsland', 'Chile/EasterIsland'], ['Cuba', 'Cuba'], ['EET', 'EET'], ['EST', 'EST'], ['EST5EDT', 'EST5EDT'], ['Egypt', 'Egypt'], ['Eire', 'Eire'], ['Europe/Amsterdam', 'Europe/Amsterdam'], ['Europe/Andorra', 'Europe/Andorra'], ['Europe/Astrakhan', 'Europe/Astrakhan'], ['Europe/Athens', 'Europe/Athens'], ['Europe/Belfast', 'Europe/Belfast'], ['Europe/Belgrade', 'Europe/Belgrade'], ['Europe/Berlin', 'Europe/Berlin'], ['Europe/Bratislava', 'Europe/Bratislava'], ['Europe/Brussels', 'Europe/Brussels'], ['Europe/Bucharest', 'Europe/Bucharest'], ['Europe/Budapest', 'Europe/Budapest'], ['Europe/Busingen', 'Europe/Busingen'], ['Europe/Chisinau', 'Europe/Chisinau'], ['Europe/Copenhagen', 'Europe/Copenhagen'], ['Europe/Dublin', 'Europe/Dublin'], ['Europe/Gibraltar', 'Europe/Gibraltar'], ['Europe/Guernsey', 'Europe/Guernsey'], ['Europe/Helsinki', 'Europe/Helsinki'], ['Europe/Isle_of_Man', 'Europe/Isle_of_Man'], ['Europe/Istanbul', 'Europe/Istanbul'], ['Europe/Jersey', 'Europe/Jersey'], ['Europe/Kaliningrad', 'Europe/Kaliningrad'], ['Europe/Kiev', 'Europe/Kiev'], ['Europe/Kirov', 'Europe/Kirov'], ['Europe/Kyiv', 'Europe/Kyiv'], ['Europe/Lisbon', 'Europe/Lisbon'], ['Europe/Ljubljana', 'Europe/Ljubljana'], ['Europe/London', 'Europe/London'], ['Europe/Luxembourg', 'Europe/Luxembourg'], ['Europe/Madrid', 'Europe/Madrid'], ['Europe/Malta', 'Europe/Malta'], ['Europe/Mariehamn', 'Europe/Mariehamn'], ['Europe/Minsk', 'Europe/Minsk'], ['Europe/Monaco', 'Europe/Monaco'], ['Europe/Moscow', 'Europe/Moscow'], ['Europe/Nicosia', 'Europe/Nicosia'], ['Europe/Oslo', 'Europe/Oslo'], ['Europe/Paris', 'Europe/Paris'], ['Europe/Podgorica', 'Europe/Podgorica'], ['Europe/Prague', 'Europe/Prague'], ['Europe/Riga', 'Europe/Riga'], ['Europe/Rome', 'Europe/Rome'], ['Europe/Samara', 'Europe/Samara'], ['Europe/San_Marino', 'Europe/San_Marino'], ['Europe/Sarajevo', 'Europe/Sarajevo'], ['Europe/Saratov', 'Europe/Saratov'], ['Europe/Simferopol', 'Europe/Simferopol'], ['Europe/Skopje', 'Europe/Skopje'], ['Europe/Sofia', 'Europe/Sofia'], ['Europe/Stockholm', 'Europe/Stockholm'], ['Europe/Tallinn', 'Europe/Tallinn'], ['Europe/Tirane', 'Europe/Tirane'], ['Europe/Tiraspol', 'Europe/Tiraspol'], ['Europe/Ulyanovsk', 'Europe/Ulyanovsk'], ['Europe/Uzhgorod', 'Europe/Uzhgorod'], ['Europe/Vaduz', 'Europe/Vaduz'], ['Europe/Vatican', 'Europe/Vatican'], ['Europe/Vienna', 'Europe/Vienna'], ['Europe/Vilnius', 'Europe/Vilnius'], ['Europe/Volgograd', 'Europe/Volgograd'], ['Europe/Warsaw', 'Europe/Warsaw'], ['Europe/Zagreb', 'Europe/Zagreb'], ['Europe/Zaporozhye', 'Europe/Zaporozhye'], ['Europe/Zurich', 'Europe/Zurich'], ['GB', 'GB'], ['GB-Eire', 'GB-Eire'], ['GMT', 'GMT'], ['GMT+0', 'GMT+0'], ['GMT-0', 'GMT-0'], ['GMT0', 'GMT0'], ['Greenwich', 'Greenwich'], ['HST', 'HST'], ['Hongkong', 'Hongkong'], ['Iceland', 'Iceland'], ['Indian/Antananarivo', 'Indian/Antananarivo'], ['Indian/Chagos', 'Indian/Chagos'], ['Indian/Christmas', 'Indian/Christmas'], ['Indian/Cocos', 'Indian/Cocos'], ['Indian/Comoro', 'Indian/Comoro'], ['Indian/Kerguelen', 'Indian/Kerguelen'], ['Indian/Mahe', 'Indian/Mahe'], ['Indian/Maldives', 'Indian/Maldives'], ['Indian/Mauritius', 'Indian/Mauritius'], ['Indian/Mayotte', 'Indian/Mayotte'], ['Indian/Reunion', 'Indian/Reunion'], ['Iran', 'Iran'], ['Israel', 'Israel'], ['Jamaica', 'Jamaica'], ['Japan', 'Japan'], ['Kwajalein', 'Kwajalein'], ['Libya', 'Libya'], ['MET', 'MET'], ['MST', 'MST'], ['MST7MDT', 'MST7MDT'], ['Mexico/BajaNorte', 'Mexico/BajaNorte'], ['Mexico/BajaSur', 'Mexico/BajaSur'], ['Mexico/General', 'Mexico/General'], ['NZ', 'NZ'], ['NZ-CHAT', 'NZ-CHAT'], ['Navajo', 'Navajo'], ['PRC', 'PRC'], ['PST8PDT', 'PST8PDT'], ['Pacific/Apia', 'Pacific/Apia'], ['Pacific/Auckland', 'Pacific/Auckland'], ['Pacific/Bougainville', 'Pacific/Bougainville'], ['Pacific/Chatham', 'Pacific/Chatham'], ['Pacific/Chuuk', 'Pacific/Chuuk'], ['Pacific/Easter', 'Pacific/Easter'], ['Pacific/Efate', 'Pacific/Efate'], ['Pacific/Enderbury', 'Pacific/Enderbury'], ['Pacific/Fakaofo', 'Pacific/Fakaofo'], ['Pacific/Fiji', 'Pacific/Fiji'], ['Pacific/Funafuti', 'Pacific/Funafuti'], ['Pacific/Galapagos', 'Pacific/Galapagos'], ['Pacific/Gambier', 'Pacific/Gambier'], ['Pacific/Guadalcanal', 'Pacific/Guadalcanal'], ['Pacific/Guam', 'Pacific/Guam'], ['Pacific/Honolulu', 'Pacific/Honolulu'], ['Pacific/Johnston', 'Pacific/Johnston'], ['Pacific/Kanton', 'Pacific/Kanton'], ['Pacific/Kiritimati', 'Pacific/Kiritimati'], ['Pacific/Kosrae', 'Pacific/Kosrae'], ['Pacific/Kwajalein', 'Pacific/Kwajalein'], ['Pacific/Majuro', 'Pacific/Majuro'], ['Pacific/Marquesas', 'Pacific/Marquesas'], ['Pacific/Midway', 'Pacific/Midway'], ['Pacific/Nauru', 'Pacific/Nauru'], ['Pacific/Niue', 'Pacific/Niue'], ['Pacific/Norfolk', 'Pacific/Norfolk'], ['Pacific/Noumea', 'Pacific/Noumea'], ['Pacific/Pago_Pago', 'Pacific/Pago_Pago'], ['Pacific/Palau', 'Pacific/Palau'], ['Pacific/Pitcairn', 'Pacific/Pitcairn'], ['Pacific/Pohnpei', 'Pacific/Pohnpei'], ['Pacific/Ponape', 'Pacific/Ponape'], ['Pacific/Port_Moresby', 'Pacific/Port_Moresby'], ['Pacific/Rarotonga', 'Pacific/Rarotonga'], ['Pacific/Saipan', 'Pacific/Saipan'], ['Pacific/Samoa', 'Pacific/Samoa'], ['Pacific/Tahiti', 'Pacific/Tahiti'], ['Pacific/Tarawa', 'Pacific/Tarawa'], ['Pacific/Tongatapu', 'Pacific/Tongatapu'], ['Pacific/Truk', 'Pacific/Truk'], ['Pacific/Wake', 'Pacific/Wake'], ['Pacific/Wallis', 'Pacific/Wallis'], ['Pacific/Yap', 'Pacific/Yap'], ['Poland', 'Poland'], ['Portugal', 'Portugal'], ['ROC', 'ROC'], ['ROK', 'ROK'], ['Singapore', 'Singapore'], ['Turkey', 'Turkey'], ['UCT', 'UCT'], ['US/Alaska', 'US/Alaska'], ['US/Aleutian', 'US/Aleutian'], ['US/Arizona', 'US/Arizona'], ['US/Central', 'US/Central'], ['US/East-Indiana', 'US/East-Indiana'], ['US/Eastern', 'US/Eastern'], ['US/Hawaii', 'US/Hawaii'], ['US/Indiana-Starke', 'US/Indiana-Starke'], ['US/Michigan', 'US/Michigan'], ['US/Mountain', 'US/Mountain'], ['US/Pacific', 'US/Pacific'], ['US/Samoa', 'US/Samoa'], ['UTC', 'UTC'], ['Universal', 'Universal'], ['W-SU', 'W-SU'], ['WET', 'WET'], ['Zulu', 'Zulu'], ['Etc/GMT', 'Etc/GMT'], ['Etc/GMT+0', 'Etc/GMT+0'], ['Etc/GMT+1', 'Etc/GMT+1'], ['Etc/GMT+10', 'Etc/GMT+10'], ['Etc/GMT+11', 'Etc/GMT+11'], ['Etc/GMT+12', 'Etc/GMT+12'], ['Etc/GMT+2', 'Etc/GMT+2'], ['Etc/GMT+3', 'Etc/GMT+3'], ['Etc/GMT+4', 'Etc/GMT+4'], ['Etc/GMT+5', 'Etc/GMT+5'], ['Etc/GMT+6', 'Etc/GMT+6'], ['Etc/GMT+7', 'Etc/GMT+7'], ['Etc/GMT+8', 'Etc/GMT+8'], ['Etc/GMT+9', 'Etc/GMT+9'], ['Etc/GMT-0', 'Etc/GMT-0'], ['Etc/GMT-1', 'Etc/GMT-1'], ['Etc/GMT-10', 'Etc/GMT-10'], ['Etc/GMT-11', 'Etc/GMT-11'], ['Etc/GMT-12', 'Etc/GMT-12'], ['Etc/GMT-13', 'Etc/GMT-13'], ['Etc/GMT-14', 'Etc/GMT-14'], ['Etc/GMT-2', 'Etc/GMT-2'], ['Etc/GMT-3', 'Etc/GMT-3'], ['Etc/GMT-4', 'Etc/GMT-4'], ['Etc/GMT-5', 'Etc/GMT-5'], ['Etc/GMT-6', 'Etc/GMT-6'], ['Etc/GMT-7', 'Etc/GMT-7'], ['Etc/GMT-8', 'Etc/GMT-8'], ['Etc/GMT-9', 'Etc/GMT-9'], ['Etc/GMT0', 'Etc/GMT0'], ['Etc/Greenwich', 'Etc/Greenwich'], ['Etc/UCT', 'Etc/UCT'], ['Etc/UTC', 'Etc/UTC'], ['Etc/Universal', 'Etc/Universal'], ['Etc/Zulu', 'Etc/Zulu']]
+  sortable: True
+  store: True
+  string: Timezone
+  type: selection
+Field: tz_offset
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['tz']
+  exportable: True
+  groupable: False
+  manual: False
+  name: tz_offset
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Timezone offset
+  translate: False
+  trim: True
+  type: char
+Field: user_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['parent_id']
+  domain: []
+  exportable: True
+  groupable: True
+  help: The internal user in charge of this contact.
+  manual: False
+  name: user_id
+  readonly: False
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Salesperson
+  type: many2one
+Field: vat
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: The Tax Identification Number. Values here will be validated based on the country format. You can use '/' to indicate that the partner is not subject to tax.
+  manual: False
+  name: vat
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Tax ID
+  translate: False
+  trim: True
+  type: char
+Field: same_vat_partner_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['vat', 'company_id', 'company_registry']
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: same_vat_partner_id
+  readonly: True
+  relation: res.partner
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Partner with same Tax ID
+  type: many2one
+Field: same_company_registry_partner_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['vat', 'company_id', 'company_registry']
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: same_company_registry_partner_id
+  readonly: True
+  relation: res.partner
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Partner with same Company Registry
+  type: many2one
+Field: company_registry
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: The registry number of the company. Use it if it is different from the Tax ID. It must be unique across all partners of a same country
+  manual: False
+  name: company_registry
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Company ID
+  translate: False
+  trim: True
+  type: char
+Field: bank_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: bank_ids
+  readonly: False
+  relation: res.partner.bank
+  relation_field: partner_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Banks
+  type: one2many
+Field: website
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: website
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Website Link
+  translate: False
+  trim: True
+  type: char
+Field: comment
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: comment
+  readonly: False
+  required: False
+  sanitize: True
+  sanitize_attributes: True
+  sanitize_style: False
+  sanitize_tags: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Notes
+  strip_classes: False
+  strip_style: False
+  translate: False
+  type: html
+Field: category_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: category_id
+  readonly: False
+  relation: res.partner.category
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Tags
+  type: many2many
+Field: active
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: active
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Active
+  type: boolean
+Field: employee
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Check this box if this contact is an Employee.
+  manual: False
+  name: employee
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Employee
+  type: boolean
+Field: function
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: function
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Job Position
+  translate: False
+  trim: True
+  type: char
+Field: type
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: type
+  readonly: False
+  required: False
+  searchable: True
+  selection: [['contact', 'Contact'], ['invoice', 'Invoice Address'], ['delivery', 'Delivery Address'], ['other', 'Other Address']]
+  sortable: True
+  store: True
+  string: Address Type
+  type: selection
+Field: street
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: street
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Street
+  translate: False
+  trim: True
+  type: char
+Field: street2
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: street2
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Street2
+  translate: False
+  trim: True
+  type: char
+Field: zip
+  change_default: True
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: zip
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Zip
+  translate: False
+  trim: True
+  type: char
+Field: city
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: city
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: City
+  translate: False
+  trim: True
+  type: char
+Field: state_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [('country_id', '=?', country_id)]
+  exportable: True
+  groupable: True
+  manual: False
+  name: state_id
+  readonly: False
+  relation: res.country.state
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: State
+  type: many2one
+Field: country_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: country_id
+  readonly: False
+  relation: res.country
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Country
+  type: many2one
+Field: country_code
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['country_id.code']
+  exportable: True
+  groupable: True
+  help: The ISO country code in two chars. 
+You can use this field for quick search.
+  manual: False
+  name: country_code
+  readonly: True
+  related: country_id.code
+  required: False
+  searchable: True
+  size: 2
+  sortable: True
+  store: False
+  string: Country Code
+  translate: False
+  trim: True
+  type: char
+Field: partner_latitude
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  digits: [10, 7]
+  exportable: True
+  groupable: True
+  manual: False
+  name: partner_latitude
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Geo Latitude
+  type: float
+Field: partner_longitude
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  digits: [10, 7]
+  exportable: True
+  groupable: True
+  manual: False
+  name: partner_longitude
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Geo Longitude
+  type: float
+Field: email
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: email
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Email
+  translate: False
+  trim: True
+  type: char
+Field: email_formatted
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['name', 'email']
+  exportable: True
+  groupable: False
+  help: Format email address "Name <email@domain>"
+  manual: False
+  name: email_formatted
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Formatted Email
+  translate: False
+  trim: True
+  type: char
+Field: phone
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: phone
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Phone
+  translate: False
+  trim: True
+  type: char
+Field: mobile
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: mobile
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Mobile
+  translate: False
+  trim: True
+  type: char
+Field: is_company
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Check if the contact is a company, otherwise it is a person
+  manual: False
+  name: is_company
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Is a Company
+  type: boolean
+Field: is_public
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: is_public
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Is Public
+  type: boolean
+Field: industry_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: industry_id
+  readonly: False
+  relation: res.partner.industry
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Industry
+  type: many2one
+Field: company_type
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['is_company']
+  exportable: True
+  groupable: False
+  manual: False
+  name: company_type
+  readonly: False
+  required: False
+  searchable: False
+  selection: [['person', 'Individual'], ['company', 'Company']]
+  sortable: False
+  store: False
+  string: Company Type
+  type: selection
+Field: company_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: company_id
+  readonly: False
+  relation: res.company
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Company
+  type: many2one
+Field: color
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: color
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Color Index
+  type: integer
+Field: user_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: user_ids
+  readonly: False
+  relation: res.users
+  relation_field: partner_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Users
+  type: one2many
+Field: partner_share
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['user_ids.share', 'user_ids.active']
+  exportable: True
+  groupable: True
+  help: Either customer (not a user), either shared user. Indicated the current partner is a customer without access or with a limited access created for sharing data.
+  manual: False
+  name: partner_share
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Share Partner
+  type: boolean
+Field: contact_address
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['street', 'street2', 'zip', 'city', 'state_id', 'country_id', 'country_id', 'company_name', 'state_id']
+  exportable: True
+  groupable: False
+  manual: False
+  name: contact_address
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Complete Address
+  translate: False
+  trim: True
+  type: char
+Field: commercial_partner_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['is_company', 'parent_id.commercial_partner_id']
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: commercial_partner_id
+  readonly: True
+  relation: res.partner
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Commercial Entity
+  type: many2one
+Field: commercial_company_name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['company_name', 'parent_id.is_company', 'commercial_partner_id.name']
+  exportable: True
+  groupable: True
+  manual: False
+  name: commercial_company_name
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Company Name Entity
+  translate: False
+  trim: True
+  type: char
+Field: company_name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: company_name
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Company Name
+  translate: False
+  trim: True
+  type: char
+Field: barcode
+  change_default: False
+  company_dependent: True
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Use a barcode to identify this contact.
+  manual: False
+  name: barcode
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Barcode
+  translate: False
+  trim: True
+  type: char
+Field: self
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: self
+  readonly: True
+  relation: res.partner
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Self
+  type: many2one
+Field: id
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: id
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: ID
+  type: integer
+Field: display_name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['website_id', 'complete_name', 'email', 'vat', 'state_id', 'country_id', 'commercial_company_name', 'name']
+  exportable: True
+  groupable: False
+  manual: False
+  name: display_name
+  readonly: True
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Display Name
+  translate: False
+  trim: True
+  type: char
+Field: create_uid
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: create_uid
+  readonly: True
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Created by
+  type: many2one
+Field: create_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: create_date
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Created on
+  type: datetime
+Field: write_uid
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: write_uid
+  readonly: True
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Last Updated by
+  type: many2one
+Field: write_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: write_date
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Last Updated on
+  type: datetime
+Field: im_status
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: im_status
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: IM Status
+  translate: False
+  trim: True
+  type: char
+Field: date_localization
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: date_localization
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Geolocation Date
+  type: date
+Field: channel_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: channel_ids
+  readonly: False
+  relation: discuss.channel
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Channels
+  type: many2many
+Field: contact_address_inline
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['contact_address']
+  exportable: True
+  groupable: False
+  manual: False
+  name: contact_address_inline
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Inlined Complete Address
+  translate: False
+  trim: True
+  type: char
+Field: starred_message_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: starred_message_ids
+  readonly: False
+  relation: mail.message
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Starred Message
+  type: many2many
+Field: signup_type
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  groups: base.group_erp_manager
+  manual: False
+  name: signup_type
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Signup Token Type
+  translate: False
+  trim: True
+  type: char
+Field: meeting_count
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: meeting_count
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: # Meetings
+  type: integer
+Field: meeting_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: meeting_ids
+  readonly: False
+  relation: calendar.event
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Meetings
+  type: many2many
+Field: calendar_last_notif_ack
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: calendar_last_notif_ack
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Last notification marked as read from base Calendar
+  type: datetime
+Field: plan_to_change_car
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: plan_to_change_car
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Plan To Change Car
+  type: boolean
+Field: plan_to_change_bike
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: plan_to_change_bike
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Plan To Change Bike
+  type: boolean
+Field: property_product_pricelist
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['country_id', 'specific_property_product_pricelist']
+  domain: [['company_id', 'in', [1, False]]]
+  exportable: True
+  groupable: False
+  help: This pricelist will be used, instead of the default one, for sales to the current partner
+  manual: False
+  name: property_product_pricelist
+  readonly: False
+  relation: product.pricelist
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Pricelist
+  type: many2one
+Field: specific_property_product_pricelist
+  change_default: False
+  company_dependent: True
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: specific_property_product_pricelist
+  readonly: False
+  relation: product.pricelist
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Specific Property Product Pricelist
+  type: many2one
+Field: iap_enrich_info
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  help: IAP response stored as a JSON string
+  manual: False
+  name: iap_enrich_info
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: IAP Enrich Info
+  translate: False
+  type: text
+Field: iap_search_domain
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: iap_search_domain
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Search Domain / Email
+  translate: False
+  trim: True
+  type: char
+Field: payment_token_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: payment_token_ids
+  readonly: False
+  relation: payment.token
+  relation_field: partner_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Payment Tokens
+  type: one2many
+Field: payment_token_count
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['payment_token_ids']
+  exportable: True
+  groupable: False
+  manual: False
+  name: payment_token_count
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Payment Token Count
+  type: integer
+Field: fiscal_country_codes
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['company_id']
+  exportable: True
+  groupable: False
+  manual: False
+  name: fiscal_country_codes
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Fiscal Country Codes
+  translate: False
+  trim: True
+  type: char
+Field: partner_vat_placeholder
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['country_id']
+  exportable: True
+  groupable: False
+  manual: False
+  name: partner_vat_placeholder
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Partner Vat Placeholder
+  translate: False
+  trim: True
+  type: char
+Field: credit
+  change_default: False
+  company_dependent: False
+  currency_field: currency_id
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  groups: account.group_account_invoice,account.group_account_readonly
+  help: Total amount this customer owes you.
+  manual: False
+  name: credit
+  readonly: True
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Total Receivable
+  type: monetary
+Field: credit_to_invoice
+  change_default: False
+  company_dependent: False
+  currency_field: currency_id
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  groups: account.group_account_invoice,account.group_account_readonly
+  manual: False
+  name: credit_to_invoice
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Credit To Invoice
+  type: monetary
+Field: credit_limit
+  aggregator: sum
+  change_default: False
+  company_dependent: True
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  groups: account.group_account_invoice,account.group_account_readonly
+  help: Credit limit specific to this partner.
+  manual: False
+  name: credit_limit
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Credit Limit
+  type: float
+Field: use_partner_credit_limit
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  groups: account.group_account_invoice,account.group_account_readonly
+  manual: False
+  name: use_partner_credit_limit
+  readonly: False
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Partner Limit
+  type: boolean
+Field: show_credit_limit
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  groups: account.group_account_invoice,account.group_account_readonly
+  manual: False
+  name: show_credit_limit
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Show Credit Limit
+  type: boolean
+Field: days_sales_outstanding
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['credit']
+  exportable: True
+  groupable: False
+  help: [(Total Receivable/Total Revenue) * number of days since the first invoice] for this customer
+  manual: False
+  name: days_sales_outstanding
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Days Sales Outstanding (DSO)
+  type: float
+Field: debit
+  change_default: False
+  company_dependent: False
+  currency_field: currency_id
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  groups: account.group_account_invoice,account.group_account_readonly
+  help: Total amount you have to pay to this vendor.
+  manual: False
+  name: debit
+  readonly: True
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Total Payable
+  type: monetary
+Field: debit_limit
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  currency_field: currency_id
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: debit_limit
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Payable Limit
+  type: monetary
+Field: total_invoiced
+  change_default: False
+  company_dependent: False
+  currency_field: currency_id
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  groups: account.group_account_invoice,account.group_account_readonly
+  manual: False
+  name: total_invoiced
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Total Invoiced
+  type: monetary
+Field: currency_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: currency_id
+  readonly: True
+  relation: res.currency
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Currency
+  type: many2one
+Field: journal_item_count
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: journal_item_count
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Journal Items
+  type: integer
+Field: property_account_payable_id
+  change_default: False
+  company_dependent: True
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [('account_type', '=', 'liability_payable'), ('deprecated', '=', False)]
+  exportable: True
+  groupable: True
+  help: This account will be used instead of the default one as the payable account for the current partner
+  manual: False
+  name: property_account_payable_id
+  readonly: False
+  relation: account.account
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Account Payable
+  type: many2one
+Field: property_account_receivable_id
+  change_default: False
+  company_dependent: True
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [('account_type', '=', 'asset_receivable'), ('deprecated', '=', False)]
+  exportable: True
+  groupable: True
+  help: This account will be used instead of the default one as the receivable account for the current partner
+  manual: False
+  name: property_account_receivable_id
+  readonly: False
+  relation: account.account
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Account Receivable
+  type: many2one
+Field: property_account_position_id
+  change_default: False
+  company_dependent: True
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  help: The fiscal position determines the taxes/accounts used for this contact.
+  manual: False
+  name: property_account_position_id
+  readonly: False
+  relation: account.fiscal.position
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Fiscal Position
+  type: many2one
+Field: property_payment_term_id
+  change_default: False
+  company_dependent: True
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  help: This payment term will be used instead of the default one for sales orders and customer invoices
+  manual: False
+  name: property_payment_term_id
+  readonly: False
+  relation: account.payment.term
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Customer Payment Terms
+  type: many2one
+Field: property_supplier_payment_term_id
+  change_default: False
+  company_dependent: True
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  help: This payment term will be used instead of the default one for purchase orders and vendor bills
+  manual: False
+  name: property_supplier_payment_term_id
+  readonly: False
+  relation: account.payment.term
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Vendor Payment Terms
+  type: many2one
+Field: ref_company_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: ref_company_ids
+  readonly: False
+  relation: res.company
+  relation_field: partner_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Companies that refers to partner
+  type: one2many
+Field: invoice_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: invoice_ids
+  readonly: True
+  relation: account.move
+  relation_field: partner_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Invoices
+  type: one2many
+Field: contract_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: contract_ids
+  readonly: True
+  relation: account.analytic.account
+  relation_field: partner_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Partner Contracts
+  type: one2many
+Field: bank_account_count
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: bank_account_count
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Bank
+  type: integer
+Field: trust
+  change_default: False
+  company_dependent: True
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: trust
+  readonly: False
+  required: False
+  searchable: True
+  selection: [['good', 'Good Debtor'], ['normal', 'Normal Debtor'], ['bad', 'Bad Debtor']]
+  sortable: True
+  store: True
+  string: Degree of trust you have in this debtor
+  type: selection
+Field: ignore_abnormal_invoice_date
+  change_default: False
+  company_dependent: True
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: ignore_abnormal_invoice_date
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Ignore Abnormal Invoice Date
+  type: boolean
+Field: ignore_abnormal_invoice_amount
+  change_default: False
+  company_dependent: True
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: ignore_abnormal_invoice_amount
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Ignore Abnormal Invoice Amount
+  type: boolean
+Field: invoice_warn
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Selecting the "Warning" option will notify user with the message, Selecting "Blocking Message" will throw an exception with the message and block the flow. The Message has to be written in the next field.
+  manual: False
+  name: invoice_warn
+  readonly: False
+  required: False
+  searchable: True
+  selection: [['no-message', 'No Message'], ['warning', 'Warning'], ['block', 'Blocking Message']]
+  sortable: True
+  store: True
+  string: Invoice
+  type: selection
+Field: invoice_warn_msg
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: invoice_warn_msg
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Message for Invoice
+  translate: False
+  type: text
+Field: invoice_sending_method
+  change_default: False
+  company_dependent: True
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: invoice_sending_method
+  readonly: False
+  required: False
+  searchable: True
+  selection: [['manual', 'Download'], ['email', 'by Email'], ['snailmail', 'by Post']]
+  sortable: True
+  store: True
+  string: Invoice sending
+  type: selection
+Field: invoice_edi_format
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['country_code', 'vat', 'company_registry']
+  exportable: True
+  groupable: False
+  manual: False
+  name: invoice_edi_format
+  readonly: False
+  required: False
+  searchable: False
+  selection: [['facturx', 'Factur-X (CII)'], ['ubl_bis3', 'BIS Billing 3.0'], ['xrechnung', 'XRechnung CIUS'], ['nlcius', 'NLCIUS'], ['ubl_a_nz', 'BIS Billing 3.0 A-NZ'], ['ubl_sg', 'BIS Billing 3.0 SG']]
+  sortable: False
+  store: False
+  string: eInvoice format
+  type: selection
+Field: invoice_edi_format_store
+  change_default: False
+  company_dependent: True
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: invoice_edi_format_store
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Invoice Edi Format Store
+  translate: False
+  trim: True
+  type: char
+Field: display_invoice_edi_format
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: display_invoice_edi_format
+  readonly: False
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Display Invoice Edi Format
+  type: boolean
+Field: invoice_template_pdf_report_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [('is_invoice_report', '=', True)]
+  exportable: True
+  groupable: True
+  manual: False
+  name: invoice_template_pdf_report_id
+  readonly: False
+  relation: ir.actions.report
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Invoice Template Pdf Report
+  type: many2one
+Field: display_invoice_template_pdf_report_id
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: display_invoice_template_pdf_report_id
+  readonly: False
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Display Invoice Template Pdf Report
+  type: boolean
+Field: supplier_rank
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: supplier_rank
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Supplier Rank
+  type: integer
+Field: customer_rank
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: customer_rank
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Customer Rank
+  type: integer
+Field: autopost_bills
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Automatically post bills for this trusted partner
+  manual: False
+  name: autopost_bills
+  readonly: False
+  required: True
+  searchable: True
+  selection: [['always', 'Always'], ['ask', 'Ask after 3 validations without edits'], ['never', 'Never']]
+  sortable: True
+  store: True
+  string: Auto-post bills
+  type: selection
+Field: duplicated_bank_account_partners_count
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['bank_ids']
+  exportable: True
+  groupable: False
+  manual: False
+  name: duplicated_bank_account_partners_count
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Duplicated Bank Account Partners Count
+  type: integer
+Field: property_outbound_payment_method_line_id
+  change_default: False
+  company_dependent: True
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [['payment_type', '=', 'outbound'], ['company_id', '=', 1]]
+  exportable: True
+  groupable: True
+  help: Preferred payment method when buying from this vendor. This will be set by default on all outgoing payments created for this vendor
+  manual: False
+  name: property_outbound_payment_method_line_id
+  readonly: False
+  relation: account.payment.method.line
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Property Outbound Payment Method Line
+  type: many2one
+Field: property_inbound_payment_method_line_id
+  change_default: False
+  company_dependent: True
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [['payment_type', '=', 'inbound'], ['company_id', '=', 1]]
+  exportable: True
+  groupable: True
+  help: Preferred payment method when selling to this customer. This will be set by default on all incoming payments created for this customer
+  manual: False
+  name: property_inbound_payment_method_line_id
+  readonly: False
+  relation: account.payment.method.line
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Property Inbound Payment Method Line
+  type: many2one
+Field: opportunity_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['opportunity_ids.type']
+  domain: [['type', '=', 'opportunity']]
+  exportable: True
+  groupable: False
+  manual: False
+  name: opportunity_ids
+  readonly: False
+  relation: crm.lead
+  relation_field: partner_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Opportunities
+  type: one2many
+Field: opportunity_count
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  groups: sales_team.group_sale_salesman
+  manual: False
+  name: opportunity_count
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Opportunity Count
+  type: integer
+Field: property_stock_customer
+  change_default: False
+  company_dependent: True
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [('company_id', 'in', [allowed_company_ids[0]] + [False])] + ['|', ('company_id', '=', False), ('company_id', '=', allowed_company_ids[0])]
+  exportable: True
+  groupable: True
+  help: The stock location used as destination when sending goods to this contact.
+  manual: False
+  name: property_stock_customer
+  readonly: False
+  relation: stock.location
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Customer Location
+  type: many2one
+Field: property_stock_supplier
+  change_default: False
+  company_dependent: True
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [('company_id', 'in', [allowed_company_ids[0]] + [False])] + ['|', ('company_id', '=', False), ('company_id', '=', allowed_company_ids[0])]
+  exportable: True
+  groupable: True
+  help: The stock location used as source when receiving goods from this contact.
+  manual: False
+  name: property_stock_supplier
+  readonly: False
+  relation: stock.location
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Vendor Location
+  type: many2one
+Field: picking_warn
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Selecting the "Warning" option will notify user with the message, Selecting "Blocking Message" will throw an exception with the message and block the flow. The Message has to be written in the next field.
+  manual: False
+  name: picking_warn
+  readonly: False
+  required: False
+  searchable: True
+  selection: [['no-message', 'No Message'], ['warning', 'Warning'], ['block', 'Blocking Message']]
+  sortable: True
+  store: True
+  string: Stock Picking
+  type: selection
+Field: picking_warn_msg
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: picking_warn_msg
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Message for Stock Picking
+  translate: False
+  type: text
+Field: visitor_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: visitor_ids
+  readonly: False
+  relation: website.visitor
+  relation_field: partner_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Visitors
+  type: one2many
+Field: is_ubl_format
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['invoice_edi_format']
+  exportable: True
+  groupable: False
+  manual: False
+  name: is_ubl_format
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Is Ubl Format
+  type: boolean
+Field: is_peppol_edi_format
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['invoice_edi_format']
+  exportable: True
+  groupable: False
+  manual: False
+  name: is_peppol_edi_format
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Is Peppol Edi Format
+  type: boolean
+Field: peppol_endpoint
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['country_code', 'vat', 'company_registry', 'peppol_eas']
+  exportable: True
+  groupable: True
+  help: Unique identifier used by the BIS Billing 3.0 and its derivatives, also known as 'Endpoint ID'.
+  manual: False
+  name: peppol_endpoint
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Peppol Endpoint
+  translate: False
+  trim: True
+  type: char
+Field: peppol_eas
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['country_code', 'vat', 'company_registry']
+  exportable: True
+  groupable: True
+  help: Code used to identify the Endpoint for BIS Billing 3.0 and its derivatives.
+             List available at https://docs.peppol.eu/poacc/billing/3.0/codelist/eas/
+  manual: False
+  name: peppol_eas
+  readonly: False
+  required: False
+  searchable: True
+  selection: [['0002', '0002 - System Information et Repertoire des Entreprise et des Etablissements: SIRENE'], ['0007', '0007 - Organisationsnummer (Swedish legal entities)'], ['0009', '0009 - SIRET-CODE'], ['0060', '0060 - Data Universal Numbering System (D-U-N-S Number)'], ['0088', '0088 - EAN Location Code'], ['0096', '0096 - DANISH CHAMBER OF COMMERCE Scheme (EDIRA compliant)'], ['0097', '0097 - FTI - Ediforum Italia, (EDIRA compliant)'], ['0106', '0106 - Association of Chambers of Commerce and Industry in the Netherlands, (EDIRA compliant)'], ['0130', '0130 - Directorates of the European Commission'], ['0135', '0135 - SIA Object Identifiers'], ['0142', '0142 - SECETI Object Identifiers'], ['0151', '0151 - Australian Business Number (ABN) Scheme'], ['0183', '0183 - Swiss Unique Business Identification Number (UIDB)'], ['0184', '0184 - DIGSTORG'], ['0188', '0188 - Corporate Number of The Social Security and Tax Number System'], ['0190', "0190 - Dutch Originator's Identification Number"], ['0191', '0191 - Centre of Registers and Information Systems of the Ministry of Justice'], ['0192', '0192 - Enhetsregisteret ved Bronnoysundregisterne'], ['0193', '0193 - UBL.BE party identifier'], ['0195', '0195 - Singapore UEN identifier'], ['0196', '0196 - Kennitala - Iceland legal id for individuals and legal entities'], ['0198', '0198 - ERSTORG'], ['0199', '0199 - Legal Entity Identifier (LEI)'], ['0200', '0200 - Legal entity code (Lithuania)'], ['0201', '0201 - Codice Univoco Unità Organizzativa iPA'], ['0202', '0202 - Indirizzo di Posta Elettronica Certificata'], ['0204', '0204 - Leitweg-ID'], ['0208', "0208 - Numero d'entreprise / ondernemingsnummer / Unternehmensnummer"], ['0209', '0209 - GS1 identification keys'], ['0210', '0210 - CODICE FISCALE'], ['0211', '0211 - PARTITA IVA'], ['0216', '0216 - OVTcode'], ['0221', '0221 - The registered number of the qualified invoice issuer (Japan)'], ['0230', '0230 - National e-Invoicing Framework (Malaysia)'], ['9910', '9910 - Hungary VAT number'], ['9913', '9913 - Business Registers Network'], ['9914', '9914 - Österreichische Umsatzsteuer-Identifikationsnummer'], ['9915', '9915 - Österreichisches Verwaltungs bzw. Organisationskennzeichen'], ['9918', '9918 - SOCIETY FOR WORLDWIDE INTERBANK FINANCIAL, TELECOMMUNICATION S.W.I.F.T'], ['9919', '9919 - Kennziffer des Unternehmensregisters'], ['9920', '9920 - Agencia Española de Administración Tributaria'], ['9922', '9922 - Andorra VAT number'], ['9923', '9923 - Albania VAT number'], ['9924', '9924 - Bosnia and Herzegovina VAT number'], ['9925', '9925 - Belgium VAT number'], ['9926', '9926 - Bulgaria VAT number'], ['9927', '9927 - Switzerland VAT number'], ['9928', '9928 - Cyprus VAT number'], ['9929', '9929 - Czech Republic VAT number'], ['9930', '9930 - Germany VAT number'], ['9931', '9931 - Estonia VAT number'], ['9932', '9932 - United Kingdom VAT number'], ['9933', '9933 - Greece VAT number'], ['9934', '9934 - Croatia VAT number'], ['9935', '9935 - Ireland VAT number'], ['9936', '9936 - Liechtenstein VAT number'], ['9937', '9937 - Lithuania VAT number'], ['9938', '9938 - Luxemburg VAT number'], ['9939', '9939 - Latvia VAT number'], ['9940', '9940 - Monaco VAT number'], ['9941', '9941 - Montenegro VAT number'], ['9942', '9942 - Macedonia, the former Yugoslav Republic of VAT number'], ['9943', '9943 - Malta VAT number'], ['9944', '9944 - Netherlands VAT number'], ['9945', '9945 - Poland VAT number'], ['9946', '9946 - Portugal VAT number'], ['9947', '9947 - Romania VAT number'], ['9948', '9948 - Serbia VAT number'], ['9949', '9949 - Slovenia VAT number'], ['9950', '9950 - Slovakia VAT number'], ['9951', '9951 - San Marino VAT number'], ['9952', '9952 - Türkiye VAT number'], ['9953', '9953 - Holy See (Vatican City State) VAT number'], ['9957', '9957 - French VAT number'], ['9959', '9959 - Employer Identification Number (EIN, USA)']]
+  sortable: True
+  store: True
+  string: Peppol e-address (EAS)
+  type: selection
+Field: loyalty_card_count
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  groups: base.group_user
+  manual: False
+  name: loyalty_card_count
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Active loyalty cards
+  type: integer
+Field: property_purchase_currency_id
+  change_default: False
+  company_dependent: True
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  help: This currency will be used, instead of the default one, for purchases from the current partner
+  manual: False
+  name: property_purchase_currency_id
+  readonly: False
+  relation: res.currency
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Supplier Currency
+  type: many2one
+Field: purchase_order_count
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  groups: purchase.group_purchase_user
+  manual: False
+  name: purchase_order_count
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Purchase Order Count
+  type: integer
+Field: supplier_invoice_count
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: supplier_invoice_count
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: # Vendor Bills
+  type: integer
+Field: purchase_warn
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Selecting the "Warning" option will notify user with the message, Selecting "Blocking Message" will throw an exception with the message and block the flow. The Message has to be written in the next field.
+  manual: False
+  name: purchase_warn
+  readonly: False
+  required: False
+  searchable: True
+  selection: [['no-message', 'No Message'], ['warning', 'Warning'], ['block', 'Blocking Message']]
+  sortable: True
+  store: True
+  string: Purchase Order Warning
+  type: selection
+Field: purchase_warn_msg
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: purchase_warn_msg
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Message for Purchase Order
+  translate: False
+  type: text
+Field: receipt_reminder_email
+  change_default: False
+  company_dependent: True
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Automatically send a confirmation email to the vendor X days before the expected receipt date, asking him to confirm the exact date.
+  manual: False
+  name: receipt_reminder_email
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Receipt Reminder
+  type: boolean
+Field: reminder_date_before_receipt
+  aggregator: sum
+  change_default: False
+  company_dependent: True
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Number of days to send reminder email before the promised receipt date
+  manual: False
+  name: reminder_date_before_receipt
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Days Before Receipt
+  type: integer
+Field: buyer_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: buyer_id
+  readonly: False
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Buyer
+  type: many2one
+Field: purchase_line_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: purchase_line_ids
+  readonly: False
+  relation: purchase.order.line
+  relation_field: partner_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Purchase Lines
+  type: one2many
+Field: on_time_rate
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['purchase_line_ids']
+  exportable: True
+  groupable: False
+  help: Over the past x days; the number of products received on time divided by the number of ordered products.x is either the System Parameter purchase_stock.on_time_delivery_days or the default 365
+  manual: False
+  name: on_time_rate
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: On-Time Delivery Rate
+  type: float
+Field: sale_order_count
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  groups: sales_team.group_sale_salesman
+  manual: False
+  name: sale_order_count
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Sale Order Count
+  type: integer
+Field: sale_order_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: sale_order_ids
+  readonly: False
+  relation: sale.order
+  relation_field: partner_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Sales Order
+  type: one2many
+Field: sale_warn
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Selecting the "Warning" option will notify user with the message, Selecting "Blocking Message" will throw an exception with the message and block the flow. The Message has to be written in the next field.
+  manual: False
+  name: sale_warn
+  readonly: False
+  required: False
+  searchable: True
+  selection: [['no-message', 'No Message'], ['warning', 'Warning'], ['block', 'Blocking Message']]
+  sortable: True
+  store: True
+  string: Sales Warnings
+  type: selection
+Field: sale_warn_msg
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: sale_warn_msg
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Message for Sales Order
+  translate: False
+  type: text
+Field: property_delivery_carrier_id
+  change_default: False
+  company_dependent: True
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  help: Default delivery method used in sales orders.
+  manual: False
+  name: property_delivery_carrier_id
+  readonly: False
+  relation: delivery.carrier
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Delivery Method
+  type: many2one
+Field: last_website_so_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: last_website_so_id
+  readonly: True
+  relation: sale.order
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Last Online Sales Order
+  type: many2one
+Field: is_mondialrelay
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['ref']
+  exportable: True
+  groupable: False
+  manual: False
+  name: is_mondialrelay
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Is Mondialrelay
+  type: boolean

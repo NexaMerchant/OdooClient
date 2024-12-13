@@ -1,0 +1,368 @@
+Authenticated successfully. UID: 2
+Fields of model: res.country
+Field: name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: name
+  readonly: False
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Country Name
+  translate: True
+  trim: True
+  type: char
+Field: code
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: The ISO country code in two chars. 
+You can use this field for quick search.
+  manual: False
+  name: code
+  readonly: False
+  required: True
+  searchable: True
+  size: 2
+  sortable: True
+  store: True
+  string: Country Code
+  translate: False
+  trim: True
+  type: char
+Field: address_format
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Display format to use for addresses belonging to this country.
+
+You can use python-style string pattern with all the fields of the address (for example, use '%(street)s' to display the field 'street') plus
+%(state_name)s: the name of the state
+%(state_code)s: the code of the state
+%(country_name)s: the name of the country
+%(country_code)s: the code of the country
+  manual: False
+  name: address_format
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Layout in Reports
+  translate: False
+  type: text
+Field: address_view_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [['model', '=', 'res.partner'], ['type', '=', 'form']]
+  exportable: True
+  groupable: True
+  help: Use this field if you want to replace the usual way to encode a complete address. Note that the address_format field is used to modify the way to display addresses (in reports for example), while this field is used to modify the input form for addresses.
+  manual: False
+  name: address_view_id
+  readonly: False
+  relation: ir.ui.view
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Input View
+  type: many2one
+Field: currency_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: currency_id
+  readonly: False
+  relation: res.currency
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Currency
+  type: many2one
+Field: image_url
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['code']
+  exportable: True
+  groupable: False
+  help: Url of static flag image
+  manual: False
+  name: image_url
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Flag
+  translate: False
+  trim: True
+  type: char
+Field: phone_code
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: phone_code
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Country Calling Code
+  type: integer
+Field: country_group_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: country_group_ids
+  readonly: False
+  relation: res.country.group
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Country Groups
+  type: many2many
+Field: state_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: state_ids
+  readonly: False
+  relation: res.country.state
+  relation_field: country_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: States
+  type: one2many
+Field: name_position
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Determines where the customer/company name should be placed, i.e. after or before the address.
+  manual: False
+  name: name_position
+  readonly: False
+  required: False
+  searchable: True
+  selection: [['before', 'Before Address'], ['after', 'After Address']]
+  sortable: True
+  store: True
+  string: Customer Name Position
+  type: selection
+Field: vat_label
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Use this field if you want to change vat label.
+  manual: False
+  name: vat_label
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Vat Label
+  translate: True
+  trim: True
+  type: char
+Field: state_required
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: state_required
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: State Required
+  type: boolean
+Field: zip_required
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: zip_required
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Zip Required
+  type: boolean
+Field: id
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: id
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: ID
+  type: integer
+Field: display_name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['name']
+  exportable: True
+  groupable: False
+  manual: False
+  name: display_name
+  readonly: True
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Display Name
+  translate: False
+  trim: True
+  type: char
+Field: create_uid
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: create_uid
+  readonly: True
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Created by
+  type: many2one
+Field: create_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: create_date
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Created on
+  type: datetime
+Field: write_uid
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: write_uid
+  readonly: True
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Last Updated by
+  type: many2one
+Field: write_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: write_date
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Last Updated on
+  type: datetime
+Field: is_stripe_supported_country
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['code']
+  exportable: True
+  groupable: False
+  manual: False
+  name: is_stripe_supported_country
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Is Stripe Supported Country
+  type: boolean

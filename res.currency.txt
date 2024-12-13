@@ -1,0 +1,429 @@
+Authenticated successfully. UID: 2
+Fields of model: res.currency
+Field: name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Currency Code (ISO 4217)
+  manual: False
+  name: name
+  readonly: False
+  required: True
+  searchable: True
+  size: 3
+  sortable: True
+  store: True
+  string: Currency
+  translate: False
+  trim: True
+  type: char
+Field: iso_numeric
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Currency Numeric Code (ISO 4217).
+  manual: False
+  name: iso_numeric
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Currency numeric code.
+  type: integer
+Field: full_name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: full_name
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Name
+  translate: False
+  trim: True
+  type: char
+Field: symbol
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Currency sign, to be used when printing amounts.
+  manual: False
+  name: symbol
+  readonly: False
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Symbol
+  translate: False
+  trim: True
+  type: char
+Field: rate
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['rate_ids.rate']
+  digits: 0
+  exportable: True
+  groupable: False
+  help: The rate of the currency to the currency of rate 1.
+  manual: False
+  name: rate
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Current Rate
+  type: float
+Field: inverse_rate
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['rate_ids.rate']
+  digits: 0
+  exportable: True
+  groupable: False
+  help: The currency of rate 1 to the rate of the currency.
+  manual: False
+  name: inverse_rate
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Inverse Rate
+  type: float
+Field: rate_string
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['rate_ids.rate']
+  exportable: True
+  groupable: False
+  manual: False
+  name: rate_string
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Rate String
+  translate: False
+  trim: True
+  type: char
+Field: rate_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: rate_ids
+  readonly: False
+  relation: res.currency.rate
+  relation_field: currency_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Rates
+  type: one2many
+Field: rounding
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  digits: [12, 6]
+  exportable: True
+  groupable: True
+  help: Amounts in this currency are rounded off to the nearest multiple of the rounding factor.
+  manual: False
+  name: rounding
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Rounding Factor
+  type: float
+Field: decimal_places
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['rounding']
+  exportable: True
+  groupable: True
+  help: Decimal places taken into account for operations on amounts in this currency. It is determined by the rounding factor.
+  manual: False
+  name: decimal_places
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Decimal Places
+  type: integer
+Field: active
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: active
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Active
+  type: boolean
+Field: position
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Determines where the currency symbol should be placed after or before the amount.
+  manual: False
+  name: position
+  readonly: False
+  required: False
+  searchable: True
+  selection: [['after', 'After Amount'], ['before', 'Before Amount']]
+  sortable: True
+  store: True
+  string: Symbol Position
+  type: selection
+Field: date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['rate_ids.name']
+  exportable: True
+  groupable: False
+  manual: False
+  name: date
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Date
+  type: date
+Field: currency_unit_label
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: currency_unit_label
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Currency Unit
+  translate: True
+  trim: True
+  type: char
+Field: currency_subunit_label
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: currency_subunit_label
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Currency Subunit
+  translate: True
+  trim: True
+  type: char
+Field: is_current_company_currency
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: is_current_company_currency
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Is Current Company Currency
+  type: boolean
+Field: id
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: id
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: ID
+  type: integer
+Field: display_name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['name']
+  exportable: True
+  groupable: False
+  manual: False
+  name: display_name
+  readonly: True
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Display Name
+  translate: False
+  trim: True
+  type: char
+Field: create_uid
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: create_uid
+  readonly: True
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Created by
+  type: many2one
+Field: create_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: create_date
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Created on
+  type: datetime
+Field: write_uid
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: write_uid
+  readonly: True
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Last Updated by
+  type: many2one
+Field: write_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: write_date
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Last Updated on
+  type: datetime
+Field: display_rounding_warning
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['rounding']
+  exportable: True
+  groupable: False
+  help: The warning informs a rounding factor change might be dangerous on res.currency's form view.
+  manual: False
+  name: display_rounding_warning
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Display Rounding Warning
+  type: boolean
+Field: fiscal_country_codes
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: fiscal_country_codes
+  readonly: False
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Fiscal Country Codes
+  translate: False
+  trim: True
+  type: char
