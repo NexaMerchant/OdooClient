@@ -1,0 +1,1452 @@
+Authenticated successfully. UID: 2
+Fields of model: website
+Field: name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: name
+  readonly: False
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Website Name
+  translate: False
+  trim: True
+  type: char
+Field: sequence
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: sequence
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Sequence
+  type: integer
+Field: domain
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: E.g. https://www.mydomain.com
+  manual: False
+  name: domain
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Website Domain
+  translate: False
+  trim: True
+  type: char
+Field: company_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: company_id
+  readonly: False
+  relation: res.company
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Company
+  type: many2one
+Field: language_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: language_ids
+  readonly: False
+  relation: res.lang
+  required: True
+  searchable: True
+  sortable: False
+  store: True
+  string: Languages
+  type: many2many
+Field: language_count
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['language_ids']
+  exportable: True
+  groupable: False
+  manual: False
+  name: language_count
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Number of languages
+  type: integer
+Field: default_lang_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: default_lang_id
+  readonly: False
+  relation: res.lang
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Default Language
+  type: many2one
+Field: auto_redirect_lang
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Should users be redirected to their browser's language
+  manual: False
+  name: auto_redirect_lang
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Autoredirect Language
+  type: boolean
+Field: cookies_bar
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Display a customizable cookies bar on your website.
+  manual: False
+  name: cookies_bar
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Cookies Bar
+  type: boolean
+Field: configurator_done
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: True if configurator has been completed or ignored
+  manual: False
+  name: configurator_done
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Configurator Done
+  type: boolean
+Field: block_third_party_domains
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Block 3rd-party domains that may track users (YouTube, Google Maps, etc.).
+  manual: False
+  name: block_third_party_domains
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Block 3rd-party domains
+  type: boolean
+Field: custom_blocked_third_party_domains
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  groups: website.group_website_designer
+  manual: False
+  name: custom_blocked_third_party_domains
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: User list of blocked 3rd-party domains
+  translate: False
+  type: text
+Field: blocked_third_party_domains
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['custom_blocked_third_party_domains']
+  exportable: True
+  groupable: False
+  manual: False
+  name: blocked_third_party_domains
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: List of blocked 3rd-party domains
+  translate: False
+  type: text
+Field: logo
+  attachment: True
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  help: Display this logo on the website.
+  manual: False
+  name: logo
+  readonly: False
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Website Logo
+  type: binary
+Field: social_twitter
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: social_twitter
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: X Account
+  translate: False
+  trim: True
+  type: char
+Field: social_facebook
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: social_facebook
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Facebook Account
+  translate: False
+  trim: True
+  type: char
+Field: social_github
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: social_github
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: GitHub Account
+  translate: False
+  trim: True
+  type: char
+Field: social_linkedin
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: social_linkedin
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: LinkedIn Account
+  translate: False
+  trim: True
+  type: char
+Field: social_youtube
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: social_youtube
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Youtube Account
+  translate: False
+  trim: True
+  type: char
+Field: social_instagram
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: social_instagram
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Instagram Account
+  translate: False
+  trim: True
+  type: char
+Field: social_tiktok
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: social_tiktok
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: TikTok Account
+  translate: False
+  trim: True
+  type: char
+Field: social_default_image
+  attachment: True
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  help: If set, replaces the website logo as the default social share image.
+  manual: False
+  name: social_default_image
+  readonly: False
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Default Social Share Image
+  type: binary
+Field: has_social_default_image
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['social_default_image']
+  exportable: True
+  groupable: True
+  manual: False
+  name: has_social_default_image
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Has Social Default Image
+  type: boolean
+Field: google_analytics_key
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: google_analytics_key
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Google Analytics Key
+  translate: False
+  trim: True
+  type: char
+Field: google_search_console
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Google key, or Enable to access first reply
+  manual: False
+  name: google_search_console
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Google Search Console
+  translate: False
+  trim: True
+  type: char
+Field: google_maps_api_key
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: google_maps_api_key
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Google Maps API Key
+  translate: False
+  trim: True
+  type: char
+Field: plausible_shared_key
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: plausible_shared_key
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Plausible Shared Key
+  translate: False
+  trim: True
+  type: char
+Field: plausible_site
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: plausible_site
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Plausible Site
+  translate: False
+  trim: True
+  type: char
+Field: user_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: user_id
+  readonly: False
+  relation: res.users
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Public User
+  type: many2one
+Field: cdn_activated
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: cdn_activated
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Content Delivery Network (CDN)
+  type: boolean
+Field: cdn_url
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: cdn_url
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: CDN Base URL
+  translate: False
+  trim: True
+  type: char
+Field: cdn_filters
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: URL matching those filters will be rewritten using the CDN Base URL
+  manual: False
+  name: cdn_filters
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: CDN Filters
+  translate: False
+  type: text
+Field: partner_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['user_id.partner_id']
+  domain: []
+  exportable: True
+  groupable: True
+  help: Partner-related data of the user
+  manual: False
+  name: partner_id
+  readonly: False
+  related: user_id.partner_id
+  relation: res.partner
+  required: False
+  searchable: True
+  sortable: True
+  store: False
+  string: Public Partner
+  type: many2one
+Field: menu_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: menu_id
+  readonly: True
+  relation: website.menu
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Main Menu
+  type: many2one
+Field: homepage_url
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: E.g. /contactus or /shop
+  manual: False
+  name: homepage_url
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Homepage Url
+  translate: False
+  trim: True
+  type: char
+Field: custom_code_head
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: custom_code_head
+  readonly: False
+  required: False
+  sanitize: False
+  sanitize_attributes: True
+  sanitize_style: False
+  sanitize_tags: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Custom <head> code
+  strip_classes: False
+  strip_style: False
+  translate: False
+  type: html
+Field: custom_code_footer
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: custom_code_footer
+  readonly: False
+  required: False
+  sanitize: False
+  sanitize_attributes: True
+  sanitize_style: False
+  sanitize_tags: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Custom end of <body> code
+  strip_classes: False
+  strip_style: False
+  translate: False
+  type: html
+Field: robots_txt
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  groups: website.group_website_designer
+  manual: False
+  name: robots_txt
+  readonly: False
+  required: False
+  sanitize: False
+  sanitize_attributes: True
+  sanitize_style: False
+  sanitize_tags: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Robots.txt
+  strip_classes: False
+  strip_style: False
+  translate: False
+  type: html
+Field: favicon
+  attachment: True
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  help: This field holds the image used to display a favicon on the website.
+  manual: False
+  name: favicon
+  readonly: False
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Website Favicon
+  type: binary
+Field: theme_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  help: Installed theme
+  manual: False
+  name: theme_id
+  readonly: False
+  relation: ir.module.module
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Theme
+  type: many2one
+Field: specific_user_account
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: If True, new accounts will be associated to the current website
+  manual: False
+  name: specific_user_account
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Specific User Account
+  type: boolean
+Field: auth_signup_uninvited
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: auth_signup_uninvited
+  readonly: False
+  required: False
+  searchable: True
+  selection: [['b2b', 'On invitation'], ['b2c', 'Free sign up']]
+  sortable: True
+  store: True
+  string: Customer Account
+  type: selection
+Field: id
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: id
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: ID
+  type: integer
+Field: display_name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['name']
+  exportable: True
+  groupable: False
+  manual: False
+  name: display_name
+  readonly: True
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Display Name
+  translate: False
+  trim: True
+  type: char
+Field: create_uid
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: create_uid
+  readonly: True
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Created by
+  type: many2one
+Field: create_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: create_date
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Created on
+  type: datetime
+Field: write_uid
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: write_uid
+  readonly: True
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Last Updated by
+  type: many2one
+Field: write_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: write_date
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Last Updated on
+  type: datetime
+Field: crm_default_team_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [['use_leads', '=', True]]
+  exportable: True
+  groupable: True
+  help: Default Sales Team for new leads created through the Contact Us form.
+  manual: False
+  name: crm_default_team_id
+  readonly: False
+  relation: crm.team
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Default Sales Teams
+  type: many2one
+Field: crm_default_user_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [['share', '=', False]]
+  exportable: True
+  groupable: True
+  help: Default salesperson for new leads created through the Contact Us form.
+  manual: False
+  name: crm_default_user_id
+  readonly: False
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Default Salesperson
+  type: many2one
+Field: enabled_portal_reorder_button
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: enabled_portal_reorder_button
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Re-order From Portal
+  type: boolean
+Field: salesperson_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [('share', '=', False)]
+  exportable: True
+  groupable: True
+  manual: False
+  name: salesperson_id
+  readonly: False
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Salesperson
+  type: many2one
+Field: salesteam_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: salesteam_id
+  readonly: False
+  relation: crm.team
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Sales Team
+  type: many2one
+Field: show_line_subtotals_tax_selection
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: show_line_subtotals_tax_selection
+  readonly: False
+  required: True
+  searchable: True
+  selection: [['tax_excluded', 'Tax Excluded'], ['tax_included', 'Tax Included']]
+  sortable: True
+  store: True
+  string: Line Subtotals Tax Display
+  type: selection
+Field: add_to_cart_action
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: add_to_cart_action
+  readonly: False
+  required: False
+  searchable: True
+  selection: [['stay', 'Stay on Product Page'], ['go_to_cart', 'Go to cart'], ['force_dialog', 'Let the user decide (dialog)']]
+  sortable: True
+  store: True
+  string: Add To Cart Action
+  type: selection
+Field: account_on_checkout
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: account_on_checkout
+  readonly: False
+  required: False
+  searchable: True
+  selection: [['optional', 'Optional'], ['disabled', 'Disabled (buy as guest)'], ['mandatory', 'Mandatory (no guest checkout)']]
+  sortable: True
+  store: True
+  string: Customer Accounts
+  type: selection
+Field: cart_recovery_mail_template_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [['model', '=', 'sale.order']]
+  exportable: True
+  groupable: True
+  manual: False
+  name: cart_recovery_mail_template_id
+  readonly: False
+  relation: mail.template
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Cart Recovery Email
+  type: many2one
+Field: contact_us_button_url
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: contact_us_button_url
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Contact Us Button URL
+  translate: True
+  trim: True
+  type: char
+Field: cart_abandoned_delay
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: cart_abandoned_delay
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Abandoned Delay
+  type: float
+Field: send_abandoned_cart_email
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: send_abandoned_cart_email
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Send email to customers who abandoned their cart.
+  type: boolean
+Field: shop_ppg
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: shop_ppg
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Number of products in the grid on the shop
+  type: integer
+Field: shop_ppr
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: shop_ppr
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Number of grid columns on the shop
+  type: integer
+Field: shop_gap
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: shop_gap
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Grid-gap on the shop
+  translate: False
+  trim: True
+  type: char
+Field: shop_default_sort
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: shop_default_sort
+  readonly: False
+  required: True
+  searchable: True
+  selection: [['website_sequence asc', 'Featured'], ['create_date desc', 'Newest Arrivals'], ['name asc', 'Name (A-Z)'], ['list_price asc', 'Price - Low to High'], ['list_price desc', 'Price - High to Low']]
+  sortable: True
+  store: True
+  string: Shop Default Sort
+  type: selection
+Field: shop_extra_field_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: shop_extra_field_ids
+  readonly: False
+  relation: website.sale.extra.field
+  relation_field: website_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: E-Commerce Extra Fields
+  type: one2many
+Field: product_page_image_layout
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: product_page_image_layout
+  readonly: False
+  required: True
+  searchable: True
+  selection: [['carousel', 'Carousel'], ['grid', 'Grid']]
+  sortable: True
+  store: True
+  string: Product Page Image Layout
+  type: selection
+Field: product_page_image_width
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: product_page_image_width
+  readonly: False
+  required: True
+  searchable: True
+  selection: [['none', 'Hidden'], ['50_pc', '50 %'], ['66_pc', '66 %'], ['100_pc', '100 %']]
+  sortable: True
+  store: True
+  string: Product Page Image Width
+  type: selection
+Field: product_page_image_spacing
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: product_page_image_spacing
+  readonly: False
+  required: True
+  searchable: True
+  selection: [['none', 'None'], ['small', 'Small'], ['medium', 'Medium'], ['big', 'Big']]
+  sortable: True
+  store: True
+  string: Product Page Image Spacing
+  type: selection
+Field: ecommerce_access
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: ecommerce_access
+  readonly: False
+  required: True
+  searchable: True
+  selection: [['everyone', 'All users'], ['logged_in', 'Logged in users']]
+  sortable: True
+  store: True
+  string: Ecommerce Access
+  type: selection
+Field: product_page_grid_columns
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: product_page_grid_columns
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Product Page Grid Columns
+  type: integer
+Field: prevent_zero_price_sale
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: prevent_zero_price_sale
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Hide 'Add To Cart' when price = 0
+  type: boolean
+Field: prevent_zero_price_sale_text
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: prevent_zero_price_sale_text
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Text to show instead of price
+  translate: True
+  trim: True
+  type: char
+Field: fiscal_position_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: fiscal_position_id
+  readonly: True
+  relation: account.fiscal.position
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Fiscal Position
+  type: many2one
+Field: pricelist_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: pricelist_id
+  readonly: True
+  relation: product.pricelist
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Default Pricelist if any
+  type: many2one
+Field: currency_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['all_pricelist_ids', 'pricelist_id', 'company_id']
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: currency_id
+  readonly: True
+  relation: res.currency
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Default Currency
+  type: many2one
+Field: pricelist_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['all_pricelist_ids']
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: pricelist_ids
+  readonly: True
+  relation: product.pricelist
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Price list available for this Ecommerce/Website
+  type: one2many
+Field: all_pricelist_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: all_pricelist_ids
+  readonly: False
+  relation: product.pricelist
+  relation_field: website_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: All pricelists
+  type: one2many
+Field: google_places_api_key
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  groups: base.group_system
+  manual: False
+  name: google_places_api_key
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Google Places API Key
+  translate: False
+  trim: True
+  type: char
+Field: newsletter_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: newsletter_id
+  readonly: False
+  relation: mailing.list
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Newsletter List
+  type: many2one
+Field: warehouse_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: warehouse_id
+  readonly: False
+  relation: stock.warehouse
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Warehouse
+  type: many2one
