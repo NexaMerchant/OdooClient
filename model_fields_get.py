@@ -32,6 +32,8 @@ else:
     model_name = 'res.country.state'  # Replace with your model name
     model_name = 'res.currency'  # Replace with your model name
     model_name = 'website'  # Replace with your model name
+    model_name = 'sale.order'  # Replace with your model name
+    model_name = 'product.product'  # Replace with your model name
 
     print(f"Fields of model: {model_name}")
 
