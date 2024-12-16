@@ -1,0 +1,1854 @@
+Authenticated successfully. UID: 2
+Fields of model: sale.order.line
+Field: analytic_distribution
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['order_id.partner_id', 'product_id']
+  exportable: True
+  groupable: True
+  manual: False
+  name: analytic_distribution
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Analytic Distribution
+  type: json
+Field: analytic_precision
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: analytic_precision
+  readonly: False
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Analytic Precision
+  type: integer
+Field: distribution_analytic_account_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['analytic_distribution']
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: distribution_analytic_account_ids
+  readonly: True
+  relation: account.analytic.account
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Distribution Analytic Account
+  type: many2many
+Field: order_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: order_id
+  readonly: False
+  relation: sale.order
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Order Reference
+  type: many2one
+Field: sequence
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: sequence
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Sequence
+  type: integer
+Field: company_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['order_id.company_id']
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: company_id
+  readonly: True
+  related: order_id.company_id
+  relation: res.company
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Company
+  type: many2one
+Field: currency_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['order_id.currency_id']
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: currency_id
+  readonly: True
+  related: order_id.currency_id
+  relation: res.currency
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Currency
+  type: many2one
+Field: order_partner_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['order_id.partner_id']
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: order_partner_id
+  readonly: True
+  related: order_id.partner_id
+  relation: res.partner
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Customer
+  type: many2one
+Field: salesman_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['order_id.user_id']
+  exportable: True
+  groupable: True
+  manual: False
+  name: salesman_id
+  readonly: True
+  related: order_id.user_id
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Salesperson
+  type: many2one
+Field: state
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['order_id.state']
+  exportable: True
+  groupable: True
+  manual: False
+  name: state
+  readonly: True
+  related: order_id.state
+  required: False
+  searchable: True
+  selection: [['draft', 'Quotation'], ['sent', 'Quotation Sent'], ['sale', 'Sales Order'], ['cancel', 'Cancelled']]
+  sortable: True
+  store: True
+  string: Order Status
+  type: selection
+Field: tax_country_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['order_id.tax_country_id']
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: tax_country_id
+  readonly: True
+  related: order_id.tax_country_id
+  relation: res.country
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Tax Country
+  type: many2one
+Field: display_type
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: display_type
+  readonly: False
+  required: False
+  searchable: True
+  selection: [['line_section', 'Section'], ['line_note', 'Note']]
+  sortable: True
+  store: True
+  string: Display Type
+  type: selection
+Field: is_configurable_product
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_id']
+  exportable: True
+  groupable: False
+  manual: False
+  name: is_configurable_product
+  readonly: True
+  related: product_template_id.has_configurable_attributes
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Is the product configurable?
+  type: boolean
+Field: is_downpayment
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Down payments are made when creating invoices from a sales order. They are not copied when duplicating a sales order.
+  manual: False
+  name: is_downpayment
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Is a down payment
+  type: boolean
+Field: is_expense
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Is true if the sales order line comes from an expense or a vendor bills
+  manual: False
+  name: is_expense
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Is expense
+  type: boolean
+Field: product_id
+  change_default: True
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [('sale_ok', '=', True)]
+  exportable: True
+  groupable: True
+  manual: False
+  name: product_id
+  readonly: False
+  relation: product.product
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Product
+  type: many2one
+Field: product_template_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['product_id']
+  domain: [['sale_ok', '=', True]]
+  exportable: True
+  groupable: False
+  manual: False
+  name: product_template_id
+  readonly: False
+  relation: product.template
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Product Template
+  type: many2one
+Field: product_uom_category_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['product_id']
+  domain: []
+  exportable: True
+  groupable: True
+  help: Conversion between Units of Measure can only occur if they belong to the same category. The conversion will be made based on the ratios.
+  manual: False
+  name: product_uom_category_id
+  readonly: True
+  related: product_id.uom_id.category_id
+  relation: uom.category
+  required: False
+  searchable: True
+  sortable: True
+  store: False
+  string: Category
+  type: many2one
+Field: product_template_attribute_value_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['product_id']
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: product_template_attribute_value_ids
+  readonly: True
+  related: product_id.product_template_attribute_value_ids
+  relation: product.template.attribute.value
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Attribute Values
+  type: many2many
+Field: product_custom_attribute_value_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['product_id']
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: product_custom_attribute_value_ids
+  readonly: False
+  relation: product.attribute.custom.value
+  relation_field: sale_order_line_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Custom Values
+  type: one2many
+Field: product_no_variant_attribute_value_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['product_id']
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: product_no_variant_attribute_value_ids
+  readonly: False
+  relation: product.template.attribute.value
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Extra Values
+  type: many2many
+Field: is_product_archived
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_id']
+  exportable: True
+  groupable: False
+  manual: False
+  name: is_product_archived
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Is Product Archived
+  type: boolean
+Field: name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['event_ticket_id', 'product_id', 'product_id', 'linked_line_id', 'linked_line_ids']
+  exportable: True
+  groupable: True
+  manual: False
+  name: name
+  readonly: False
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Description
+  translate: False
+  type: text
+Field: product_uom_qty
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['display_type', 'product_id', 'product_packaging_qty']
+  digits: [16, 2]
+  exportable: True
+  groupable: True
+  manual: False
+  name: product_uom_qty
+  readonly: False
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Quantity
+  type: float
+Field: product_uom
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['product_id']
+  domain: [('category_id', '=', product_uom_category_id)]
+  exportable: True
+  groupable: True
+  manual: False
+  name: product_uom
+  readonly: False
+  relation: uom.uom
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Unit of Measure
+  type: many2one
+Field: linked_line_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [('order_id', '=', order_id)]
+  exportable: True
+  groupable: True
+  manual: False
+  name: linked_line_id
+  readonly: False
+  relation: sale.order.line
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Linked Order Line
+  type: many2one
+Field: linked_line_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: linked_line_ids
+  readonly: False
+  relation: sale.order.line
+  relation_field: linked_line_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Linked Order Lines
+  type: one2many
+Field: virtual_id
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: virtual_id
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Virtual
+  translate: False
+  trim: True
+  type: char
+Field: linked_virtual_id
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: linked_virtual_id
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Linked Virtual
+  translate: False
+  trim: True
+  type: char
+Field: selected_combo_items
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: selected_combo_items
+  readonly: False
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Selected Combo Items
+  translate: False
+  trim: True
+  type: char
+Field: combo_item_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: combo_item_id
+  readonly: False
+  relation: product.combo.item
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Combo Item
+  type: many2one
+Field: tax_id
+  change_default: False
+  company_dependent: False
+  context: {'active_test': False}
+  default_export_compatible: False
+  depends: ['product_id', 'company_id']
+  domain: (company_id and ['|', ('company_id', '=', False), ('company_id', 'parent_of', [company_id])] or ['|', ('company_id', '=', False), ('company_id', 'parent_of', '')]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: tax_id
+  readonly: False
+  relation: account.tax
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Taxes
+  type: many2many
+Field: pricelist_item_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['product_id', 'product_uom', 'product_uom_qty']
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: pricelist_item_id
+  readonly: True
+  relation: product.pricelist.item
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Pricelist Item
+  type: many2one
+Field: price_unit
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['event_ticket_id', 'product_id', 'product_uom', 'product_uom_qty']
+  digits: [16, 2]
+  exportable: True
+  groupable: True
+  manual: False
+  name: price_unit
+  readonly: False
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Unit Price
+  type: float
+Field: technical_price_unit
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: technical_price_unit
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Technical Price Unit
+  type: float
+Field: discount
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_id', 'product_uom', 'product_uom_qty']
+  digits: [16, 2]
+  exportable: True
+  groupable: True
+  manual: False
+  name: discount
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Discount (%)
+  type: float
+Field: price_subtotal
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  currency_field: currency_id
+  default_export_compatible: False
+  depends: ['product_uom_qty', 'discount', 'price_unit', 'tax_id']
+  exportable: True
+  groupable: True
+  manual: False
+  name: price_subtotal
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Subtotal
+  type: monetary
+Field: price_tax
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_uom_qty', 'discount', 'price_unit', 'tax_id']
+  exportable: True
+  groupable: True
+  manual: False
+  name: price_tax
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Total Tax
+  type: float
+Field: price_total
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  currency_field: currency_id
+  default_export_compatible: False
+  depends: ['product_uom_qty', 'discount', 'price_unit', 'tax_id']
+  exportable: True
+  groupable: True
+  manual: False
+  name: price_total
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Total
+  type: monetary
+Field: price_reduce_taxexcl
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  currency_field: currency_id
+  default_export_compatible: False
+  depends: ['price_subtotal', 'product_uom_qty']
+  exportable: True
+  groupable: True
+  manual: False
+  name: price_reduce_taxexcl
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Price Reduce Tax excl
+  type: monetary
+Field: price_reduce_taxinc
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  currency_field: currency_id
+  default_export_compatible: False
+  depends: ['price_total', 'product_uom_qty']
+  exportable: True
+  groupable: True
+  manual: False
+  name: price_reduce_taxinc
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Price Reduce Tax incl
+  type: monetary
+Field: product_packaging_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['product_id', 'product_uom_qty', 'product_uom']
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([('sales', '=', True), ('product_id','=',product_id)])
+  exportable: True
+  groupable: True
+  manual: False
+  name: product_packaging_id
+  readonly: False
+  relation: product.packaging
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Packaging
+  type: many2one
+Field: product_packaging_qty
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_packaging_id', 'product_uom', 'product_uom_qty']
+  exportable: True
+  groupable: True
+  manual: False
+  name: product_packaging_qty
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Packaging Quantity
+  type: float
+Field: customer_lead
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_id']
+  exportable: True
+  groupable: True
+  help: Number of days between the order confirmation and the shipping of the products to the customer
+  manual: False
+  name: customer_lead
+  readonly: False
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Lead Time
+  type: float
+Field: qty_delivered_method
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_id', 'is_expense']
+  exportable: True
+  groupable: True
+  help: According to product configuration, the delivered quantity can be automatically computed by mechanism:
+  - Manual: the quantity is set manually on the line
+  - Analytic From expenses: the quantity is the quantity sum from posted expenses
+  - Timesheet: the quantity is the sum of hours recorded on tasks linked to this sale line
+  - Stock Moves: the quantity comes from confirmed pickings
+
+  manual: False
+  name: qty_delivered_method
+  readonly: True
+  required: False
+  searchable: True
+  selection: [['manual', 'Manual'], ['analytic', 'Analytic From Expenses'], ['stock_move', 'Stock Moves']]
+  sortable: True
+  store: True
+  string: Method to update delivered qty
+  type: selection
+Field: qty_delivered
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['move_ids.state', 'move_ids.scrapped', 'move_ids.quantity', 'move_ids.product_uom', 'qty_delivered_method', 'analytic_line_ids.so_line', 'analytic_line_ids.unit_amount', 'analytic_line_ids.product_uom_id']
+  digits: [16, 2]
+  exportable: True
+  groupable: True
+  manual: False
+  name: qty_delivered
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Delivery Quantity
+  type: float
+Field: qty_invoiced
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['invoice_lines.move_id.state', 'invoice_lines.quantity']
+  digits: [16, 2]
+  exportable: True
+  groupable: True
+  manual: False
+  name: qty_invoiced
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Invoiced Quantity
+  type: float
+Field: qty_invoiced_posted
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['invoice_lines.move_id.state', 'invoice_lines.quantity']
+  digits: [16, 2]
+  exportable: True
+  groupable: False
+  manual: False
+  name: qty_invoiced_posted
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Invoiced Quantity (posted)
+  type: float
+Field: qty_to_invoice
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['qty_invoiced', 'qty_delivered', 'product_uom_qty', 'state']
+  digits: [16, 2]
+  exportable: True
+  groupable: True
+  manual: False
+  name: qty_to_invoice
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Quantity To Invoice
+  type: float
+Field: analytic_line_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: analytic_line_ids
+  readonly: False
+  relation: account.analytic.line
+  relation_field: so_line
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Analytic lines
+  type: one2many
+Field: invoice_lines
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: invoice_lines
+  readonly: False
+  relation: account.move.line
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Invoice Lines
+  type: many2many
+Field: invoice_status
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['state', 'product_uom_qty', 'qty_delivered', 'qty_to_invoice', 'qty_invoiced']
+  exportable: True
+  groupable: True
+  manual: False
+  name: invoice_status
+  readonly: True
+  required: False
+  searchable: True
+  selection: [['upselling', 'Upselling Opportunity'], ['invoiced', 'Fully Invoiced'], ['to invoice', 'To Invoice'], ['no', 'Nothing to Invoice']]
+  sortable: True
+  store: True
+  string: Invoice Status
+  type: selection
+Field: untaxed_amount_invoiced
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  currency_field: currency_id
+  default_export_compatible: False
+  depends: ['invoice_lines', 'invoice_lines.price_total', 'invoice_lines.move_id.state', 'invoice_lines.move_id.move_type']
+  exportable: True
+  groupable: True
+  manual: False
+  name: untaxed_amount_invoiced
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Untaxed Invoiced Amount
+  type: monetary
+Field: amount_invoiced
+  change_default: False
+  company_dependent: False
+  currency_field: currency_id
+  default_export_compatible: False
+  depends: ['invoice_lines', 'invoice_lines.price_total', 'invoice_lines.move_id.state']
+  exportable: True
+  groupable: False
+  manual: False
+  name: amount_invoiced
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Invoiced Amount
+  type: monetary
+Field: untaxed_amount_to_invoice
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  currency_field: currency_id
+  default_export_compatible: False
+  depends: ['state', 'product_id', 'untaxed_amount_invoiced', 'qty_delivered', 'product_uom_qty', 'price_unit']
+  exportable: True
+  groupable: True
+  manual: False
+  name: untaxed_amount_to_invoice
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Untaxed Amount To Invoice
+  type: monetary
+Field: amount_to_invoice
+  change_default: False
+  company_dependent: False
+  currency_field: currency_id
+  default_export_compatible: False
+  depends: ['discount', 'price_total', 'product_uom_qty', 'qty_delivered', 'qty_invoiced_posted']
+  exportable: True
+  groupable: False
+  manual: False
+  name: amount_to_invoice
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Un-invoiced Balance
+  type: monetary
+Field: product_type
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_id']
+  exportable: True
+  groupable: True
+  help: Goods are tangible materials and merchandise you provide.
+A service is a non-material product you provide.
+  manual: False
+  name: product_type
+  readonly: True
+  related: product_id.type
+  required: False
+  searchable: True
+  selection: [['consu', 'Goods'], ['service', 'Service'], ['combo', 'Combo']]
+  sortable: True
+  store: False
+  string: Product Type
+  type: selection
+Field: service_tracking
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_id']
+  exportable: True
+  groupable: True
+  manual: False
+  name: service_tracking
+  readonly: True
+  related: product_id.service_tracking
+  required: False
+  searchable: True
+  selection: [['no', 'Nothing'], ['event', 'Event Registration']]
+  sortable: True
+  store: False
+  string: Create on Order
+  type: selection
+Field: product_updatable
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['purchase_line_count', 'move_ids', 'product_id', 'state', 'qty_invoiced', 'qty_delivered']
+  exportable: True
+  groupable: False
+  manual: False
+  name: product_updatable
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Can Edit Product
+  type: boolean
+Field: product_uom_readonly
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['state', 'event_id', 'state']
+  exportable: True
+  groupable: False
+  manual: False
+  name: product_uom_readonly
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Product Uom Readonly
+  type: boolean
+Field: tax_calculation_rounding_method
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['company_id.tax_calculation_rounding_method']
+  exportable: True
+  groupable: True
+  manual: False
+  name: tax_calculation_rounding_method
+  readonly: True
+  related: company_id.tax_calculation_rounding_method
+  required: False
+  searchable: True
+  selection: [['round_per_line', 'Round per Line'], ['round_globally', 'Round Globally']]
+  sortable: True
+  store: False
+  string: Tax calculation rounding method
+  type: selection
+Field: company_price_include
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['company_id.account_price_include']
+  exportable: True
+  groupable: True
+  help: Default on whether the sales price used on the product and invoices with this Company includes its taxes.
+  manual: False
+  name: company_price_include
+  readonly: True
+  related: company_id.account_price_include
+  required: False
+  searchable: True
+  selection: [['tax_included', 'Tax Included'], ['tax_excluded', 'Tax Excluded']]
+  sortable: True
+  store: False
+  string: Default Sales Price Include
+  type: selection
+Field: id
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: id
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: ID
+  type: integer
+Field: display_name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['order_partner_id', 'order_id', 'product_id', 'name']
+  exportable: True
+  groupable: False
+  manual: False
+  name: display_name
+  readonly: True
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Display Name
+  translate: False
+  trim: True
+  type: char
+Field: create_uid
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: create_uid
+  readonly: True
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Created by
+  type: many2one
+Field: create_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: create_date
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Created on
+  type: datetime
+Field: write_uid
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: write_uid
+  readonly: True
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Last Updated by
+  type: many2one
+Field: write_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: write_date
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Last Updated on
+  type: datetime
+Field: is_delivery
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: is_delivery
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Is a Delivery
+  type: boolean
+Field: product_qty
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_id', 'product_uom', 'product_uom_qty']
+  digits: [16, 2]
+  exportable: True
+  groupable: False
+  manual: False
+  name: product_qty
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Product Qty
+  type: float
+Field: recompute_delivery_price
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['order_id.recompute_delivery_price']
+  exportable: True
+  groupable: True
+  manual: False
+  name: recompute_delivery_price
+  readonly: True
+  related: order_id.recompute_delivery_price
+  required: False
+  searchable: True
+  sortable: True
+  store: False
+  string: Delivery cost should be recomputed
+  type: boolean
+Field: is_reward_line
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['reward_id']
+  exportable: True
+  groupable: False
+  manual: False
+  name: is_reward_line
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Is a program reward line
+  type: boolean
+Field: reward_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: reward_id
+  readonly: True
+  relation: loyalty.reward
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Reward
+  type: many2one
+Field: coupon_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: coupon_id
+  readonly: True
+  relation: loyalty.card
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Coupon
+  type: many2one
+Field: reward_identifier_code
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Technical field used to link multiple reward lines from the same reward together.
+  manual: False
+  name: reward_identifier_code
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Reward Identifier Code
+  translate: False
+  trim: True
+  type: char
+Field: points_cost
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: How much point this reward costs on the loyalty card.
+  manual: False
+  name: points_cost
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Points Cost
+  type: float
+Field: sale_order_option_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: sale_order_option_ids
+  readonly: False
+  relation: sale.order.option
+  relation_field: line_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Optional Products Lines
+  type: one2many
+Field: product_add_mode
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_template_id']
+  exportable: True
+  groupable: False
+  help: Configurator: choose attribute values to add the matching product variant to the order.
+Grid: add several variants at once from the grid of attribute values
+  manual: False
+  name: product_add_mode
+  readonly: True
+  related: product_template_id.product_add_mode
+  required: False
+  searchable: True
+  selection: [['configurator', 'Product Configurator'], ['matrix', 'Order Grid Entry']]
+  sortable: False
+  store: False
+  string: Add product mode
+  type: selection
+Field: purchase_line_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  help: Purchase line generated by this Sales item on order confirmation, or when the quantity was increased.
+  manual: False
+  name: purchase_line_ids
+  readonly: True
+  relation: purchase.order.line
+  relation_field: sale_line_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Generated Purchase Lines
+  type: one2many
+Field: purchase_line_count
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['purchase_line_ids']
+  exportable: True
+  groupable: False
+  manual: False
+  name: purchase_line_count
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Number of generated purchase items
+  type: integer
+Field: route_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [['sale_selectable', '=', True]]
+  exportable: True
+  groupable: True
+  manual: False
+  name: route_id
+  readonly: False
+  relation: stock.route
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Route
+  type: many2one
+Field: move_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: move_ids
+  readonly: False
+  relation: stock.move
+  relation_field: sale_line_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Stock Moves
+  type: one2many
+Field: virtual_available_at_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_id', 'customer_lead', 'product_uom_qty', 'product_uom', 'order_id.commitment_date', 'move_ids', 'move_ids.forecast_expected_date', 'move_ids.forecast_availability', 'warehouse_id']
+  digits: [16, 2]
+  exportable: True
+  groupable: False
+  manual: False
+  name: virtual_available_at_date
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Virtual Available At Date
+  type: float
+Field: scheduled_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_id', 'customer_lead', 'product_uom_qty', 'product_uom', 'order_id.commitment_date', 'move_ids', 'move_ids.forecast_expected_date', 'move_ids.forecast_availability', 'warehouse_id']
+  exportable: True
+  groupable: False
+  manual: False
+  name: scheduled_date
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Scheduled Date
+  type: datetime
+Field: forecast_expected_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_id', 'customer_lead', 'product_uom_qty', 'product_uom', 'order_id.commitment_date', 'move_ids', 'move_ids.forecast_expected_date', 'move_ids.forecast_availability', 'warehouse_id']
+  exportable: True
+  groupable: False
+  manual: False
+  name: forecast_expected_date
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Forecast Expected Date
+  type: datetime
+Field: free_qty_today
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_id', 'customer_lead', 'product_uom_qty', 'product_uom', 'order_id.commitment_date', 'move_ids', 'move_ids.forecast_expected_date', 'move_ids.forecast_availability', 'warehouse_id']
+  digits: [16, 2]
+  exportable: True
+  groupable: False
+  manual: False
+  name: free_qty_today
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Free Qty Today
+  type: float
+Field: qty_available_today
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_id', 'customer_lead', 'product_uom_qty', 'product_uom', 'order_id.commitment_date', 'move_ids', 'move_ids.forecast_expected_date', 'move_ids.forecast_availability', 'warehouse_id']
+  exportable: True
+  groupable: False
+  manual: False
+  name: qty_available_today
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Qty Available Today
+  type: float
+Field: warehouse_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['route_id', 'order_id.warehouse_id', 'product_packaging_id', 'product_id']
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: warehouse_id
+  readonly: True
+  relation: stock.warehouse
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Warehouse
+  type: many2one
+Field: qty_to_deliver
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_uom_qty', 'qty_delivered', 'product_id', 'state', 'is_storable', 'product_uom_qty', 'qty_delivered', 'state', 'move_ids', 'product_uom']
+  digits: [16, 2]
+  exportable: True
+  groupable: False
+  manual: False
+  name: qty_to_deliver
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Qty To Deliver
+  type: float
+Field: is_mto
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_id', 'route_id', 'order_id.warehouse_id', 'product_id.route_ids']
+  exportable: True
+  groupable: False
+  manual: False
+  name: is_mto
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Is Mto
+  type: boolean
+Field: display_qty_widget
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_uom_qty', 'qty_delivered', 'product_id', 'state', 'is_storable', 'product_uom_qty', 'qty_delivered', 'state', 'move_ids', 'product_uom']
+  exportable: True
+  groupable: False
+  manual: False
+  name: display_qty_widget
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Display Qty Widget
+  type: boolean
+Field: is_storable
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_id.is_storable']
+  exportable: True
+  groupable: True
+  help: A storable product is a product for which you manage stock.
+  manual: False
+  name: is_storable
+  readonly: True
+  related: product_id.is_storable
+  required: False
+  searchable: True
+  sortable: True
+  store: False
+  string: Track Inventory
+  type: boolean
+Field: event_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['product_id']
+  domain: []
+  exportable: True
+  groupable: True
+  help: Choose an event and it will automatically create a registration for this event.
+  manual: False
+  name: event_id
+  readonly: False
+  relation: event.event
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Event
+  type: many2one
+Field: event_ticket_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['event_id']
+  domain: []
+  exportable: True
+  groupable: True
+  help: Choose an event ticket and it will automatically create a registration for this event ticket.
+  manual: False
+  name: event_ticket_id
+  readonly: False
+  relation: event.event.ticket
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Ticket Type
+  type: many2one
+Field: registration_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: registration_ids
+  readonly: False
+  relation: event.registration
+  relation_field: sale_order_line_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Registrations
+  type: one2many
+Field: margin
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['price_subtotal', 'product_uom_qty', 'purchase_price']
+  digits: [16, 2]
+  exportable: True
+  groupable: True
+  groups: base.group_user
+  manual: False
+  name: margin
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Margin
+  type: float
+Field: margin_percent
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['price_subtotal', 'product_uom_qty', 'purchase_price']
+  exportable: True
+  groupable: True
+  groups: base.group_user
+  manual: False
+  name: margin_percent
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Margin (%)
+  type: float
+Field: purchase_price
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['move_ids', 'move_ids.stock_valuation_layer_ids', 'move_ids.picking_id.state', 'product_id', 'company_id', 'currency_id', 'product_uom']
+  digits: [16, 2]
+  exportable: True
+  groupable: True
+  groups: base.group_user
+  manual: False
+  name: purchase_price
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Cost
+  type: float
+Field: available_product_document_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: available_product_document_ids
+  readonly: True
+  relation: product.document
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Available Product Documents
+  type: many2many
+Field: product_document_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: [('id', 'in', available_product_document_ids)]
+  exportable: True
+  groupable: True
+  help: The product documents for this order line that will be merged in the PDF quote.
+  manual: False
+  name: product_document_ids
+  readonly: False
+  relation: product.document
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Product Documents
+  type: many2many
+Field: name_short
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_id.display_name', 'event_ticket_id.display_name', 'product_id.display_name']
+  exportable: True
+  groupable: False
+  manual: False
+  name: name_short
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Name Short
+  translate: False
+  trim: True
+  type: char
+Field: shop_warning
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: shop_warning
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Warning
+  translate: False
+  trim: True
+  type: char
