@@ -191,7 +191,7 @@ def create_odoo_order(order, token, r):
 
             order_lines = []
 
-            print(order['items'])
+            # print(order['items'])
 
             for item in order['items']:
                 # get the product id
@@ -203,7 +203,7 @@ def create_odoo_order(order, token, r):
 
                 if not product_id:
                     print("Product not found.")
-                    return
+                    continue
 
                 # create a new order line
                 order_line_data = {
@@ -216,13 +216,6 @@ def create_odoo_order(order, token, r):
                 order_lines.append((0, 0, order_line_data))
             
             print(order_lines)
-
-            # payment id search criteria
-            payment_term_id = models.execute_kw(
-                db, uid, api_key,
-                'account.payment.term', 'search',
-                [[('name', '=', 'Immediate Payment')]]
-            )
 
             
             # create a new order
