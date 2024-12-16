@@ -34,6 +34,8 @@ else:
     model_name = 'website'  # Replace with your model name
     model_name = 'sale.order'  # Replace with your model name
     model_name = 'product.product'  # Replace with your model name
+    model_name = 'sale.order.line'  # Replace with your model name
+    model_name = 'product.template'  # Replace with your model name
 
     print(f"Fields of model: {model_name}")
 

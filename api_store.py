@@ -216,6 +216,14 @@ def create_odoo_order(order, token, r):
                 order_lines.append((0, 0, order_line_data))
             
             print(order_lines)
+
+            # payment id search criteria
+            payment_term_id = models.execute_kw(
+                db, uid, api_key,
+                'account.payment.term', 'search',
+                [[('name', '=', 'Immediate Payment')]]
+            )
+
             
             # create a new order
             order_data = {
@@ -225,6 +233,7 @@ def create_odoo_order(order, token, r):
                 'website_id': website_id,
                 'state': 'sale',
                 'payment_term_id': 1,
+                'payment_state': 'paid',
                 'create_date': order['created_at'],
                 'order_line': order_lines,
             }
