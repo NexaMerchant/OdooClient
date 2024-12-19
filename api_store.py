@@ -202,7 +202,7 @@ def create_odoo_order(order, token, r):
                 )
 
                 if not product_id:
-                    print("Product not found.")
+                    print( item['sku'] +" Product not found.")
                     continue
 
                 # create a new order line
@@ -216,6 +216,11 @@ def create_odoo_order(order, token, r):
                 order_lines.append((0, 0, order_line_data))
             
             print(order_lines)
+
+            # when order_lines is empty
+            if not order_lines:
+                print("Order lines are empty.")
+                return
 
             
             # create a new order
