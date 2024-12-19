@@ -37,6 +37,8 @@ else:
     model_name = 'sale.order.line'  # Replace with your model name
     model_name = 'product.template'  # Replace with your model name
     model_name = 'payment.provider'  # Replace with your model name
+    model_name = 'product.attribute'  # Replace with your model name
+    model_name = 'product.attribute.value'  # Replace with your model name
 
     # create a model fields md file if it does not exist
     # print(f"Creating {model_name}_fields.md")

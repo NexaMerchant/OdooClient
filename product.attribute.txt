@@ -1,0 +1,308 @@
+Authenticated successfully. UID: 2
+Field: name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: name
+  readonly: False
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Attribute
+  translate: True
+  trim: True
+  type: char
+Field: active
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: If unchecked, it will allow you to hide the attribute without removing it.
+  manual: False
+  name: active
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Active
+  type: boolean
+Field: create_variant
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: - Instantly: All possible variants are created as soon as the attribute and its values are added to a product.
+        - Dynamically: Each variant is created only when its corresponding attributes and values are added to a sales order.
+        - Never: Variants are never created for the attribute.
+        Note: this cannot be changed once the attribute is used on a product.
+  manual: False
+  name: create_variant
+  readonly: False
+  required: True
+  searchable: True
+  selection: [['always', 'Instantly'], ['dynamic', 'Dynamically'], ['no_variant', 'Never']]
+  sortable: True
+  store: True
+  string: Variant Creation
+  type: selection
+Field: display_type
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: The display type used in the Product Configurator.
+  manual: False
+  name: display_type
+  readonly: False
+  required: True
+  searchable: True
+  selection: [['radio', 'Radio'], ['pills', 'Pills'], ['select', 'Select'], ['color', 'Color'], ['multi', 'Multi-checkbox']]
+  sortable: True
+  store: True
+  string: Display Type
+  type: selection
+Field: sequence
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Determine the display order
+  manual: False
+  name: sequence
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Sequence
+  type: integer
+Field: value_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: value_ids
+  readonly: False
+  relation: product.attribute.value
+  relation_field: attribute_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Values
+  type: one2many
+Field: template_value_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: template_value_ids
+  readonly: False
+  relation: product.template.attribute.value
+  relation_field: attribute_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Template Values
+  type: one2many
+Field: attribute_line_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: attribute_line_ids
+  readonly: False
+  relation: product.template.attribute.line
+  relation_field: attribute_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Lines
+  type: one2many
+Field: product_tmpl_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['attribute_line_ids.active', 'attribute_line_ids.product_tmpl_id']
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: product_tmpl_ids
+  readonly: True
+  relation: product.template
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Related Products
+  type: many2many
+Field: number_related_products
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_tmpl_ids']
+  exportable: True
+  groupable: False
+  manual: False
+  name: number_related_products
+  readonly: True
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Number Related Products
+  type: integer
+Field: id
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: id
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: ID
+  type: integer
+Field: display_name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['name']
+  exportable: True
+  groupable: False
+  manual: False
+  name: display_name
+  readonly: True
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Display Name
+  translate: False
+  trim: True
+  type: char
+Field: create_uid
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: create_uid
+  readonly: True
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Created by
+  type: many2one
+Field: create_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: create_date
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Created on
+  type: datetime
+Field: write_uid
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: write_uid
+  readonly: True
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Last Updated by
+  type: many2one
+Field: write_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: write_date
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Last Updated on
+  type: datetime
+Field: visibility
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: visibility
+  readonly: False
+  required: False
+  searchable: True
+  selection: [['visible', 'Visible'], ['hidden', 'Hidden']]
+  sortable: True
+  store: True
+  string: Visibility
+  type: selection
