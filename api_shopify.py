@@ -162,15 +162,16 @@ def create_attribute(option_data):
 
         # check if the attribute exists in the odoo store
         for option in option_data:
-            print(option['name'])
             attribute_id = models.execute_kw(
                     db, uid, api_key,
                     'product.attribute', 'search',
-                    [[('name', '=', option['name'])]]
+                    [[('name', '=', option['name']),
+                      ('create_variant', '=', 'always')
+                      ]]
             )
-            print(attribute_id)
+            # print(attribute_id)
             if attribute_id:
-                print("Attribute found in odoo.")
+                print(option['name'] + "Attribute found in odoo." + str(attribute_id[0]))
                 # print(attribute_id)
                 
                 # check if the attribute value exists in the odoo store
@@ -181,10 +182,21 @@ def create_attribute(option_data):
                         'product.attribute.value', 'search',
                         [[('name', '=', value), ('attribute_id', '=', attribute_id[0])]]
                     )
-                    print(attribute_value_id)
-                    
-
-
+                    if attribute_value_id:
+                        print(value + "Attribute value found in odoo.")
+                        # print(attribute_value_id)
+                    else:
+                        print(value + "Attribute value not found in odoo.")
+                        # create a new attribute value in the odoo store
+                        attribute_value_id = models.execute_kw(
+                            db, uid, api_key,
+                            'product.attribute.value', 'create',
+                            [{
+                                'name': value,
+                                'attribute_id': attribute_id[0],
+                            }]
+                        )
+                        print(attribute_value_id)
             else:
                 print(option['name'] + "Attribute not found in odoo.")
                 return False
