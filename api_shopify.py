@@ -20,7 +20,7 @@ api_version = os.getenv('USA_SHOPIFY_API_VERSION')
 private_app_password = os.getenv('USA_SHOPIFY_ACCESS_TOKEN')
 session = shopify.Session(shop_url, api_version, private_app_password)
 shopify.ShopifyResource.activate_session(session)
-print("Authenticated successfully.")
+print("Authenticated successfully." + session.url)
 # find all orders
 
 def get_orders():
@@ -48,7 +48,7 @@ def get_product_variant(variant_id):
     return variant
 
 # create a product in odoo
-def create_product(product_data, variant_data):
+def create_product(product_data, variant_data, option_data, r):
     url = os.getenv('URL')
     db = os.getenv('DB')
     username = os.getenv('USERNAME')
@@ -83,6 +83,7 @@ def create_product(product_data, variant_data):
         if product_id:
             print("Product found in odoo.")
             # print(product_id)
+            product_id = product_id[0]
             #return product_id[0]
         else:
             print("Product not found in odoo.")
@@ -111,7 +112,7 @@ def create_product(product_data, variant_data):
                 'product.product', 'search',
                 [[
                     ('default_code', '=', variant['sku']),
-                    ('product_tmpl_id', '=', product_id[0])
+                    ('product_tmpl_id', '=', product_id)
                   ]]
             )
 
@@ -124,6 +125,18 @@ def create_product(product_data, variant_data):
 
                 variant_barcode = variant['barcode'] if variant['barcode'] is not None else ''
 
+                print(option_data)
+
+                attribute_value_ids = []
+                for option in option_data:
+                    values = option['values']
+                    for value in values:
+                        attribute_value_id = r.get(f'attribute_values:{option["name"]}:{value}')
+                        attribute_value_ids.append(int(attribute_value_id))
+                
+                print(attribute_value_ids)
+                exit()
+
                 # create a new product variant in the odoo store
                 product_variant_id = models.execute_kw(
                     db, uid, api_key,
@@ -134,7 +147,8 @@ def create_product(product_data, variant_data):
                         'list_price': variant['list_price'],
                         'compare_list_price': variant['compare_at_price'],
                         'product_tmpl_id': product_id[0],
-                        'barcode': variant_barcode,
+                        'barcode': str(variant['default_code']),
+                        'combination_indices': attribute_value_ids,
                        # 'requires_shipping': variant['requires_shipping'],
                         # 'sku': variant['sku'],
                         'weight': variant['weight'],
@@ -145,7 +159,7 @@ def create_product(product_data, variant_data):
         #return product_id
 
 # create a product attribute in odoo
-def create_attribute(option_data):
+def create_attribute(option_data, r):
     url = os.getenv('URL')
     db = os.getenv('DB')
     username = os.getenv('USERNAME')
@@ -173,6 +187,8 @@ def create_attribute(option_data):
             if attribute_id:
                 print(option['name'] + "Attribute found in odoo." + str(attribute_id[0]))
                 # print(attribute_id)
+
+                r.set('attributes', option['name'])
                 
                 # check if the attribute value exists in the odoo store
                 for value in option['values']:
@@ -185,6 +201,7 @@ def create_attribute(option_data):
                     if attribute_value_id:
                         print(value + "Attribute value found in odoo.")
                         # print(attribute_value_id)
+                        r.set(f'attribute_values:{option["name"]}:{value}', attribute_value_id[0])
                     else:
                         print(value + "Attribute value not found in odoo.")
                         # create a new attribute value in the odoo store
@@ -197,8 +214,14 @@ def create_attribute(option_data):
                             }]
                         )
                         print(attribute_value_id)
+                        # add attribute id and attribute value id to redis sets list
+                        r.set(f'attribute_values:{option['name']}:{value}', str(attribute_value_id))
+                
+
+                #r.set(option['name'], attribute_id[0])
             else:
                 print(option['name'] + "Attribute not found in odoo.")
+                exit()
                 return False
 
 if __name__ == '__main__':
@@ -206,6 +229,15 @@ if __name__ == '__main__':
     # print(orders)
     # order = get_order(orders[0].id)
     # print(order)
+
+    redis_host = os.getenv('REDIS_HOST')
+    redis_port = os.getenv('REDIS_PORT')
+    redis_db = os.getenv('REDIS_DB')
+    redis_password = os.getenv('REDIS_PASSWORD')
+
+    # create a connection to the redis server
+    r = redis.Redis(host=redis_host, port=redis_port, db=redis_db, password=redis_password)
+
     products = get_products()
     for product in products:
         product = get_product(product.id)
@@ -220,9 +252,10 @@ if __name__ == '__main__':
                 'values': option['values'],
             })
 
-        create_attribute(option_data)
+        create_attribute(option_data, r)
+        # continue
 
-        exit()
+        #exit()
         
 
         for variant in product_variants:
@@ -251,4 +284,5 @@ if __name__ == '__main__':
         }
         print(product_data, variant_data)
 
-        create_product(product_data, variant_data)
+        create_product(product_data, variant_data, option_data, r)
+        exit()
