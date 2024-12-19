@@ -4,14 +4,14 @@
 PROD_DB_HOST="localhost"
 PROD_DB_PORT="5432"
 PROD_DB_NAME="root"
-PROD_DB_USER="user"
-PROD_DB_PASSWORD="password"
+PROD_DB_USER="odoo_user"
+PROD_DB_PASSWORD="odoo_user"
 
 DEV_DB_HOST="localhost"
 DEV_DB_PORT="5432"
 DEV_DB_NAME="odoo_dev"
-DEV_DB_USER="user"
-DEV_DB_PASSWORD="password"
+DEV_DB_USER="odoo_user"
+DEV_DB_PASSWORD="odoo_user"
 
 # NOW=$(date +"%Y-%m-%d-%H-%M-%S")
 NOW = "2021-09-01-12-00-00"
