@@ -56,6 +56,13 @@ def create_product(product_data, variant_data, option_data, r):
     website_id = os.getenv('WEBSITE_ID')
     common = xmlrpc.client.ServerProxy(f'{url}/xmlrpc/2/common')
     uid = common.authenticate(db, username, api_key, {})
+
+    # check the product id in the redis cache
+    product_id = r.get(f'product:{product_data["id"]}')
+    if product_id:
+        print("Product found in redis cache.")
+        return product_id
+
     if not uid:
         print("Authentication failed.")
         exit()
@@ -99,11 +106,14 @@ def create_product(product_data, variant_data, option_data, r):
                     'type': 'consu',
                     'default_code': product_default_code,
                     'website_id': website_id,
+                    'attribute_line_ids': product_data['attribute_line_ids'],
+                    'valid_product_template_attribute_line_ids': product_data['valid_product_template_attribute_line_ids'],
                 }]
             )
             print(product_id)
         
         #create product variant in the odoo store
+        r.set(f'product:{product_data["id"]}', product_id)
         
         for variant in variant_data:
             # check if the product variant exists in the odoo store
@@ -135,7 +145,7 @@ def create_product(product_data, variant_data, option_data, r):
                         attribute_value_ids.append(int(attribute_value_id))
                 
                 print(attribute_value_ids)
-                exit()
+                #exit()
 
                 # create a new product variant in the odoo store
                 product_variant_id = models.execute_kw(
@@ -189,6 +199,8 @@ def create_attribute(option_data, r):
                 # print(attribute_id)
 
                 r.set('attributes', option['name'])
+
+                attribute_id = attribute_id[0]
                 
                 # check if the attribute value exists in the odoo store
                 for value in option['values']:
@@ -196,7 +208,7 @@ def create_attribute(option_data, r):
                     attribute_value_id = models.execute_kw(
                         db, uid, api_key,
                         'product.attribute.value', 'search',
-                        [[('name', '=', value), ('attribute_id', '=', attribute_id[0])]]
+                        [[('name', '=', value), ('attribute_id', '=', attribute_id)]]
                     )
                     if attribute_value_id:
                         print(value + "Attribute value found in odoo.")
@@ -210,7 +222,7 @@ def create_attribute(option_data, r):
                             'product.attribute.value', 'create',
                             [{
                                 'name': value,
-                                'attribute_id': attribute_id[0],
+                                'attribute_id': attribute_id,
                             }]
                         )
                         print(attribute_value_id)
@@ -218,7 +230,7 @@ def create_attribute(option_data, r):
                         r.set(f'attribute_values:{option['name']}:{value}', str(attribute_value_id))
                 
 
-                #r.set(option['name'], attribute_id[0])
+                r.set(f'attribute_values:{option['name']}', attribute_id)
             else:
                 print(option['name'] + "Attribute not found in odoo.")
                 exit()
@@ -253,9 +265,18 @@ if __name__ == '__main__':
             })
 
         create_attribute(option_data, r)
-        # continue
+        #continue
 
         #exit()
+        attribute_line_ids = []
+        for option in option_data:
+            attribute_line_ids.append(
+                int(r.get(f'attribute_values:{option["name"]}'))
+            )
+        #print(attribute_line_ids)
+
+        #exit()
+            
         
 
         for variant in product_variants:
@@ -274,15 +295,18 @@ if __name__ == '__main__':
             })
             print(variantDetail)
         
-        # create a product in odoo
+        # create a variant product in odoo
         product_data = {
             'name': product['title'],
             'description': product['body_html'],
             'price': product['variants'][0]['price'],
             'compare_at_price': product['variants'][0]['compare_at_price'],
             'id': product['id'],
+            'attribute_line_ids': option_data,
+            'valid_product_template_attribute_line_ids': attribute_line_ids,
         }
         print(product_data, variant_data)
+        #exit()
 
         create_product(product_data, variant_data, option_data, r)
         exit()
