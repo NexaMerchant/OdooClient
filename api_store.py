@@ -158,6 +158,7 @@ def create_odoo_order(order, token, r):
                     'country_id': country_id[0],
                     'website_id': website_id,
                     'lang': 'en_US',
+                    'category_id': [8],
                 # 'category_id': 8,
                 }
 

@@ -8,6 +8,7 @@ import xmlrpc.client
 import time
 from math import ceil
 import redis
+from odoo_api import OdooApi
 
 # Load environment variables from .env file
 load_dotenv()
@@ -27,9 +28,11 @@ def get_products(page=1, limit=10):
 
     models = xmlrpc.client.ServerProxy(f'{url}/xmlrpc/2/object')
 
+    odoo = OdooApi(url, db, username, api_key)
+
     # Define the search criteria for the product.template.attribute.line
     search_criteria = [
-        ['product_tmpl_id', '=', 71]
+        ['product_tmpl_id', '=', 73]
     ]
 
     # Search for the products template
@@ -40,24 +43,42 @@ def get_products(page=1, limit=10):
         {}
     )
 
-    print(product_template_ids)
+    # print(product_template_ids)
 
-    exit()
+    # exit()
 
     # Define the search criteria
     search_criteria = [
-        ['id', '=', 71]
+        ['id', '=', 73]
     ]
 
-    # Search for the products
-    product_ids = models.execute_kw(
-        db, uid, api_key,
-        'product.template', 'search_read',
-        [search_criteria],
-        {}
-    )
 
+    # update the product template
+    odoo.update('product.template', search_criteria, {
+        'cost_currency_id': [1],
+    })
+
+    #print(product_ids)
+    product_ids = odoo.search_read('product.template', search_criteria, [])
     print(product_ids)
+
+    exit()
+
+
+    # search for the product product.product
+    search_criteria = [
+        ['product_tmpl_id', '=', 73]
+    ]
+
+    
+
+    product_product_ids = odoo.search_read('product.product', search_criteria, [])
+
+    for product in product_product_ids:
+        print(product)
+        exit()
+
+    
 
 if __name__ == '__main__':
     get_products()

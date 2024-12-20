@@ -10,6 +10,7 @@ from math import ceil
 import redis
 import shopify
 from api_store import get_token
+from odoo_api import OdooApi
 
 # Load environment variables from .env file
 load_dotenv()
@@ -83,10 +84,6 @@ def create_product(product_data, variant_data, option_data, r):
 
         print(product_id)
 
-        #print(product_data)
-
-        #exit()
-
         if product_id:
             print("Product found in odoo.")
             # print(product_id)
@@ -106,67 +103,111 @@ def create_product(product_data, variant_data, option_data, r):
                     'type': 'consu',
                     'default_code': product_default_code,
                     'website_id': website_id,
-                    'attribute_line_ids': product_data['attribute_line_ids'],
-                    'valid_product_template_attribute_line_ids': product_data['valid_product_template_attribute_line_ids'],
+                   # 'attribute_line_ids': product_data['attribute_line_ids'],
+                   # 'valid_product_template_attribute_line_ids': product_data['valid_product_template_attribute_line_ids'],
                 }]
             )
             print(product_id)
+
+        # create a product attribute line in odoo
+        attribute_line_ids = []
+        #attribute_value_ids = []
+        for option in option_data:
+            attribute_value_ids = []
+            values = option['values']
+            for value in values:
+                attribute_value_id = r.get(f'attribute_values:{option["name"]}:{value}')
+                attribute_value_ids.append(int(attribute_value_id))
+            attribute_line_ids.append({
+                "attribute_id": int(r.get(f'attribute_values:{option["name"]}')),
+                "value_ids" : attribute_value_ids
+            }
+            )
+
+
+        # Connect to Odoo
+        odoo = OdooApi(url, db, username, api_key)
+
+        # create a new product attribute line for product template in the odoo store
+        for attribute_line in attribute_line_ids:
+
+            # check if the attribute line exists in the odoo store
+            attribute_line_id = odoo.search('product.template.attribute.line', [
+                ('product_tmpl_id', '=', product_id),
+                ('attribute_id', '=', attribute_line['attribute_id']),
+                ('value_ids', '=', attribute_line['value_ids']),
+            ])
+
+            if attribute_line_id:
+                print("Attribute line found in odoo.")
+                print(attribute_line_id)
+            else:
+                attribute_line_id = odoo.create('product.template.attribute.line', {
+                    'product_tmpl_id': product_id,
+                    'attribute_id': attribute_line['attribute_id'],
+                    'value_ids': attribute_line['value_ids'],
+                })
+            print(attribute_line_id)
+            #exit()
+        # exit()
+
+
         
         #create product variant in the odoo store
         r.set(f'product:{product_data["id"]}', product_id)
         
-        for variant in variant_data:
-            # check if the product variant exists in the odoo store
-            product_variant_id = models.execute_kw(
-                db, uid, api_key,
-                'product.product', 'search',
-                [[
-                    ('default_code', '=', variant['sku']),
-                    ('product_tmpl_id', '=', product_id)
-                  ]]
-            )
+        # for variant in variant_data:
+        #     # check if the product variant exists in the odoo store
+        #     product_variant_id = models.execute_kw(
+        #         db, uid, api_key,
+        #         'product.product', 'search',
+        #         [[
+        #             ('default_code', '=', variant['sku']),
+        #             ('product_tmpl_id', '=', product_id)
+        #           ]]
+        #     )
 
-            if product_variant_id:
-                print("Product variant found in odoo.")
-                print(product_variant_id)
-                #return product_variant_id[0]
-            else:
-                print("Product variant not found in odoo.")
+        #     if product_variant_id:
+        #         print("Product variant found in odoo.")
+        #         print(product_variant_id)
+        #         #return product_variant_id[0]
+        #     else:
+        #         print("Product variant not found in odoo.")
 
-                variant_barcode = variant['barcode'] if variant['barcode'] is not None else ''
+        #         variant_barcode = variant['barcode'] if variant['barcode'] is not None else ''
 
-                print(option_data)
+        #         print(option_data)
 
-                attribute_value_ids = []
-                for option in option_data:
-                    values = option['values']
-                    for value in values:
-                        attribute_value_id = r.get(f'attribute_values:{option["name"]}:{value}')
-                        attribute_value_ids.append(int(attribute_value_id))
+        #         attribute_value_ids = []
+        #         for option in option_data:
+        #             values = option['values']
+        #             for value in values:
+        #                 attribute_value_id = r.get(f'attribute_values:{option["name"]}:{value}')
+        #                 attribute_value_ids.append(int(attribute_value_id))
                 
-                print(attribute_value_ids)
-                #exit()
+        #         print(attribute_value_ids)
+        #         #exit()
 
-                # create a new product variant in the odoo store
-                product_variant_id = models.execute_kw(
-                    db, uid, api_key,
-                    'product.product', 'create',
-                    [{
-                        'name': variant['name'],
-                        'default_code': variant['sku'],
-                        'list_price': variant['list_price'],
-                        'compare_list_price': variant['compare_at_price'],
-                        'product_tmpl_id': product_id[0],
-                        'barcode': str(variant['default_code']),
-                        'combination_indices': attribute_value_ids,
-                       # 'requires_shipping': variant['requires_shipping'],
-                        # 'sku': variant['sku'],
-                        'weight': variant['weight'],
-                    }]
-                )
-                print(product_variant_id)
+        #         # create a new product variant in the odoo store
+        #         product_variant_id = models.execute_kw(
+        #             db, uid, api_key,
+        #             'product.product', 'create',
+        #             [{
+        #                 'name': variant['name'],
+        #                 'default_code': variant['sku'],
+        #                 'list_price': variant['list_price'],
+        #                 'compare_list_price': variant['compare_at_price'],
+        #                 'product_tmpl_id': product_id[0],
+        #                 'barcode': str(variant['default_code']),
+        #                 'combination_indices': attribute_value_ids,
+        #                # 'requires_shipping': variant['requires_shipping'],
+        #                 # 'sku': variant['sku'],
+        #                 'weight': variant['weight'],
+        #             }]
+        #         )
+        #         print(product_variant_id)
 
-        #return product_id
+        return product_id
 
 # create a product attribute in odoo
 def create_attribute(option_data, r):
@@ -269,11 +310,23 @@ if __name__ == '__main__':
 
         #exit()
         attribute_line_ids = []
+        
+        # for option in option_data:
+        #     attribute_line_ids.append(
+        #         int(r.get(f'attribute_values:{option["name"]}'))
+        #     )
         for option in option_data:
-            attribute_line_ids.append(
-                int(r.get(f'attribute_values:{option["name"]}'))
-            )
-        #print(attribute_line_ids)
+            values = option['values']
+            value_ids = []
+            attribute_id = r.get(f'attribute_values:{option["name"]}')
+            for value in values:
+                attribute_value_id = r.get(f'attribute_values:{option["name"]}:{value}')
+                value_ids.append(int(attribute_value_id))
+            attribute_line_ids.append((0, 0, {
+                'attribute_id': int(attribute_id),
+                'value_ids': [(6, 0, value_ids)],
+            }))
+        print(attribute_line_ids)
 
         #exit()
             
@@ -303,7 +356,7 @@ if __name__ == '__main__':
             'compare_at_price': product['variants'][0]['compare_at_price'],
             'id': product['id'],
             'attribute_line_ids': option_data,
-            'valid_product_template_attribute_line_ids': attribute_line_ids,
+            # 'valid_product_template_attribute_line_ids': attribute_line_ids,
         }
         print(product_data, variant_data)
         #exit()
