@@ -49,34 +49,47 @@ def get_products(page=1, limit=10):
 
     # Define the search criteria
     search_criteria = [
-        ['id', '=', 73]
+        ['id', '=', 75]
     ]
 
 
     # update the product template
-    odoo.update('product.template', search_criteria, {
-        'cost_currency_id': [1],
-    })
+    # odoo.update('product.template', search_criteria, {
+    #     'cost_currency_id': [1],
+    # })
 
     #print(product_ids)
     product_ids = odoo.search_read('product.template', search_criteria, [])
-    print(product_ids)
+    #print(product_ids)
 
-    exit()
+    #exit()
 
 
     # search for the product product.product
     search_criteria = [
-        ['product_tmpl_id', '=', 73]
+        ['product_tmpl_id', '=', 75],
+        ['is_product_variant', '=', True]
+    ]
+
+    fields = [
+        'id',
+        'name',
+        'default_code',
+        'attribute_line_ids',
     ]
 
     
 
-    product_product_ids = odoo.search_read('product.product', search_criteria, [])
+    product_product_ids = odoo.search_read('product.product', search_criteria, fields)
 
     for product in product_product_ids:
         print(product)
-        exit()
+        #continue
+        # update the product product.product default code
+        # odoo.update('product.product', [['id', '=', product['id']]], {
+        #     'default_code': '123456789'
+        # })
+        
 
     
 

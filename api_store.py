@@ -20,7 +20,7 @@ def login():
     device_name = "odoo"
 
     # Authenticate use http post
-    login_url = f'{url}/api/v1/admin/login'
+    login_url = url + "/api/v1/admin/login"
     login_data = {
         "email": username,
         "password": password,
@@ -40,14 +40,17 @@ def login():
         # set the token to be cached
         return response_data['token']
     
-def get_token():
+def get_token(r):
     # check if the token is cached
-    token = os.getenv('USA_STORE_TOKEN')
+    #token = os.getenv('USA_STORE_TOKEN')
+    token = r.get('USA_STORE_TOKEN')
     if token:
         return token
     else:
         # if not cached, login and cache the token
         token = login()
+        if token:
+            r.set('USA_STORE_TOKEN', token)
         return token
     
 def get_orders(token, page=1, limit=10):
@@ -69,6 +72,8 @@ def get_orders(token, page=1, limit=10):
     response = requests.get(orders_url, json=data, headers=headers)
     if response.status_code != 200:
         print("Failed to get orders.")
+        print(response.json())
+        print(response.status_code)
         return None
     else:
         print("Get orders successfully.")
@@ -238,17 +243,8 @@ def create_odoo_order(order, token, r):
             }
 
 
-
-
-    
-
-    
-
-
 if __name__ == '__main__':
-    token = get_token()
-    print(token)
-
+    
     max = 80000
     page = ceil(max / 20)
 
@@ -259,6 +255,10 @@ if __name__ == '__main__':
 
     # create a connection to the redis server
     r = redis.Redis(host=redis_host, port=redis_port, db=redis_db, password=redis_password)
+
+    token = get_token(r)
+    print(token)
+
     
     for i in range(1, page):
         orders = get_orders(token, i, 20)
