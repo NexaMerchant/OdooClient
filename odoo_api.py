@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import logging
 
 # Set up logging to file
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class OdooApi:
     def __init__(self, url, db, username, api_key):
@@ -34,7 +34,7 @@ class OdooApi:
         return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'read', [ids], {'fields': fields})
     
     def write(self, model, ids, data):
-        print(f"Writing to {model} with ids {ids} and data {data}")
+        # print(f"Writing to {model} with ids {ids} and data {data}")
         return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'write', [ids, data])
     
     def create(self, model, data):
@@ -42,8 +42,8 @@ class OdooApi:
     
     def update(self, model, domain, data):
         ids = self.search(model, domain)
-        print(f"Updating {model} with domain {domain} and data {data}")
-        print(f"IDs: {ids}")
+        #print(f"Updating {model} with domain {domain} and data {data}")
+        #print(f"IDs: {ids}")
         if not ids:
             return None
         return self.write(model, ids, data)

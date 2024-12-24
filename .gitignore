@@ -1,3 +1,4 @@
 .env
 api_store.txt
 __pycache__/
+images/

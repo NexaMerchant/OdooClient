@@ -1,0 +1,390 @@
+Authenticated successfully. UID: 2
+Field: ptav_active
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: ptav_active
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Active
+  type: boolean
+Field: name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_attribute_value_id.name']
+  exportable: True
+  groupable: True
+  manual: False
+  name: name
+  readonly: True
+  related: product_attribute_value_id.name
+  required: False
+  searchable: True
+  sortable: True
+  store: False
+  string: Value
+  translate: True
+  trim: True
+  type: char
+Field: product_attribute_value_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: product_attribute_value_id
+  readonly: False
+  relation: product.attribute.value
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Attribute Value
+  type: many2one
+Field: attribute_line_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: attribute_line_id
+  readonly: False
+  relation: product.template.attribute.line
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Attribute Line
+  type: many2one
+Field: price_extra
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  digits: [16, 2]
+  exportable: True
+  groupable: True
+  help: Extra price for the variant with this attribute value on sale price. eg. 200 price extra, 1000 + 200 = 1200.
+  manual: False
+  name: price_extra
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Extra Price
+  type: float
+Field: currency_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['attribute_line_id.product_tmpl_id.currency_id']
+  domain: []
+  exportable: True
+  groupable: False
+  manual: False
+  name: currency_id
+  readonly: True
+  related: attribute_line_id.product_tmpl_id.currency_id
+  relation: res.currency
+  required: False
+  searchable: False
+  sortable: False
+  store: False
+  string: Currency
+  type: many2one
+Field: exclude_for
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  help: Make this attribute value not compatible with other values of the product or some attribute values of optional and accessory products.
+  manual: False
+  name: exclude_for
+  readonly: False
+  relation: product.template.attribute.exclusion
+  relation_field: product_template_attribute_value_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Exclude for
+  type: one2many
+Field: product_tmpl_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['attribute_line_id.product_tmpl_id']
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: product_tmpl_id
+  readonly: True
+  related: attribute_line_id.product_tmpl_id
+  relation: product.template
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Product Template
+  type: many2one
+Field: attribute_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: ['attribute_line_id.attribute_id']
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: attribute_id
+  readonly: True
+  related: attribute_line_id.attribute_id
+  relation: product.attribute
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Attribute
+  type: many2one
+Field: ptav_product_variant_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: ptav_product_variant_ids
+  readonly: True
+  relation: product.product
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Related Variants
+  type: many2many
+Field: html_color
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_attribute_value_id.html_color']
+  exportable: True
+  groupable: True
+  help: Here you can set a specific HTML color index (e.g. #ff0000) to display the color if the attribute type is 'Color'.
+  manual: False
+  name: html_color
+  readonly: True
+  related: product_attribute_value_id.html_color
+  required: False
+  searchable: True
+  sortable: True
+  store: False
+  string: HTML Color Index
+  translate: False
+  trim: True
+  type: char
+Field: is_custom
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_attribute_value_id.is_custom']
+  exportable: True
+  groupable: True
+  help: Allow customers to set their own value
+  manual: False
+  name: is_custom
+  readonly: True
+  related: product_attribute_value_id.is_custom
+  required: False
+  searchable: True
+  sortable: True
+  store: False
+  string: Free text
+  type: boolean
+Field: display_type
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_attribute_value_id.display_type']
+  exportable: True
+  groupable: True
+  help: The display type used in the Product Configurator.
+  manual: False
+  name: display_type
+  readonly: True
+  related: product_attribute_value_id.display_type
+  required: False
+  searchable: True
+  selection: [['radio', 'Radio'], ['pills', 'Pills'], ['select', 'Select'], ['color', 'Color'], ['multi', 'Multi-checkbox']]
+  sortable: True
+  store: False
+  string: Display Type
+  type: selection
+Field: color
+  aggregator: sum
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: color
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Color
+  type: integer
+Field: image
+  attachment: False
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['product_attribute_value_id.image']
+  exportable: True
+  groupable: False
+  help: You can upload an image that will be used as the color of the attribute value.
+  manual: False
+  name: image
+  readonly: True
+  related: product_attribute_value_id.image
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Image
+  type: binary
+Field: id
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: id
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: ID
+  type: integer
+Field: display_name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['attribute_id', 'name']
+  exportable: True
+  groupable: False
+  manual: False
+  name: display_name
+  readonly: True
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Display Name
+  translate: False
+  trim: True
+  type: char
+Field: create_uid
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: create_uid
+  readonly: True
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Created by
+  type: many2one
+Field: create_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: create_date
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Created on
+  type: datetime
+Field: write_uid
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: write_uid
+  readonly: True
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Last Updated by
+  type: many2one
+Field: write_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: write_date
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Last Updated on
+  type: datetime

@@ -40,6 +40,7 @@ else:
     model_name = 'product.attribute'  # Replace with your model name
     model_name = 'product.attribute.value'  # Replace with your model name
     model_name = 'product.template.attribute.line'  # Replace with your model name
+    model_name = 'product.template.attribute.value'  # Replace with your model name
 
     # create a model fields md file if it does not exist
     # print(f"Creating {model_name}_fields.md")

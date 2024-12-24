@@ -12,31 +12,11 @@ import shopify
 from api_store import get_token
 from odoo_api import OdooApi
 from RedisEnums import RedisEnums
+import base64
+from time import sleep
 
 # Load environment variables from .env file
 load_dotenv()
-
-# get all customers from shopify store using the shopify api
-# params: [page, limit]
-def get_customers(r, shopify, limit=50):
-    customers = []
-    page_info = None
-
-    while True:
-        params = {
-            'limit': limit
-        }
-        if page_info:
-            params['page_info'] = page_info
-        # get the customers from the shopify store
-        customers_data = shopify.Customer.find(**params)
-        for customer in customers_data:
-            customers.append(customer)
-        if not customers_data.has_next_page():
-            break
-        page_info = customers_data.next_page_url
-
-    return customers
 
 def get_orders():
     orders = shopify.Order.find()
@@ -98,6 +78,10 @@ def create_product(product_data, variant_data, option_data, r):
 
         print(product_id)
 
+        compare_at_price  = "0.00"
+        if product_data['compare_at_price']:
+            compare_at_price = product_data['compare_at_price']
+
         if product_id:
             print("Product found in odoo.")
             # print(product_id)
@@ -114,7 +98,7 @@ def create_product(product_data, variant_data, option_data, r):
                     'name': product_data['name'],
                     'description': product_data['description'],
                     'list_price': product_data['price'],
-                    'compare_list_price': product_data['compare_at_price'],
+                    'compare_list_price': compare_at_price,
                     'type': 'consu',
                     'default_code': product_default_code,
                     'barcode': str(product_data['id']),
@@ -200,7 +184,7 @@ def create_attribute(option_data, r):
             )
             # print(attribute_id)
             if attribute_id:
-                print(option['name'] + "Attribute found in odoo." + str(attribute_id[0]))
+                # print(option['name'] + "Attribute found in odoo." + str(attribute_id[0]))
                 # print(attribute_id)
 
                 r.set('attributes', option['name'])
@@ -209,14 +193,14 @@ def create_attribute(option_data, r):
                 
                 # check if the attribute value exists in the odoo store
                 for value in option['values']:
-                    print(value)
+                    # print(value)
                     attribute_value_id = models.execute_kw(
                         db, uid, api_key,
                         'product.attribute.value', 'search',
                         [[('name', '=', value), ('attribute_id', '=', attribute_id)]]
                     )
                     if attribute_value_id:
-                        print(value + "Attribute value found in odoo.")
+                        #print(value + "Attribute value found in odoo.")
                         # print(attribute_value_id)
                         r.set(f'attribute_values:{option["name"]}:{value}', attribute_value_id[0])
                     else:
@@ -241,11 +225,12 @@ def create_attribute(option_data, r):
                 exit()
                 return False
 
-def update_product_variants(product_id, option_data, attribute_line_ids, variant_data, r):
+def update_product_variants(product_id, option_data, attribute_line_ids, variant_data, images, r):
     print("Updating product variants.")
     print(product_id)
     print(option_data)
     print(attribute_line_ids)
+    print(variant_data)
 
     odoo = OdooApi(os.getenv('URL'), os.getenv('DB'), os.getenv('USERNAME'), os.getenv('API_KEY'))
 
@@ -264,6 +249,7 @@ def update_product_variants(product_id, option_data, attribute_line_ids, variant
         'default_code',
         'attribute_line_ids',
         'product_template_attribute_value_ids',
+        'combination_indices',
     ]
 
     
@@ -271,37 +257,109 @@ def update_product_variants(product_id, option_data, attribute_line_ids, variant
     template_attribute_line_ids = odoo.search_read('product.product', search_criteria, fields)
 
     for template_attribute_line in template_attribute_line_ids:
+        # if template_attribute_line['default_code'] is not None:
+        #     continue
         print(template_attribute_line)
-        attribute_line_ids = template_attribute_line['attribute_line_ids']
+        attribute_line_ids = template_attribute_line['product_template_attribute_value_ids']
 
+
+        product_variants_values = []
         for attribute_line in attribute_line_ids:
             print(attribute_line)
             # get the attribute value from the odoo store
-            attribute_value = odoo.search_read('product.attribute.value', [['id', '=', attribute_line]], ['name'])
-            print(attribute_value)    
+            attribute_value = odoo.search_read('product.template.attribute.value', [['id', '=', attribute_line]], ['name'])
+            print(attribute_value)
+            product_variants_values.append(attribute_value[0]['name'])
 
-        exit()
-        # check if the product variant exists in the odoo store
         
+        default_code = search_default_code(product_variants_values, variant_data)
+        default_variant_id = search_default_id(product_variants_values, variant_data)
+        print(default_variant_id, default_code, product_variants_values)
+        image_src = search_image_url(default_variant_id, images)
+        if image_src is None:
+            #exit()
+            continue
+        #print(image_src)
+        #exit()
 
+        # copy the image to the local 
+        image_path = f'images/{default_variant_id}.jpg'
+        print(image_src)
+        print(image_path)
+        # when the image is not file exists
+        if not os.path.exists(image_path):
+            sleep(5)
+            image = requests.get(image_src)
+            with open(image_path, 'wb') as file:
+                file.write(image.content)
 
-    # product.template.attribute.line = attribute_line_ids
+        image_base64 = None
+        with open(image_path, 'rb') as file:
+            image_base64 = base64.b64encode(file.read()).decode('utf-8')
+        
+        if default_code:
+            print("Product variant found in odoo.")
+            # update the product variant
+            odoo.write('product.product', template_attribute_line['id'], {
+                'default_code': default_code,
+                'image_1920': image_base64,
+            })
+        else:
+            print("Product variant not found in odoo.")
+            # create a new product variant
+            return False
 
+def search_image_url(image_id, images):
+    print(image_id)
+    print(images)
+    image_url = None
+    for image in images:
+        if image_id in image['variant_ids']:
+            image_url = image['src']
+            break
+        if image_id == image['id']:
+            image_url = image['src']
+            break
+    return image_url                
+
+def search_default_id(product_variants_values, variant_data):
+    default_id = None
+    product_variants_values_count = len(product_variants_values)
     for variant in variant_data:
-        print(variant)
-        # search option1, option2, option3  in the odoo store
-        # base use option1, option2 and option3 to search the product variant in odoo
-        # if the product variant exists in odoo, update the product variant
-
+        if product_variants_values_count == 2:
+            if variant['option1'] in product_variants_values and variant['option2'] in product_variants_values:
+                default_id = variant['default_code']
+                break
+        elif product_variants_values_count == 3:
+            if variant['option1'] in product_variants_values and variant['option2'] in product_variants_values and variant['option3'] in product_variants_values:
+                default_id = variant['default_code']
+                break
+        elif product_variants_values_count == 1:
+            if variant['option1'] in product_variants_values:
+                default_id = variant['default_code']
+                break
         
-
+    return default_id
         
-            
+def search_default_code(product_variants_values, variant_data):
+    default_code = None
+    product_variants_values_count = len(product_variants_values)
+    for variant in variant_data:
+        if product_variants_values_count == 2:
+            if variant['option1'] in product_variants_values and variant['option2'] in product_variants_values:
+                default_code = variant['sku']
+                break
+        elif product_variants_values_count == 3:
+            if variant['option1'] in product_variants_values and variant['option2'] in product_variants_values and variant['option3'] in product_variants_values:
+                default_code = variant['sku']
+                break
+        elif product_variants_values_count == 1:
+            if variant['option1'] in product_variants_values:
+                default_code = variant['sku']
+                break
         
-
-
-
-
+    return default_code
+           
 
 if __name__ == '__main__':
     # shopify private apps
@@ -325,11 +383,15 @@ if __name__ == '__main__':
 
     products = get_products()
     for product in products:
+        # product.id = "8395617403110"
+        print(f"{product.id} starting processing.")
+        product_variants = get_product_variants(product.id)
         product = get_product(product.id)
         # print(product)
-        product_variants = get_product_variants(products[0].id)
+        
         variant_data = []
         option_data = []
+        images = []
 
         for option in product['options']:
             option_data.append({
@@ -339,6 +401,18 @@ if __name__ == '__main__':
 
         create_attribute(option_data, r)
         #continue
+
+        for image in product['images']:
+            images.append({
+                'src': image['src'],
+                'id': image['id'],
+                'position': image['position'],
+                "variant_ids": image['variant_ids'],
+            })
+        
+        #print(images)
+        #exit()
+        
 
         #exit()
         attribute_line_ids = []
@@ -361,6 +435,8 @@ if __name__ == '__main__':
         #print(attribute_line_ids)
 
         #exit()
+        # if product['variants'][0]['compare_at_price'] is None:
+        #     continue
             
         
 
@@ -401,7 +477,9 @@ if __name__ == '__main__':
         #print(product_id)
 
         # update the product variants
-        update_product_variants(product_id, option_data, attribute_line_ids,  variant_data, r) 
+        update_product_variants(product_id, option_data, attribute_line_ids,  variant_data, images, r) 
 
-        exit()
+        # exit()
+
+        sleep(5)
         
