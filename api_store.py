@@ -7,6 +7,8 @@ import xmlrpc.client
 import time
 from math import ceil
 import redis
+from odoo_api import OdooApi
+import shopify
 
 # Load environment variables from .env file
 load_dotenv()
@@ -42,10 +44,14 @@ def login():
     
 def get_token(r):
     # check if the token is cached
-    #token = os.getenv('USA_STORE_TOKEN')
+    token = os.getenv('USA_STORE_TOKEN')
+    token = "11862|jwA0yT6a6T07rUcBdnPZQ62ik1mwM6zUTGWPIv7eee91d1a3"
+    #print(token)
+    #exit()
+    return token
     token = r.get('USA_STORE_TOKEN')
     if token:
-        return token
+        return str(token)
     else:
         # if not cached, login and cache the token
         token = login()
@@ -59,7 +65,7 @@ def get_orders(token, page=1, limit=10):
     # Authenticate use http post
     orders_url = f'{url}/api/v1/admin/sales/orders'
     headers = {
-        'Authorization': "Bearer " + token,
+        'Authorization': "Bearer " + str(token),
         'Content-Type': 'application/json'
     }
     data = {
@@ -70,13 +76,23 @@ def get_orders(token, page=1, limit=10):
         "order": "desc"
     }
     response = requests.get(orders_url, json=data, headers=headers)
+    print(response.status_code)
+    print(response.content)
     if response.status_code != 200:
         print("Failed to get orders.")
         print(response.json())
-        print(response.status_code)
         return None
     else:
-        print("Get orders successfully.")
+        try:
+            print("Get orders successfully.")
+            response_data = response.json()
+            print(json.dumps(response_data, indent=4))
+            return response_data
+        except:
+            print("Failed to get orders.")
+            # clear the token
+            r.delete('USA_STORE_TOKEN')
+            return None
         response_data = response.json()
         # print(json.dumps(response_data, indent=4))
         # print(response_data)
@@ -173,22 +189,21 @@ def create_odoo_order(order, token, r):
                     [customer_data]
                 )
 
-                return
+                #return
+            else:
+                print("Customer found.")
+                customer_id = customer_id[0]
             
             # print(customer_id)
             # Save email and customer id to redis
-            r.set(order['customer_email'], customer_id[0])
+            r.set(order['customer_email'], customer_id)
         # create a new order to the odoo website store
         # check the order has created
         order_search_criteria = [
             ['source_id', '=', order['id']],
         ]
 
-        order_id = models.execute_kw(
-            db, uid, api_key,
-            'sale.order', 'search',
-            [order_search_criteria]
-        )
+        order_id = odoo.search('sale.order', order_search_criteria)
 
         if order_id:
             print("Order already exists.")
@@ -200,6 +215,25 @@ def create_odoo_order(order, token, r):
             # print(order['items'])
 
             for item in order['items']:
+
+                additional_sku = item['additional']['product_sku']
+                print(additional_sku)
+
+                additional_sku = additional_sku.split('-')
+                print(additional_sku)
+
+                shopify_product_id = additional_sku[0]
+                shopify_variant_id = additional_sku[1]
+
+                print(shopify_product_id)
+                print(shopify_variant_id)
+
+                odoo_product_id = r.get(f'product:{shopify_product_id}')
+                print(odoo_product_id)
+                odoo_variant_id = r.get(f'product:{odoo_product_id}:{shopify_variant_id}')
+                print(odoo_variant_id)
+                exit()
+
                 # get the product id
                 product_id = models.execute_kw(
                     db, uid, api_key,
@@ -255,6 +289,14 @@ if __name__ == '__main__':
 
     # create a connection to the redis server
     r = redis.Redis(host=redis_host, port=redis_port, db=redis_db, password=redis_password)
+    odoo = OdooApi(os.getenv('URL'), os.getenv('DB'), os.getenv('USERNAME'), os.getenv('API_KEY'))
+
+    shop_url = os.getenv('USA_SHOPIFY_HOST')
+    api_version = os.getenv('USA_SHOPIFY_API_VERSION')
+    private_app_password = os.getenv('USA_SHOPIFY_ACCESS_TOKEN')
+    session = shopify.Session(shop_url, api_version, private_app_password)
+    shopify.ShopifyResource.activate_session(session)
+    print("Authenticated successfully." + session.url)
 
     token = get_token(r)
     print(token)
@@ -262,11 +304,15 @@ if __name__ == '__main__':
     
     for i in range(1, page):
         orders = get_orders(token, i, 20)
+        if orders is None:
+            print("Failed to get orders.")
+            exit()
         # create a new order to the odoo store
         for order in orders['data']:
             create_odoo_order(order, token, r)
             # wait for 1 second
-            time.sleep(1)
+            # time.sleep(1)
+            exit()
 
     
     

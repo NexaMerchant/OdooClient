@@ -29,7 +29,7 @@ def get_order(order_id):
 # get all products use the shopify api
 # use next page url to get all products
 
-def get_products(limit=20):
+def get_products(limit=50):
     products = []
     page_info = None
 
@@ -197,6 +197,8 @@ def create_attribute(option_data, r):
 
         # check if the attribute exists in the odoo store
         for option in option_data:
+            # covert the option name to capitalize
+            option['name'] = option['name'].capitalize()
             attribute_id = models.execute_kw(
                     db, uid, api_key,
                     'product.attribute', 'search',
@@ -297,6 +299,10 @@ def update_product_variants(product_id, option_data, attribute_line_ids, variant
         default_code = search_default_code(product_variants_values, variant_data)
         default_variant_id = search_default_id(product_variants_values, variant_data)
         print(default_variant_id, default_code, product_variants_values)
+
+        if default_variant_id is not None:
+            r.set(f'product:{product_id}:{default_variant_id}', template_attribute_line['id'])
+
         image_src = search_image_url(default_variant_id, images)
         if image_src is None:
             #exit()
@@ -319,6 +325,7 @@ def update_product_variants(product_id, option_data, attribute_line_ids, variant
         with open(image_path, 'rb') as file:
             image_base64 = base64.b64encode(file.read()).decode('utf-8')
         
+
         if default_code:
             print("Product variant found in odoo.")
             # update the product variant
@@ -406,10 +413,19 @@ if __name__ == '__main__':
     products = get_products()
     for product in products:
         # product.id = "8395617403110"
+
+        # when the product is saved in the redis cache then skip the product
+        product_id = r.get(f'product:{product.id}')
+        if product_id:
+            print("Product found in redis cache.")
+            continue
+
         print(f"{product.id} starting processing.")
         product_variants = get_product_variants(product.id)
         product = get_product(product.id)
         # print(product)
+
+        
         
         variant_data = []
         option_data = []
@@ -417,7 +433,7 @@ if __name__ == '__main__':
 
         for option in product['options']:
             option_data.append({
-                'name': option['name'],
+                'name': option['name'].capitalize(),
                 'values': option['values'],
             })
 
