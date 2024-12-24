@@ -30,14 +30,24 @@ def get_customers(limit=50, odoo=None, website_id=None):
 
         for customer in response:
             customer_dict = customer.to_dict()
-
-            print(f"Checking customer: {customer_dict}")
-
             if customer_dict['email'] == None:
                 continue
 
+            print(f"Checking customer: {customer_dict}")
+
             customer_id = r.get(customer_dict['email'])
             if customer_id:
+                continue
+
+            # check if the customer address is empty
+            if customer_dict['addresses'].__len__() == 0:
+                continue
+
+            # check if the customer has a default address, but the address1 is empty
+            if not customer_dict['default_address']:
+                continue
+
+            if not customer_dict['default_address']['address1']:
                 continue
             
             # check if the customer exists in odoo

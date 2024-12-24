@@ -91,10 +91,14 @@ class OdooApi:
         customer_dict['lang'] = 'en_US'
         customer_dict['website_id'] = website_id
 
+        phone = ""
+        if customer_dict['default_address']['phone']:
+            phone = customer_dict['default_address']['phone']
+
         customer_data = {
                     'name': customer_dict['first_name'] + ' ' + customer_dict['last_name'],
                     'email': customer_dict['email'],
-                    'phone': customer_dict['default_address']['phone'],
+                    'phone': phone,
                     'street': customer_dict['default_address']['address1'][0],
                     #'street2': order['shipping_address']['address2'][0],
                     'city': customer_dict['default_address']['city'],
