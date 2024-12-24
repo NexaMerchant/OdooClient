@@ -26,8 +26,30 @@ def get_order(order_id):
     order = shopify.Order.find(order_id)
     return order
 
-def get_products():
-    products = shopify.Product.find()
+# get all products use the shopify api
+# use next page url to get all products
+
+def get_products(limit=20):
+    products = []
+    page_info = None
+
+    while True:
+        params = {'limit': limit}
+        if page_info:
+            params['page_info'] = page_info
+
+        response = shopify.Product.find(**params)
+        products.extend(response)
+        print(response.next_page_url)
+
+        if not response:
+            break
+        if response.next_page_url is None:
+            break
+
+        page_info = response.next_page_url.split('page_info=')[1]
+
+    # products = shopify.Product.find()
     return products
 
 def get_product(product_id):
