@@ -55,6 +55,9 @@ def get_customers(limit=50, odoo=None, website_id=None):
         if not response:
             break
 
+        if response.next_page_url is None:
+            break;
+
         page_info = response.next_page_url.split('page_info=')[1]
 
     return customers

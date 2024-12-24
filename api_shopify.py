@@ -244,7 +244,7 @@ def create_attribute(option_data, r):
                 r.set(f'attribute_values:{option['name']}', attribute_id)
             else:
                 print(option['name'] + "Attribute not found in odoo.")
-                exit()
+                # exit()
                 return False
 
 def update_product_variants(product_id, option_data, attribute_line_ids, variant_data, images, r):
@@ -421,7 +421,9 @@ if __name__ == '__main__':
                 'values': option['values'],
             })
 
-        create_attribute(option_data, r)
+        create_attribute_result = create_attribute(option_data, r)
+        if create_attribute_result is False:
+            continue
         #continue
 
         for image in product['images']:
