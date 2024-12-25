@@ -125,6 +125,8 @@ def create_product(product_data, variant_data, option_data, r):
                     'default_code': product_default_code,
                     'barcode': str(product_data['id']),
                     'website_id': website_id,
+                    "responsible_id": 17,
+                    "is_storable": True,
                    # 'attribute_line_ids': product_data['attribute_line_ids'],
                    # 'valid_product_template_attribute_line_ids': product_data['valid_product_template_attribute_line_ids'],
                 }]
@@ -418,7 +420,7 @@ if __name__ == '__main__':
         product_id = r.get(f'product:{product.id}')
         if product_id:
             print("Product found in redis cache.")
-            continue
+            # continue
 
         print(f"{product.id} starting processing.")
         product_variants = get_product_variants(product.id)

@@ -40,6 +40,9 @@ class OdooApi:
     def create(self, model, data):
         return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'create', [data])
     
+    def delete(self, model, ids):
+        return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'unlink', [ids])
+    
     def update(self, model, domain, data):
         ids = self.search(model, domain)
         #print(f"Updating {model} with domain {domain} and data {data}")

@@ -9,6 +9,7 @@ from math import ceil
 import redis
 from odoo_api import OdooApi
 import shopify
+import datetime
 
 # Load environment variables from .env file
 load_dotenv()
@@ -71,13 +72,14 @@ def get_orders(token, page=1, limit=10):
     data = {
         "page": page,
         "limit": limit,
-        #"status": "processing",
+        "status": "processing",
         "sort": "created_at",
-        "order": "desc"
+        "order": "desc",
+ #       "id": 79490
     }
     response = requests.get(orders_url, json=data, headers=headers)
     print(response.status_code)
-    print(response.content)
+    #print(response.content)
     if response.status_code != 200:
         print("Failed to get orders.")
         print(response.json())
@@ -200,81 +202,96 @@ def create_odoo_order(order, token, r):
         # create a new order to the odoo website store
         # check the order has created
         order_search_criteria = [
-            ['source_id', '=', order['id']],
+            ['origin', '=', order['id']],
         ]
 
         order_id = odoo.search('sale.order', order_search_criteria)
 
+        # order_id = None
+
         if order_id:
+            order_id = order_id[0]
             print("Order already exists.")
-            return
+            return False
         else:
-
-            order_lines = []
-
-            # print(order['items'])
-
-            for item in order['items']:
-
-                additional_sku = item['additional']['product_sku']
-                print(additional_sku)
-
-                additional_sku = additional_sku.split('-')
-                print(additional_sku)
-
-                shopify_product_id = additional_sku[0]
-                shopify_variant_id = additional_sku[1]
-
-                print(shopify_product_id)
-                print(shopify_variant_id)
-
-                odoo_product_id = r.get(f'product:{shopify_product_id}')
-                print(odoo_product_id)
-                odoo_variant_id = r.get(f'product:{odoo_product_id}:{shopify_variant_id}')
-                print(odoo_variant_id)
-                exit()
-
-                # get the product id
-                product_id = models.execute_kw(
-                    db, uid, api_key,
-                    'product.product', 'search',
-                    [[('default_code', '=', item['sku'])]]
-                )
-
-                if not product_id:
-                    print( item['sku'] +" Product not found.")
-                    continue
-
-                # create a new order line
-                order_line_data = {
-                    'product_id': product_id[0],
-                    'product_uom_qty': item['quantity'],
-                    'price_unit': item['price'],
-                    'name': item['name'],
-                }
-
-                order_lines.append((0, 0, order_line_data))
             
-            print(order_lines)
-
+            # print(order['items'])
+            #exit()
             # when order_lines is empty
-            if not order_lines:
-                print("Order lines are empty.")
-                return
+          
 
+            created_at = order['created_at']
+            parsed_date = datetime.datetime.strptime(created_at, '%Y-%m-%dT%H:%M:%S.%fZ')
+            formatted_date = parsed_date.strftime('%Y-%m-%d %H:%M:%S')
+
+            currency_id = odoo.search('res.currency', [['name', '=', order['order_currency_code']]])
+            print(currency_id)
             
             # create a new order
             order_data = {
-                'partner_id': customer_id[0],
-                'source_id': order['id'],
-                'date_order': order['created_at'],
-                'website_id': website_id,
+                'partner_id': int(customer_id),
+                'origin': order['id'],
+                'date_order': formatted_date,
+                # 'website_id': website_id,
                 'state': 'sale',
-                'payment_term_id': 1,
-                'payment_state': 'paid',
-                'create_date': order['created_at'],
-                'order_line': order_lines,
+               # 'payment_term_id': 1,
+                'create_date': formatted_date,
+                #'order_line': order_lines,
+                'invoice_status': 'to invoice',
+                "currency_id": currency_id,
+                'amount_total': order['grand_total'],
+                'amount_tax': order['tax_amount'],
             }
+
+            print(order_data)
+
+            order_id = odoo.create('sale.order', order_data)
+            print(order_id)
+        order_lines = []
+        for item in order['items']:
+            additional_sku = item['additional']['product_sku']
+            print(additional_sku)
+            additional_sku = additional_sku.split('-')
+            print(additional_sku)
+            shopify_product_id = additional_sku[0]
+            shopify_variant_id = additional_sku[1]
+
+            #print(shopify_product_id)
+            #print(shopify_variant_id)
+
+            odoo_product_id = r.get(f'product:{shopify_product_id}')
+            print(odoo_product_id)
+            odoo_variant_id = r.get(f'product:{odoo_product_id}:{shopify_variant_id}')
+            print(odoo_variant_id)
+            #exit()
+
+            if not odoo_product_id:
+                print("Product not found.")
+                continue
+
+            print(item)
+            # create a new order line
+            order_line_data = {
+                'product_id': int(odoo_variant_id),
+                # 'variant_id': odoo_variant_id,
+                'product_uom_qty': item['qty_ordered'],
+                'price_unit': item['price'],
+                'name': item['children'][0]['name'],
+            }
+
+            order_lines.append((order_line_data))
+        print(order_lines)
+
+        # create a new order line
+        for order_line in order_lines:
+            order_line['order_id'] = int(order_id)
+            print(order_line)
+            order_line_id = odoo.create('sale.order.line', order_line)
+            print(order_line_id)
+
+           
+        
+        
 
 
 if __name__ == '__main__':
@@ -311,8 +328,8 @@ if __name__ == '__main__':
         for order in orders['data']:
             create_odoo_order(order, token, r)
             # wait for 1 second
-            # time.sleep(1)
-            exit()
+            time.sleep(1)
+            # exit()
 
     
     
