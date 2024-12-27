@@ -52,8 +52,11 @@ def get_products(limit=50):
     # products = shopify.Product.find()
     return products
 
-def get_product(product_id):
-    product = shopify.Product.find(product_id).to_dict()
+def get_product(product_id, dict=True):
+    if dict:
+        product = shopify.Product.find(product_id).to_dict()
+    else:
+        product = shopify.Product.find(product_id)
     return product
 
 def get_product_variants(product_id):
@@ -183,6 +186,8 @@ def create_product(product_data, variant_data, option_data, r):
 
 # create a product attribute in odoo
 def create_attribute(option_data, r):
+    print("Creating product attributes.")
+    print(option_data)
     url = os.getenv('URL')
     db = os.getenv('DB')
     username = os.getenv('USERNAME')
@@ -257,6 +262,8 @@ def update_product_variants(product_id, option_data, attribute_line_ids, variant
     print(option_data)
     print(attribute_line_ids)
     print(variant_data)
+
+    product_id = int(product_id)
 
     odoo = OdooApi(os.getenv('URL'), os.getenv('DB'), os.getenv('USERNAME'), os.getenv('API_KEY'))
 
@@ -412,7 +419,15 @@ if __name__ == '__main__':
     # create a connection to the redis server
     r = redis.Redis(host=redis_host, port=redis_port, db=redis_db, password=redis_password)
 
-    products = get_products()
+    products = []
+    #products = get_products()
+    
+    #product = get_product("8868666671334", False)
+    #product = get_product("8404569030886", False)
+    # product = get_product("8788837957862", False)
+    #product = get_product("8868666671334", False)
+    product = get_product("8874167173350", False)
+    products.append(product)
     for product in products:
         # product.id = "8395617403110"
 
@@ -425,7 +440,9 @@ if __name__ == '__main__':
         print(f"{product.id} starting processing.")
         product_variants = get_product_variants(product.id)
         product = get_product(product.id)
-        # print(product)
+        print(product)
+        print(product_variants)
+        #exit()
 
         
         
@@ -438,7 +455,7 @@ if __name__ == '__main__':
                 'name': option['name'].capitalize(),
                 'values': option['values'],
             })
-
+        print(option_data)
         create_attribute_result = create_attribute(option_data, r)
         if create_attribute_result is False:
             continue

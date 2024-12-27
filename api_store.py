@@ -10,6 +10,8 @@ import redis
 from odoo_api import OdooApi
 import shopify
 import datetime
+import subprocess
+from push import push_feishu_message
 
 # Load environment variables from .env file
 load_dotenv()
@@ -75,20 +77,23 @@ def get_orders(token, page=1, limit=10):
         "status": "processing",
         "sort": "created_at",
         "order": "desc",
- #       "id": 79490
+    #    "id": 79606
     }
+
+    print(orders_url + " " + str(data))
+
     response = requests.get(orders_url, json=data, headers=headers)
     print(response.status_code)
     #print(response.content)
     if response.status_code != 200:
         print("Failed to get orders.")
-        print(response.json())
+        #print(response.json())
         return None
     else:
         try:
             print("Get orders successfully.")
             response_data = response.json()
-            print(json.dumps(response_data, indent=4))
+            #print(json.dumps(response_data, indent=4))
             return response_data
         except:
             print("Failed to get orders.")
@@ -150,6 +155,7 @@ def create_odoo_order(order, token, r):
             print(state_id)
             if not state_id:
                 print("State not found.")
+                push_feishu_message("Order ID: " + str(order['id']) + order['shipping_address']['state']  + " State not found.")
                 return
 
             # Define the order customer search criteria
@@ -209,10 +215,25 @@ def create_odoo_order(order, token, r):
 
         # order_id = None
 
+        currency_id = odoo.search('res.currency', [['name', '=', order['order_currency_code']]])
+        print(currency_id)
+        if not currency_id:
+            print("Currency not found.")
+            return
+        currency_id = currency_id[0]
+
         if order_id:
+            print("Order already exists.")
+            print(order_id)
             order_id = order_id[0]
             print("Order already exists.")
-            return False
+
+            # update the order currency
+            order_data = {
+                'currency_id': currency_id
+            }
+            odoo.write('sale.order', order_id, order_data)
+            #return False
         else:
             
             # print(order['items'])
@@ -224,8 +245,6 @@ def create_odoo_order(order, token, r):
             parsed_date = datetime.datetime.strptime(created_at, '%Y-%m-%dT%H:%M:%S.%fZ')
             formatted_date = parsed_date.strftime('%Y-%m-%d %H:%M:%S')
 
-            currency_id = odoo.search('res.currency', [['name', '=', order['order_currency_code']]])
-            print(currency_id)
             
             # create a new order
             order_data = {
@@ -246,7 +265,8 @@ def create_odoo_order(order, token, r):
             print(order_data)
 
             order_id = odoo.create('sale.order', order_data)
-            print(order_id)
+        print(f'Order ID: {order_id}')
+
         order_lines = []
         for item in order['items']:
             additional_sku = item['additional']['product_sku']
@@ -260,23 +280,40 @@ def create_odoo_order(order, token, r):
             #print(shopify_variant_id)
 
             odoo_product_id = r.get(f'product:{shopify_product_id}')
+            if odoo_product_id:
+                odoo_product_id = int(odoo_product_id)
             print(odoo_product_id)
             odoo_variant_id = r.get(f'product:{odoo_product_id}:{shopify_variant_id}')
+            if odoo_variant_id:
+                odoo_variant_id = int(odoo_variant_id)
             print(odoo_variant_id)
             #exit()
 
             if not odoo_product_id:
-                print("Product not found.")
+                print("Product not found." + str(shopify_product_id))
+                push_feishu_message("Order ID: " + str(order['id']) + " Product not found." + str(shopify_product_id))
                 continue
+                # exit()
+            if not odoo_variant_id:
+                print("Variant not found." + str(odoo_product_id) + " " + str(shopify_variant_id))
+                push_feishu_message("Order ID: " + str(order['id']) + " Variant not found." + str(odoo_product_id) + " " + str(shopify_variant_id))
+                continue
+                # exit()
+                
 
             print(item)
             # create a new order line
+            name = item['name']
+            print(type(item['children']))
+            if item['children']:
+                name = item['children'][0]['name']
             order_line_data = {
                 'product_id': int(odoo_variant_id),
                 # 'variant_id': odoo_variant_id,
                 'product_uom_qty': item['qty_ordered'],
                 'price_unit': item['price'],
-                'name': item['children'][0]['name'],
+                'currency_id': currency_id,
+                'name': name,
             }
 
             order_lines.append((order_line_data))
@@ -286,12 +323,22 @@ def create_odoo_order(order, token, r):
         for order_line in order_lines:
             order_line['order_id'] = int(order_id)
             print(order_line)
-            order_line_id = odoo.create('sale.order.line', order_line)
-            print(order_line_id)
 
-           
-        
-        
+            # check the order line has created
+            order_line_search_criteria = [
+                ['order_id', '=', order_id],
+                ['product_id', '=', order_line['product_id']],
+            ]
+
+            order_line_id = odoo.search('sale.order.line', order_line_search_criteria)
+
+            if order_line_id:
+                order_line_id = order_line_id[0]
+                print("Order line already exists.")
+                continue
+            else:
+                order_line_id = odoo.create('sale.order.line', order_line)
+                print(order_line_id)   
 
 
 if __name__ == '__main__':
@@ -320,6 +367,7 @@ if __name__ == '__main__':
 
     
     for i in range(1, page):
+        print("page: " + str(i))
         orders = get_orders(token, i, 20)
         if orders is None:
             print("Failed to get orders.")
@@ -329,7 +377,7 @@ if __name__ == '__main__':
             create_odoo_order(order, token, r)
             # wait for 1 second
             time.sleep(1)
-            # exit()
+            #exit()
 
     
     
