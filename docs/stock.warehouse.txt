@@ -1,0 +1,917 @@
+Authenticated successfully. UID: 2
+Field: name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: name
+  readonly: False
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Warehouse
+  translate: False
+  trim: True
+  type: char
+Field: active
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: active
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Active
+  type: boolean
+Field: company_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  help: The company is automatically set from your user preferences.
+  manual: False
+  name: company_id
+  readonly: True
+  relation: res.company
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Company
+  type: many2one
+Field: partner_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and ['|', ('company_id', '=', False), ('company_id', 'parent_of', [company_id])] or ['|', ('company_id', '=', False), ('company_id', 'parent_of', '')]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: partner_id
+  readonly: False
+  relation: res.partner
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Address
+  type: many2one
+Field: view_location_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([('usage', '=', 'view'), ('company_id', '=', company_id)])
+  exportable: True
+  groupable: True
+  manual: False
+  name: view_location_id
+  readonly: False
+  relation: stock.location
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: View Location
+  type: many2one
+Field: lot_stock_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([('usage', '=', 'internal'), ('company_id', '=', company_id)])
+  exportable: True
+  groupable: True
+  manual: False
+  name: lot_stock_id
+  readonly: False
+  relation: stock.location
+  required: True
+  searchable: True
+  sortable: True
+  store: True
+  string: Location Stock
+  type: many2one
+Field: code
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Short name used to identify your warehouse
+  manual: False
+  name: code
+  readonly: False
+  required: True
+  searchable: True
+  size: 5
+  sortable: True
+  store: True
+  string: Short Name
+  translate: False
+  trim: True
+  type: char
+Field: route_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([('warehouse_selectable', '=', True), '|', ('company_id', '=', False), ('company_id', '=', company_id)])
+  exportable: True
+  groupable: True
+  help: Defaults routes through the warehouse
+  manual: False
+  name: route_ids
+  readonly: False
+  relation: stock.route
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Routes
+  type: many2many
+Field: reception_steps
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Default incoming route to follow
+  manual: False
+  name: reception_steps
+  readonly: False
+  required: True
+  searchable: True
+  selection: [['one_step', 'Receive and Store (1 step)'], ['two_steps', 'Receive then Store (2 steps)'], ['three_steps', 'Receive, Quality Control, then Store (3 steps)']]
+  sortable: True
+  store: True
+  string: Incoming Shipments
+  type: selection
+Field: delivery_steps
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Default outgoing route to follow
+  manual: False
+  name: delivery_steps
+  readonly: False
+  required: True
+  searchable: True
+  selection: [['ship_only', 'Deliver (1 step)'], ['pick_ship', 'Pick then Deliver (2 steps)'], ['pick_pack_ship', 'Pick, Pack, then Deliver (3 steps)']]
+  sortable: True
+  store: True
+  string: Outgoing Shipments
+  type: selection
+Field: wh_input_stock_loc_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: wh_input_stock_loc_id
+  readonly: False
+  relation: stock.location
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Input Location
+  type: many2one
+Field: wh_qc_stock_loc_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: wh_qc_stock_loc_id
+  readonly: False
+  relation: stock.location
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Quality Control Location
+  type: many2one
+Field: wh_output_stock_loc_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: wh_output_stock_loc_id
+  readonly: False
+  relation: stock.location
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Output Location
+  type: many2one
+Field: wh_pack_stock_loc_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: wh_pack_stock_loc_id
+  readonly: False
+  relation: stock.location
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Packing Location
+  type: many2one
+Field: mto_pull_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: mto_pull_id
+  readonly: False
+  relation: stock.rule
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: MTO rule
+  type: many2one
+Field: pick_type_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: pick_type_id
+  readonly: False
+  relation: stock.picking.type
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Pick Type
+  type: many2one
+Field: pack_type_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: pack_type_id
+  readonly: False
+  relation: stock.picking.type
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Pack Type
+  type: many2one
+Field: out_type_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: out_type_id
+  readonly: False
+  relation: stock.picking.type
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Out Type
+  type: many2one
+Field: in_type_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: in_type_id
+  readonly: False
+  relation: stock.picking.type
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: In Type
+  type: many2one
+Field: int_type_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: int_type_id
+  readonly: False
+  relation: stock.picking.type
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Internal Type
+  type: many2one
+Field: qc_type_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: qc_type_id
+  readonly: False
+  relation: stock.picking.type
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Quality Control Type
+  type: many2one
+Field: store_type_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: store_type_id
+  readonly: False
+  relation: stock.picking.type
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Storage Type
+  type: many2one
+Field: xdock_type_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: xdock_type_id
+  readonly: False
+  relation: stock.picking.type
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Cross Dock Type
+  type: many2one
+Field: crossdock_route_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: crossdock_route_id
+  readonly: False
+  relation: stock.route
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Crossdock Route
+  type: many2one
+Field: reception_route_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: reception_route_id
+  readonly: False
+  relation: stock.route
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Receipt Route
+  type: many2one
+Field: delivery_route_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: delivery_route_id
+  readonly: False
+  relation: stock.route
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Delivery Route
+  type: many2one
+Field: resupply_wh_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  help: Routes will be created automatically to resupply this warehouse from the warehouses ticked
+  manual: False
+  name: resupply_wh_ids
+  readonly: False
+  relation: stock.warehouse
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Resupply From
+  type: many2many
+Field: resupply_route_ids
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: False
+  help: Routes will be created for these resupply warehouses and you can select them on products and product categories
+  manual: False
+  name: resupply_route_ids
+  readonly: False
+  relation: stock.route
+  relation_field: supplied_wh_id
+  required: False
+  searchable: True
+  sortable: False
+  store: True
+  string: Resupply Routes
+  type: one2many
+Field: sequence
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: Gives the sequence of this line when displaying the warehouses.
+  manual: False
+  name: sequence
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Sequence
+  type: integer
+Field: id
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: id
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: ID
+  type: integer
+Field: display_name
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: ['name']
+  exportable: True
+  groupable: False
+  manual: False
+  name: display_name
+  readonly: True
+  required: False
+  searchable: True
+  sortable: False
+  store: False
+  string: Display Name
+  translate: False
+  trim: True
+  type: char
+Field: create_uid
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: create_uid
+  readonly: True
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Created by
+  type: many2one
+Field: create_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: create_date
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Created on
+  type: datetime
+Field: write_uid
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: write_uid
+  readonly: True
+  relation: res.users
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Last Updated by
+  type: many2one
+Field: write_date
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: write_date
+  readonly: True
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Last Updated on
+  type: datetime
+Field: manufacture_to_resupply
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: When products are manufactured, they can be manufactured in this warehouse.
+  manual: False
+  name: manufacture_to_resupply
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Manufacture to Resupply
+  type: boolean
+Field: manufacture_pull_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: manufacture_pull_id
+  readonly: False
+  relation: stock.rule
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Manufacture Rule
+  type: many2one
+Field: manufacture_mto_pull_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: manufacture_mto_pull_id
+  readonly: False
+  relation: stock.rule
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Manufacture MTO Rule
+  type: many2one
+Field: pbm_mto_pull_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: pbm_mto_pull_id
+  readonly: False
+  relation: stock.rule
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Picking Before Manufacturing MTO Rule
+  type: many2one
+Field: sam_rule_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: sam_rule_id
+  readonly: False
+  relation: stock.rule
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Stock After Manufacturing Rule
+  type: many2one
+Field: manu_type_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([('code', '=', 'mrp_operation'), ('company_id', '=', company_id)])
+  exportable: True
+  groupable: True
+  manual: False
+  name: manu_type_id
+  readonly: False
+  relation: stock.picking.type
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Manufacturing Operation Type
+  type: many2one
+Field: pbm_type_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: pbm_type_id
+  readonly: False
+  relation: stock.picking.type
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Picking Before Manufacturing Operation Type
+  type: many2one
+Field: sam_type_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: sam_type_id
+  readonly: False
+  relation: stock.picking.type
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Stock After Manufacturing Operation Type
+  type: many2one
+Field: manufacture_steps
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: 1 Step: Consume components from stock and produce.
+              2 Steps: Pick components from stock and then produce.
+              3 Steps: Pick components from stock, produce, and then move final product(s) from production area to stock.
+  manual: False
+  name: manufacture_steps
+  readonly: False
+  required: True
+  searchable: True
+  selection: [['mrp_one_step', 'Manufacture (1 step)'], ['pbm', 'Pick components then manufacture (2 steps)'], ['pbm_sam', 'Pick components, manufacture, then store products (3 steps)']]
+  sortable: True
+  store: True
+  string: Manufacture
+  type: selection
+Field: pbm_route_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: pbm_route_id
+  readonly: False
+  relation: stock.route
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Picking Before Manufacturing Route
+  type: many2one
+Field: pbm_loc_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: pbm_loc_id
+  readonly: False
+  relation: stock.location
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Picking before Manufacturing Location
+  type: many2one
+Field: sam_loc_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: (company_id and [('company_id', 'in', [company_id] + [False])] or [('company_id', '=', False)]) + ([])
+  exportable: True
+  groupable: True
+  manual: False
+  name: sam_loc_id
+  readonly: False
+  relation: stock.location
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Stock after Manufacturing Location
+  type: many2one
+Field: buy_to_resupply
+  change_default: False
+  company_dependent: False
+  default_export_compatible: False
+  depends: []
+  exportable: True
+  groupable: True
+  help: When products are bought, they can be delivered to this warehouse
+  manual: False
+  name: buy_to_resupply
+  readonly: False
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Buy to Resupply
+  type: boolean
+Field: buy_pull_id
+  change_default: False
+  company_dependent: False
+  context: {}
+  default_export_compatible: False
+  depends: []
+  domain: []
+  exportable: True
+  groupable: True
+  manual: False
+  name: buy_pull_id
+  readonly: False
+  relation: stock.rule
+  required: False
+  searchable: True
+  sortable: True
+  store: True
+  string: Buy rule
+  type: many2one

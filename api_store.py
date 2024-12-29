@@ -113,6 +113,7 @@ def create_odoo_order(order, token, r):
     username = os.getenv('USERNAME')
     api_key = os.getenv('API_KEY')
     website_id = os.getenv('WEBSITE_ID')
+    lang = os.getenv('USA_LANG')
     common = xmlrpc.client.ServerProxy(f'{url}/xmlrpc/2/common')
     uid = common.authenticate(db, username, api_key, {})
 
@@ -186,8 +187,9 @@ def create_odoo_order(order, token, r):
                     'state_id': state_id[0],
                     'country_id': country_id[0],
                     'website_id': website_id,
-                    'lang': 'en_US',
+                    'lang': lang,
                     'category_id': [8],
+                    'type': 'delivery',
                 # 'category_id': 8,
                 }
 
@@ -210,6 +212,7 @@ def create_odoo_order(order, token, r):
         order_search_criteria = [
             ['origin', '=', order['id']],
         ]
+        order_prefix = os.getenv('USA_ORDER_PREFIX')
 
         order_id = odoo.search('sale.order', order_search_criteria)
 
@@ -230,7 +233,8 @@ def create_odoo_order(order, token, r):
 
             # update the order currency
             order_data = {
-                'currency_id': currency_id
+                'currency_id': currency_id,
+                'name': order_prefix + str(order['id']),
             }
             odoo.write('sale.order', order_id, order_data)
             #return False
@@ -251,7 +255,7 @@ def create_odoo_order(order, token, r):
                 'partner_id': int(customer_id),
                 'origin': order['id'],
                 'date_order': formatted_date,
-                # 'website_id': website_id,
+                #'website_id': website_id,
                 'state': 'sale',
                # 'payment_term_id': 1,
                 'create_date': formatted_date,
@@ -260,6 +264,9 @@ def create_odoo_order(order, token, r):
                 "currency_id": currency_id,
                 'amount_total': order['grand_total'],
                 'amount_tax': order['tax_amount'],
+                'name': order_prefix + str(order['id']),
+              #  'note': order['note'], 
+               #  'warehouse_id': 1,
             }
 
             print(order_data)

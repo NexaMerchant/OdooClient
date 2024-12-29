@@ -40,6 +40,7 @@ def get_websites():
             {'fields': ['name', 'domain', 'company_id']}
         )
         print(websites)
+        exit()
 
         # get company list
         companies = models.execute_kw(
