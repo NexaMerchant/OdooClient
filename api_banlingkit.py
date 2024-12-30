@@ -33,4 +33,4 @@ if __name__ == '__main__':
     # put request
     response = requests.put(url, headers=header, data=data)
 
-    print(response.text)
+    print(response.json())
