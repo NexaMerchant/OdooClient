@@ -13,12 +13,26 @@ DEV_DB_NAME="odoo_dev"
 DEV_DB_USER="odoo_user"
 DEV_DB_PASSWORD="odoo_user"
 
-# NOW=$(date +"%Y-%m-%d-%H-%M-%S")
-NOW = "2021-09-01-12-00-00"
+NOW=$(date +"%Y-%m-%d-%H-%M-%S")
+
+# Back the development database
+echo "Backing up development database..."
+
+# Export development database password
+export PGPASSWORD=$DEV_DB_PASSWORD
+# Back the development database sql file path
+DEV_DUMP_FILE="./db/$DEV_DB_NAME-$NOW.sql"
+pg_dump -h $DEV_DB_HOST -p $DEV_DB_PORT -U $DEV_DB_USER -F c -b -v -f $DEV_DUMP_FILE $DEV_DB_NAME
+
+# Check if the backup was successful
+if [ $? -ne 0 ]; then
+    echo "Failed to backup the development database."
+    exit 1
+fi
 
 # Temporary dump file
-DUMP_FILE="./prod_db_dump_$NOW.sql"
-LOG_FILE="./prod_db_dump_$NOW.log"
+DUMP_FILE="./db/prod_db_dump_$NOW.sql"
+LOG_FILE="./db/prod_db_dump_$NOW.log"
 
 # Export production database password
 export PGPASSWORD=$PROD_DB_PASSWORD
