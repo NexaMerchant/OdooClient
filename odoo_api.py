@@ -123,3 +123,6 @@ class OdooApi:
         logging.info(f"Updating customer {customer_id}: {customer_dict}")
         return self.write('res.partner', [customer_id], customer_dict)
     
+    def close(self):
+        pass
+    
