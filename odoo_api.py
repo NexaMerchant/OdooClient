@@ -4,12 +4,14 @@ from dotenv import load_dotenv
 import logging
 
 # Set up logging to file
-logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class OdooApi:
     def __init__(self, url, db, username, api_key):
         self.url = url
+        print(f"Connecting to {url}")
         self.db = db
+        print(f"Using database {db}")
         self.username = username
         self.api_key = api_key
         self.uid = None
