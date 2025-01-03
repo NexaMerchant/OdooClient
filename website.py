@@ -21,10 +21,9 @@ odoo = OdooApi(url, db, username, api_key)
 # Get All website records
 
 # search_criteria
-search_criteria = [
-    ['id', '=', 3],
-]
+search_criteria = []
+fields = []
 
-websites = odoo.search_read('website', search_criteria, [])
+websites = odoo.search_read('website', search_criteria, fields)
 
 print(json.dumps(websites, indent=4))
