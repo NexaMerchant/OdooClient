@@ -16,12 +16,15 @@ from push import push_feishu_message
 # Load environment variables from .env file
 load_dotenv()
 
+store_mark = "CZ"
+
+
 # login the store
 def login():
     # Odoo server details
-    url = os.getenv('USA_STORE_URL')
-    username = os.getenv('USA_STORE_USERNAME')
-    password = os.getenv('USA_STORE_PASSWORD')
+    url = os.getenv(store_mark + '_STORE_URL')
+    username = os.getenv(store_mark + '_STORE_USERNAME')
+    password = os.getenv(store_mark + '_STORE_PASSWORD')
     device_name = "odoo"
 
     # Authenticate use http post
@@ -47,10 +50,10 @@ def login():
     
 def get_token(r):
     # check if the token is cached
-    # token = os.getenv('USA_STORE_TOKEN')
+    # token = os.getenv(store_mark + '_STORE_TOKEN')
     # token = "11862|jwA0yT6a6T07rUcBdnPZQ62ik1mwM6zUTGWPIv7eee91d1a3"
     # return token
-    token = r.get('USA_STORE_TOKEN')
+    token = r.get(store_mark + '_STORE_TOKEN')
     if token:
         print("Token found in cache.")
         # string token
@@ -61,12 +64,12 @@ def get_token(r):
         # if not cached, login and cache the token
         token = login()
         if token:
-            r.set('USA_STORE_TOKEN', token)
+            r.set(store_mark + '_STORE_TOKEN', token)
         return token
     
 def get_orders(token, page=1, limit=10):
     # Odoo server details
-    url = os.getenv('USA_STORE_URL')
+    url = os.getenv(store_mark + '_STORE_URL')
     # Authenticate use http post
     orders_url = f'{url}/api/v1/admin/sales/orders'
     
@@ -101,7 +104,7 @@ def get_orders(token, page=1, limit=10):
         except:
             print("Failed to get orders.")
             # clear the token
-            r.delete('USA_STORE_TOKEN')
+            r.delete(store_mark + '_STORE_TOKEN')
             return None
         response_data = response.json()
         # print(json.dumps(response_data, indent=4))
@@ -115,8 +118,8 @@ def create_odoo_order(order, token, r):
     db = os.getenv('DB')
     username = os.getenv('USERNAME')
     api_key = os.getenv('API_KEY')
-    website_id = os.getenv('WEBSITE_ID')
-    lang = os.getenv('USA_LANG')
+    website_id = os.getenv(store_mark + '_WEBSITE_ID')
+    lang = os.getenv(store_mark + '_LANG')
     common = xmlrpc.client.ServerProxy(f'{url}/xmlrpc/2/common')
     uid = common.authenticate(db, username, api_key, {})
 
@@ -215,7 +218,7 @@ def create_odoo_order(order, token, r):
         order_search_criteria = [
             ['origin', '=', order['id']],
         ]
-        order_prefix = os.getenv('USA_ORDER_PREFIX')
+        order_prefix = os.getenv(store_mark + '_ORDER_PREFIX')
 
         order_id = odoo.search('sale.order', order_search_criteria)
 
@@ -373,9 +376,9 @@ if __name__ == '__main__':
     r = redis.Redis(host=redis_host, port=redis_port, db=redis_db, password=redis_password)
     odoo = OdooApi(os.getenv('URL'), os.getenv('DB'), os.getenv('USERNAME'), os.getenv('API_KEY'))
 
-    shop_url = os.getenv('USA_SHOPIFY_HOST')
-    api_version = os.getenv('USA_SHOPIFY_API_VERSION')
-    private_app_password = os.getenv('USA_SHOPIFY_ACCESS_TOKEN')
+    shop_url = os.getenv(store_mark + '_SHOPIFY_HOST')
+    api_version = os.getenv(store_mark + '_SHOPIFY_API_VERSION')
+    private_app_password = os.getenv(store_mark +'_SHOPIFY_ACCESS_TOKEN')
     session = shopify.Session(shop_url, api_version, private_app_password)
     shopify.ShopifyResource.activate_session(session)
     print("Authenticated successfully." + session.url)
