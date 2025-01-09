@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import logging
 
 # Set up logging to file
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class OdooApi:
     def __init__(self, url, db, username, api_key):
@@ -26,32 +26,36 @@ class OdooApi:
         self.models = xmlrpc.client.ServerProxy(f'{self.url}/xmlrpc/2/object')
         print(f"Authenticated successfully. UID: {self.uid}")
 
-    def search_read(self, model, domain, fields=[]):
-        return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'search_read', [domain], {'fields': fields})
+    def search_read(self, model, domain, fields=[],lang='en_US'):
+        print(f"Searching {model} with domain {domain} and fields {fields}")
+        if lang is None:
+            return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'search_read', [domain], {'fields': fields})
+        return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'search_read', [domain], {'fields': fields,'context':{'lang':lang}})
     
-    def search(self, model, domain):
-        return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'search', [domain])
+    def search(self, model, domain,lang='en_US'):
+        return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'search', [domain],{'context':{'lang':lang}})
     
-    def read(self, model, ids, fields):
-        return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'read', [ids], {'fields': fields})
+    def read(self, model, ids, fields,lang='en_US'):
+        return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'read', [ids], {'fields': fields,'context':{'lang':lang}})
     
-    def write(self, model, ids, data):
+    def write(self, model, ids, data,lang='en_US'):
         # print(f"Writing to {model} with ids {ids} and data {data}")
-        return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'write', [ids, data])
+        return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'write', [ids, data], {'context':{'lang':lang}})
     
-    def create(self, model, data):
+    def create(self, model, data, lang='en_US'):
+        # print(f"Creating {model} with data {data}")
         return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'create', [data])
     
     def delete(self, model, ids):
         return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'unlink', [ids])
     
-    def update(self, model, domain, data):
-        ids = self.search(model, domain)
+    def update(self, model, domain, data,lang='en_US'):
+        ids = self.search(model, domain,lang)
         #print(f"Updating {model} with domain {domain} and data {data}")
         #print(f"IDs: {ids}")
         if not ids:
             return None
-        return self.write(model, ids, data)
+        return self.write(model, ids, data,lang)
     
     def setUid(self, uid):
         self.uid = uid

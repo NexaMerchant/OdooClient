@@ -162,8 +162,12 @@ def create_odoo_order(order, token, r):
             print(state_id)
             if not state_id:
                 print("State not found.")
-                push_feishu_message("Order ID: " + str(order['id']) + order['shipping_address']['state']  + " State not found.")
-                return
+                state_id = 0
+                #push_feishu_message("Order ID: " + str(order['id']) + order['shipping_address']['state']  + " State not found.")
+                #return
+            else:
+                state_id = state_id[0]
+                print(state_id)
 
             # Define the order customer search criteria
             customer_search_criteria = [
