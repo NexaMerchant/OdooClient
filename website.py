@@ -22,7 +22,7 @@ odoo = OdooApi(url, db, username, api_key)
 
 # search_criteria
 search_criteria = []
-fields = []
+fields = ['id', 'name', 'domain','company_id']
 
 websites = odoo.search_read('website', search_criteria, fields)
 

@@ -115,7 +115,7 @@ def create_odoo_order(order, token, r):
     db = os.getenv('DB')
     username = os.getenv('USERNAME')
     api_key = os.getenv('API_KEY')
-    website_id = os.getenv('WEBSITE_ID')
+    website_id = os.getenv('USA_WEBSITE_ID')
     lang = os.getenv('USA_LANG')
     common = xmlrpc.client.ServerProxy(f'{url}/xmlrpc/2/common')
     uid = common.authenticate(db, username, api_key, {})
@@ -258,7 +258,7 @@ def create_odoo_order(order, token, r):
                 'partner_id': int(customer_id),
                 'origin': order['id'],
                 'date_order': formatted_date,
-                'website_id': website_id,
+                'website_id': int(website_id),
                 'state': 'sale',
                # 'payment_term_id': 1,
                 'create_date': formatted_date,
