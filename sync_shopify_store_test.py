@@ -20,7 +20,7 @@ from api_shopify_cz import get_product
 # Load environment variables from .env file
 load_dotenv()
 
-store_mark = "ES"
+store_mark = "UK"
 
 if __name__ == '__main__':
 
@@ -48,8 +48,11 @@ if __name__ == '__main__':
         }
         # if(str(product.id) != "8846711455974"):
         #     continue
-        product = get_product(product.id)
-        #print(product)
+        # product = get_product(product.id)
+        product = get_product("8216266997978")
+        print(product)
+        exit()
+
         data = {
             "product": product
         }
@@ -57,15 +60,17 @@ if __name__ == '__main__':
         # exit()
         print("Sending product to odoo: " + str(i))
         print("Sending product to url: " + url)
-        response = requests.post(url, headers=headers, json=data)
-        print(response.status_code)
 
-        image_url = os.getenv(store_mark + '_STORE_URL') + "/api/v1/odooapi/products/shopify-images"
-        print("Sending product to image url: " + image_url)
-        response = requests.post(image_url, headers=headers, json=data)
-        print(response.status_code)
+
+        # response = requests.post(url, headers=headers, json=data)
+        # print(response.status_code)
+
+        # image_url = os.getenv(store_mark + '_STORE_URL') + "/api/v1/odooapi/products/shopify-images"
+        # print("Sending product to image url: " + image_url)
+        # response = requests.post(image_url, headers=headers, json=data)
+        # print(response.status_code)
         # for debugging
-        #exit() 
+        exit() 
         #print(response.html)
 
         i += 1
