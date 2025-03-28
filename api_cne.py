@@ -1,16 +1,7 @@
 import os
 from dotenv import load_dotenv
 import requests
-import json
-import xmlrpc.client
 import time
-from math import ceil
-import redis
-from odoo_api import OdooApi
-import shopify
-import datetime
-import subprocess
-from push import push_feishu_message
 import hashlib
 
 # Load environment variables from .env file
