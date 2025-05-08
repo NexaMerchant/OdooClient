@@ -20,7 +20,7 @@ from api_shopify_cz import get_product
 # Load environment variables from .env file
 load_dotenv()
 
-store_mark = "ES"
+store_mark = "RO"
 
 if __name__ == '__main__':
 
@@ -50,6 +50,7 @@ if __name__ == '__main__':
         #     continue
         product = get_product(product.id)
         #print(product)
+        #exit()
         data = {
             "product": product
         }

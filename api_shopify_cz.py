@@ -53,6 +53,7 @@ def get_products(limit=50):
         if response.next_page_url is None:
             break
 
+
         page_info = response.next_page_url.split('page_info=')[1]
 
     # products = shopify.Product.find()
