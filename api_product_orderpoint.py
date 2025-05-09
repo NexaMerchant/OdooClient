@@ -10,7 +10,7 @@ DEFAULT_PRODUCT_MIN_QTY = 0.0
 DEFAULT_PRODUCT_MAX_QTY = 0.0
 DEFAULT_QTY_MULTIPLE = 0.0
 # 如果你想为特定的仓库/位置创建规则，可以在这里指定它们的ID
-TARGET_WAREHOUSE_ID = 3 # 例如: 1
+TARGET_WAREHOUSE_ID = 4 # 例如: SZ (仓库ID) 3 SH (仓库ID)
 PURCHASE_ROUTE_NAME = 'Buy'
 #TARGET_LOCATION_ID = None # 例如: 8 (WH/Stock)
 # --- 配置参数结束 ---

@@ -26,11 +26,25 @@ class OdooApi:
         self.models = xmlrpc.client.ServerProxy(f'{self.url}/xmlrpc/2/object')
         print(f"Authenticated successfully. UID: {self.uid}")
 
-    def search_read(self, model, domain, fields=[],lang='en_US'):
-        print(f"Searching {model} with domain {domain} and fields {fields}")
-        if lang is None:
-            return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'search_read', [domain], {'fields': fields})
-        return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'search_read', [domain], {'fields': fields,'context':{'lang':lang}})
+    def search_read(self, model, domain, fields=[],lang='en_US', order_by=None, limit=None):
+        fields = fields or []
+        kwargs = {
+            'fields': fields
+        }
+        if order_by:
+            kwargs['order'] = order_by
+        if limit:
+            kwargs['limit'] = limit
+        if lang:
+            kwargs['context'] = {'lang': lang}
+
+        print(f"Searching {model} with domain {domain} and kwargs {kwargs}")
+        return self.models.execute_kw(
+            self.db, self.uid, self.api_key,
+            model, 'search_read',
+            [domain],
+            kwargs
+        )
     
     def search(self, model, domain,lang='en_US'):
         return self.models.execute_kw(self.db, self.uid, self.api_key, model, 'search', [domain],{'context':{'lang':lang}})
