@@ -3,3 +3,5 @@ api_store.txt
 __pycache__/
 images/
 db/
+xls/
+.idea/
