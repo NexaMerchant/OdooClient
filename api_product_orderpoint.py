@@ -62,6 +62,12 @@ if __name__ == "__main__":
             [('type', 'in', ['product', 'consu'])], # 通常为可库存产品和消耗品创建补货规则
             ['id', 'name', 'display_name']
         )
+        # id 11986 for test
+        # products = odoo.search_read(
+        #     'product.product',
+        #     [('id', '=', 11986)], # 你可以根据需要修改这个条件
+        #     ['id', 'name', 'display_name']
+        # )
         if not products:
             print("没有找到任何产品。")
             exit()

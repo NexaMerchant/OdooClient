@@ -14,13 +14,16 @@ load_dotenv()
 
 # --- 配置参数 ---
 SOURCE_ORDER_LINE_MODEL = 'external.order.line' # 包含外部SKU和产品ID的订单行模型
-SOURCE_EXTERNAL_SKU_FIELD = 'sku(必填)'      # 订单行模型中的外部SKU字段名
-SOURCE_EXTERNAL_SKU_FIELD_2 = '平台SKU'      # 订单行模型中的外部SKU字段名
+SOURCE_EXTERNAL_SKU_FIELD = '库存SKU'      # 订单行模型中的外部SKU字段名
+SOURCE_EXTERNAL_SKU_FIELD_2 = '库存SKU中文名称'      # 订单行模型中的外部SKU字段名
+SOURCE_EXTERNAL_SKU_FIELD_3 = '库存SKU英文名称'      # 订单行模型中的外部SKU字段名
 SOURCE_PRODUCT_ID_FIELD = 'product_id'          # 订单行模型中的Odoo产品ID字段名 (Many2one to product.product)
 
 TARGET_MAPPING_MODEL = 'external.sku.mapping'   # SKU映射模型名
 TARGET_EXTERNAL_SKU_FIELD = 'external_sku'      # SKU映射模型中的外部SKU字段名
 TARGET_PRODUCT_ID_FIELD = 'product_id'          # SKU映射模型中的Odoo产品ID字段名
+
+PLATFORM = 'mabangerp' # 平台名称
 
 # 如果你的映射模型需要公司ID，并且它不是通过product_id自动设置或默认设置的，
 # 你可能需要在这里指定或从源记录中获取它。
@@ -59,6 +62,7 @@ def create_mapping(odoo, external_sku, product_id, company_id=None):
         TARGET_MAPPING_MODEL,
         new_mapping,
     )
+    print(f"创建新的映射记录: {mapping_id}")
     return mapping_id
 
 if __name__ == "__main__":
@@ -66,7 +70,10 @@ if __name__ == "__main__":
     print("成功连接到 Odoo。")
 
     # 读取 xls 目录下面的 xls 文件
-    xls_dir = os.path.join(os.path.dirname(__file__), 'xls')
+    xls_dir = os.path.join(os.path.dirname(__file__), 'xls/'+PLATFORM)
+    if not os.path.exists(xls_dir):
+        print(f"错误：目录 '{xls_dir}' 不存在。")
+        exit()
     xls_files = [f for f in os.listdir(xls_dir) if f.endswith('.xlsx')]
     if not xls_files:
         print("没有找到任何 .xls 文件。")
@@ -86,6 +93,7 @@ if __name__ == "__main__":
                 #print(row)
                 external_sku = row[SOURCE_EXTERNAL_SKU_FIELD]
                 external_sku_2 = row[SOURCE_EXTERNAL_SKU_FIELD_2]
+                external_sku_3 = row[SOURCE_EXTERNAL_SKU_FIELD_3]
                 # 你可以在这里添加更多的字段处理逻辑，例如获取公司ID等
                 # company_id = row[TARGET_COMPANY_ID_FIELD] if TARGET_COMPANY_ID_FIELD in row else None
 
@@ -106,38 +114,14 @@ if __name__ == "__main__":
                 
                 print(f"找到产品 ID: {product_id} (default_code: {external_sku})")
                 
-                # 基于product_id 和 external_sku 查找映射记录
-                mapping = odoo.search_read(
-                    TARGET_MAPPING_MODEL,
-                    [
-                        (TARGET_EXTERNAL_SKU_FIELD, '=', external_sku),
-                        (TARGET_PRODUCT_ID_FIELD, '=', product_id),
-                    ],
-                    ['id'],
-                )
-                if mapping:
-                    print(f"映射记录已存在: {mapping[0]['id']}")
-                    continue
-                else:
-                    print(f"未找到映射记录，准备创建新的映射。" + external_sku + " " + external_sku_2 + " " + str(product_id))
-                    # 创建新的映射记录
-                    new_mapping = {
-                        TARGET_EXTERNAL_SKU_FIELD: external_sku,
-                        TARGET_PRODUCT_ID_FIELD: product_id,
-                        # 如果需要，可以添加其他字段，例如 company_id 等
-                    }
-                    odoo.create(
-                        TARGET_MAPPING_MODEL,
-                        new_mapping,
-                    )
-                
-                 # 基于product_id 和 external_sku 查找映射记录
-                skus = external_sku_2.split('\n')
-                print(skus)
-                for sku in skus:
-                    create_mapping(odoo, sku, product_id)
-                    print(f"创建映射记录: {sku} -> {product_id}")
-                
+                # 创建新的映射记录
+                mapping_id = create_mapping(odoo, external_sku, product_id)
+                mapping_id = create_mapping(odoo, external_sku_2, product_id)
+                mapping_id = create_mapping(odoo, external_sku_3, product_id)
+                #exit()
+                    
+                    
+                    
 
                 #exit()
 

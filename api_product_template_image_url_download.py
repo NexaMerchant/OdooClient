@@ -15,8 +15,8 @@ if __name__ == "__main__":
     # Get a product template image url
     search_criteria = [
         ['image_url', '!=', False],
-       # ['image_1920', '=', False], # Temporarily remove or adjust if this causes issues with initial search
-         ['id', '=', 11335], # Example ID
+        ['image_1920', '=', False], # Temporarily remove or adjust if this causes issues with initial search
+        # ['id', '=', 11335], # Example ID
     ]
     order_by = "id ASC"
     # Request 'image_url' and 'id'. 'image_1920' will be updated.
